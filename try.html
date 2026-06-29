@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clinic Catalyst - Take It For a Spin</title>
+<style>
+  :root{--teal:#0E4D4A;--teal2:#13615C;--mint:#4FB3A6;--gold:#C9A86A;--ink:#13211F;--muted:#5E726E;--bg:#F4F8F6;--card:#FFFFFF;--line:#DCE8E4;--code:#0B2E2B;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.55}
+  .hero{background:linear-gradient(150deg,var(--teal),var(--teal2));color:#fff;padding:44px 24px 36px;text-align:center}
+  .hero .kicker{letter-spacing:3px;text-transform:uppercase;font-size:12px;color:var(--mint);font-weight:700}
+  .hero h1{margin:10px 0 6px;font-size:28px}
+  .hero p{margin:0;color:#CFE7E2;font-size:15px}
+  .wrap{max-width:780px;margin:0 auto;padding:24px 20px 80px}
+  .how{background:#E7F3F0;border:1px solid var(--mint);border-radius:12px;padding:14px 16px;margin:20px 0;font-size:14px;color:#0e4d4a}
+  .group{margin:26px 0 10px}
+  .group h2{font-size:13px;text-transform:uppercase;letter-spacing:2px;color:var(--teal);margin:0 0 4px}
+  .group .gd{color:var(--muted);font-size:13px;margin:0 0 10px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px 14px;margin:8px 0}
+  .row{position:relative;padding:12px 56px 12px 4px;border-bottom:1px dashed var(--line)}
+  .row:last-child{border-bottom:none}
+  .skill{display:inline-block;background:#E7F3F0;color:var(--teal);font-weight:700;font-size:12px;padding:2px 9px;border-radius:20px;margin-bottom:5px}
+  .p{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;color:#13211F}
+  .copy{position:absolute;top:12px;right:6px;background:var(--mint);color:#06302c;border:none;border-radius:7px;padding:6px 11px;font-size:12px;font-weight:700;cursor:pointer}
+  .copy:active{transform:scale(.96)}.copied{background:var(--gold)!important;color:#3a2d08!important}
+  .tip{font-size:12px;color:var(--muted);margin-top:4px}
+  .foot{text-align:center;color:var(--muted);font-size:12px;margin-top:34px}
+  b.fill{color:var(--gold)}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="kicker">Clinic Catalyst</div>
+  <h1>Take it for a spin</h1>
+  <p>Real prompts to try your new system. Tap Copy, paste into Claude Code, swap the <b style="color:#C9A86A">gold bits</b>.</p>
+</div>
+<div class="wrap">
+  <div class="how">In Claude Code, just paste any prompt below and hit enter. Start with the first one - it's the showstopper. Replace <b class="fill">[clinic]</b>, <b class="fill">[url]</b>, <b class="fill">[suburb]</b> etc. with real details.</div>
+
+  <div class="group">
+    <h2>Scope a clinic</h2>
+    <p class="gd">Point it at any clinic's website and watch it work.</p>
+    <div class="card">
+      <div class="row"><button class="copy">Copy</button><span class="skill">/cc-prospect</span><div class="p t">/cc-prospect scope this clinic for Clinic Catalyst: [url]</div></div>
+      <div class="row"><button class="copy">Copy</button><span class="skill">/cc-prospect-demo</span><div class="p t">/cc-prospect-demo build the full demo package (hub, homepage, skin quiz, growth roadmap) for [clinic] at [url]</div></div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>Build the pitch</h2>
+    <p class="gd">From research to a deployed, AHPRA-safe deck.</p>
+    <div class="card">
+      <div class="row"><button class="copy">Copy</button><span class="skill">/cc-deck-prep</span><div class="p t">/cc-deck-prep prep the pitch for [clinic] - pull their website, reviews and socials</div></div>
+      <div class="row"><button class="copy">Copy</button><span class="skill">/cc-pitch</span><div class="p t">/cc-pitch build and deploy the pitch deck for [clinic]</div></div>
+      <div class="row"><button class="copy">Copy</button><span class="skill">/deck-to-pdf</span><div class="p t">/deck-to-pdf turn [deck url] into a clean PDF I can email</div></div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>Ads + competitor intel</h2>
+    <p class="gd">Google ads written, competitor ads spied.</p>
+    <div class="card">
+      <div class="row"><button class="copy">Copy</button><span class="skill">/cc-ad-builder</span><div class="p t">/cc-ad-builder write Google Search ads for [clinic] - injectables and skin treatments in [suburb]</div></div>
+      <div class="row"><button class="copy">Copy</button><span class="skill">/ad-spy</span><div class="p t">/ad-spy what ads is [competitor clinic] running on Meta right now?</div></div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>Research before a call</h2>
+    <div class="card">
+      <div class="row"><button class="copy">Copy</button><span class="skill">/pre-call-brief</span><div class="p t">/pre-call-brief research [owner name] at [clinic] before our discovery call</div></div>
+      <div class="row"><button class="copy">Copy</button><span class="skill">/website-seo-audit</span><div class="p t">/website-seo-audit audit [clinic url] for Google + AI search visibility</div></div>
+      <div class="row"><button class="copy">Copy</button><span class="skill">/keyword-research</span><div class="p t">/keyword-research best keywords for a [suburb] cosmetic clinic offering [treatment]</div></div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>Content + pages</h2>
+    <div class="card">
+      <div class="row"><button class="copy">Copy</button><span class="skill">/hook</span><div class="p t">/hook give me 5 scroll-stopping hooks for a reel about [treatment]</div></div>
+      <div class="row"><button class="copy">Copy</button><span class="skill">/cc-reel-cover</span><div class="p t">/cc-reel-cover make a reel cover for [clinic]: "[headline]"</div></div>
+      <div class="row"><button class="copy">Copy</button><span class="skill">/stoptheslop</span><div class="p t">/stoptheslop check this caption for AI tells and fix it: [paste caption]</div></div>
+      <div class="row"><button class="copy">Copy</button><span class="skill">/landing-page</span><div class="p t">/landing-page build a lead-gen page for [clinic]'s [offer]</div></div>
+      <div class="row"><button class="copy">Copy</button><span class="skill">/content-repurposer</span><div class="p t">/content-repurposer turn this into a week of posts: [paste post or topic]</div></div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>Deploy for a client</h2>
+    <div class="card">
+      <div class="row"><button class="copy">Copy</button><span class="skill">/aria-deploy</span><div class="p t">/aria-deploy set up the Aria voice agent for [clinic]</div></div>
+      <div class="row"><button class="copy">Copy</button><span class="skill">/crm-lead-pipeline</span><div class="p t">/crm-lead-pipeline add [clinic] as a new lead and show me the pipeline</div></div>
+    </div>
+  </div>
+
+  <div class="how">Not sure which skill? Just describe what you want in plain English - Claude Code will pick the right one. Or type <b>/</b> to see them all.</div>
+  <div class="foot">Clinic Catalyst &middot; your system, your account &middot; questions? Text Kelly.</div>
+</div>
+<script>
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var t=btn.parentElement.querySelector('.t'); var text=t?t.innerText:'';
+      navigator.clipboard.writeText(text).then(function(){
+        var old=btn.textContent; btn.textContent='Copied'; btn.classList.add('copied');
+        setTimeout(function(){btn.textContent=old; btn.classList.remove('copied');},1500);
+      });
+    });
+  });
+</script>
+</body>
+</html>
