@@ -18,6 +18,10 @@ eval "$(/opt/homebrew/bin/brew shellenv)" 2>/dev/null || true
 # 1) CLI toolchain the CC skills call (node, python, git, ffmpeg, gh, image tools, media)
 say "[2/8] Core tools (node, python, git, ffmpeg, gh, imagemagick, yt-dlp)"
 brew install node python git ffmpeg gh imagemagick yt-dlp 2>/dev/null
+# superwhisper = talk-to-type into any field incl the terminal (so you dictate instead of typing).
+# After install: open it once, grant Microphone + Accessibility, set a push-to-talk hotkey.
+say "      + superwhisper (dictation app)"
+brew install --cask superwhisper 2>/dev/null || echo "  (superwhisper cask skipped - install from superwhisper.com if needed)"
 
 # 2) Python packages
 say "[3/8] Python packages (Pillow, requests)"
