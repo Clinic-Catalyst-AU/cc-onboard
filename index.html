@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clinic Catalyst - Set Up Your Machine</title>
+<style>
+  :root{
+    --teal:#0E4D4A; --teal2:#13615C; --mint:#4FB3A6; --gold:#C9A86A;
+    --ink:#13211F; --muted:#5E726E; --bg:#F4F8F6; --card:#FFFFFF; --line:#DCE8E4;
+    --code:#0B2E2B;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.55}
+  .hero{background:linear-gradient(150deg,var(--teal),var(--teal2));color:#fff;padding:48px 24px 40px;text-align:center}
+  .hero .kicker{letter-spacing:3px;text-transform:uppercase;font-size:12px;color:var(--mint);font-weight:700}
+  .hero h1{margin:10px 0 6px;font-size:30px}
+  .hero p{margin:0;color:#CFE7E2;font-size:15px}
+  .wrap{max-width:760px;margin:0 auto;padding:28px 20px 80px}
+  .note{background:#FFF7E6;border:1px solid var(--gold);border-radius:12px;padding:14px 16px;margin:22px 0;font-size:14px;color:#6b531f}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:16px 0;box-shadow:0 2px 0 rgba(0,0,0,.03)}
+  .step h2{margin:0 0 4px;font-size:18px;display:flex;align-items:center;gap:12px}
+  .num{background:var(--teal);color:#fff;width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;flex:0 0 auto}
+  .sub{color:var(--muted);font-size:14px;margin:2px 0 14px 42px}
+  .body{margin-left:42px}
+  .dl{display:inline-block;background:var(--teal);color:#fff;text-decoration:none;padding:10px 18px;border-radius:10px;font-weight:600;font-size:14px;margin:6px 10px 6px 0}
+  .dl:hover{background:var(--teal2)}
+  .dl.alt{background:#fff;color:var(--teal);border:1.5px solid var(--teal)}
+  .cmd{position:relative;background:var(--code);color:#CFF3EC;border-radius:10px;padding:14px 56px 14px 16px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;white-space:pre-wrap;word-break:break-word;margin:10px 0}
+  .copy{position:absolute;top:8px;right:8px;background:var(--mint);color:#06302c;border:none;border-radius:7px;padding:6px 11px;font-size:12px;font-weight:700;cursor:pointer}
+  .copy:active{transform:scale(.96)}
+  .copied{background:var(--gold)!important;color:#3a2d08!important}
+  .small{font-size:12.5px;color:var(--muted)}
+  .reveal{background:linear-gradient(150deg,#0E4D4A,#1c7a72);color:#fff;border-radius:16px;padding:26px;margin-top:24px;text-align:center}
+  .reveal h2{margin:0 0 8px;color:#fff;justify-content:center;font-size:20px}
+  .reveal p{color:#CFE7E2;margin:6px 0}
+  .reveal .cmd{background:#06302c;text-align:left}
+  .foot{text-align:center;color:var(--muted);font-size:12px;margin-top:30px}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="kicker">Clinic Catalyst</div>
+  <h1>Welcome aboard, Alicia</h1>
+  <p>Five steps and you'll have the entire Clinic Catalyst system on your Mac.</p>
+</div>
+
+<div class="wrap">
+
+  <div class="note"><b>Before you start:</b> Kelly will have (1) invited you to the <b>Clinic-Catalyst-AU</b> GitHub org - accept the email, and (2) shared the <b>Clinic_Catalyst_Shared</b> Dropbox folder - accept that too.</div>
+
+  <div class="step">
+    <h2><span class="num">1</span> Install the 4 apps</h2>
+    <div class="sub">Skip any you already have. Click to download.</div>
+    <div class="body">
+      <a class="dl" href="https://claude.ai/download" target="_blank" rel="noopener">Claude Code</a>
+      <a class="dl" href="https://www.dropbox.com/install" target="_blank" rel="noopener">Dropbox</a>
+      <a class="dl alt" href="https://brew.sh" target="_blank" rel="noopener">Homebrew</a>
+      <a class="dl alt" href="https://cli.github.com" target="_blank" rel="noopener">GitHub CLI</a>
+      <p class="small">Prefer the terminal for the last two? Paste this (installs Homebrew, then the GitHub CLI):</p>
+      <div class="cmd"><button class="copy">Copy</button><span class="t">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" &amp;&amp; brew install gh</span></div>
+      <p class="small">Then sign in to Dropbox and <b>accept Kelly's shared folder</b>, and open Claude Code once so it finishes setup.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <h2><span class="num">2</span> Sign in to GitHub</h2>
+    <div class="sub">Connects your machine to the Clinic Catalyst code. Choose: GitHub.com, then HTTPS, then login with a browser.</div>
+    <div class="body">
+      <div class="cmd"><button class="copy">Copy</button><span class="t">gh auth login &amp;&amp; gh auth setup-git</span></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <h2><span class="num">3</span> Install Clinic Catalyst</h2>
+    <div class="sub">The magic line - pulls the system and installs every CC skill into Claude Code.</div>
+    <div class="body">
+      <div class="cmd"><button class="copy">Copy</button><span class="t">gh repo clone Clinic-Catalyst-AU/cc-aios ~/Systems/cc-aios &amp;&amp; ~/Systems/cc-aios/bin/apply-to-machine.sh</span></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <h2><span class="num">4</span> Check it worked</h2>
+    <div class="sub">You should see the CC skills and the shared client folder.</div>
+    <div class="body">
+      <div class="cmd"><button class="copy">Copy</button><span class="t">ls ~/.claude/skills | grep -E 'cc-|aria|timely'
+ls ~/Dropbox/Clinic_Catalyst_Shared/Clients</span></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <h2><span class="num">5</span> Accept the shared workspace</h2>
+    <div class="sub">In Dropbox, accept Kelly's <b>Clinic_Catalyst_Shared</b> invite. That folder is all our CC client work, synced between us automatically. Just save into it and it shows up for both of us.</div>
+  </div>
+
+  <div class="reveal">
+    <h2>You're in. Now watch this.</h2>
+    <p>Open Claude Code and type:</p>
+    <div class="cmd"><button class="copy">Copy</button><span class="t">/cc-prospect</span></div>
+    <p>Paste a clinic's website and watch the whole prospect to demo to deck to deploy pipeline run - AHPRA-compliant, on-brand, on your machine. You now have everything Kelly has for Clinic Catalyst.</p>
+  </div>
+
+  <div class="foot">Clinic Catalyst &middot; shared system for Kelly + Alicia &middot; stuck on a step? Text Kelly.</div>
+</div>
+
+<script>
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var t = btn.parentElement.querySelector('.t');
+      var text = t ? t.innerText : '';
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'Copied'; btn.classList.add('copied');
+        setTimeout(function(){ btn.textContent = old; btn.classList.remove('copied'); }, 1600);
+      });
+    });
+  });
+</script>
+</body>
+</html>
