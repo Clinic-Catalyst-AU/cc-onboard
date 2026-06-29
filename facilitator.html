@@ -44,28 +44,22 @@
     <a class="link alt" href="https://clinic-catalyst-au.github.io/cc-onboard/try.html" target="_blank">try.html (practice)</a>
   </div>
 
-  <div class="phase">Phase 0 &middot; Before the day (you, ~5 min)</div>
-  <p class="ph-sub">Do these from your machine first.</p>
+  <div class="phase">Phase 0 &middot; Before the day (you, ~2 min)</div>
+  <p class="ph-sub">One thing from your machine.</p>
   <div class="step">
     <h2><span class="num">1</span> Invite them to the GitHub org</h2>
-    <p>Gives them the private cc-aios repo + all CC client repos. Swap in their email.</p>
+    <p>Gives them the private cc-aios repo + all CC client repos. Swap in their email. That's the only prep.</p>
     <div class="cmd"><button class="copy">Copy</button><span class="x">gh api -X POST orgs/Clinic-Catalyst-AU/invitations -f email=THEIR_EMAIL -f role=direct_member</span></div>
-  </div>
-  <div class="step">
-    <h2><span class="num">2</span> Populate + share the CC client folder</h2>
-    <p>Move your CC clinics into the shared workspace (review the list at the top of the script first):</p>
-    <div class="cmd"><button class="copy">Copy</button><span class="x">~/Systems/cc-aios/bin/share-cc-clients.sh</span></div>
-    <p>Then in Finder/Dropbox: right-click <b>Clinic_Catalyst_Shared</b> &rarr; Share &rarr; invite their email.</p>
   </div>
 
   <div class="phase">Phase 1 &middot; Get their machine set up (with them, ~20 min)</div>
   <p class="ph-sub">Send them to the install page and walk alongside. It is mostly hands-off (one bootstrap command).</p>
   <div class="step">
-    <h2><span class="num">3</span> They run the download page</h2>
+    <h2><span class="num">2</span> They run the download page</h2>
     <p>They follow <b>cc-onboard</b> top to bottom: install the 4 apps &rarr; <span class="small">gh auth login</span> &rarr; the one-line bootstrap (installs Node/Python/ffmpeg/Claude Code/Playwright + all CC skills). ~10-15 min, grab a tea.</p>
   </div>
   <div class="step">
-    <h2><span class="num">4</span> The 2 things the script can't do (do these live)</h2>
+    <h2><span class="num">3</span> The 2 things the script can't do (do these live)</h2>
     <p><b>Keys:</b> open their <span class="small">~/Systems/BusinessOps/.env</span> and type in the SHARED keys (GHL, CC Supabase, Telegram) - in person, never over chat. Gemini/OpenAI/Fireflies they use their own.</p>
     <p><b>Connectors:</b> in their Claude Code, connect Fireflies, Supabase, GitHub (OAuth, their own logins). Playwright MCP is already wired by the bootstrap.</p>
   </div>
@@ -74,19 +68,19 @@
   <p class="ph-sub">This is what they are really here for: how to take a clinic from nothing to an on-brand Claude.</p>
   <div class="callout gold">The chain: <b>/cc-resonance</b> &rarr; resonance-messaging.md &rarr; <b>/cc-brand-guide</b> &rarr; brand-guide.md &rarr; paste into the clinic's Claude. Run it live on a real or sample clinic so they see it work.</div>
   <div class="step">
-    <h2><span class="num">5</span> Run the resonance intake</h2>
+    <h2><span class="num">4</span> Run the resonance intake</h2>
     <p>In Claude Code, with a clinic (or a sample), run it and walk through the 13 questions. The being-deeply-understood feeling IS the magic - let them feel it.</p>
     <div class="cmd"><button class="copy">Copy</button><span class="x">/cc-resonance [Clinic Name]</span></div>
     <p class="small">Produces their resonance-messaging.md in the shared CC folder. (Don't share the framework - only the output.)</p>
   </div>
   <div class="step">
-    <h2><span class="num">6</span> Generate the brand guide</h2>
+    <h2><span class="num">5</span> Generate the brand guide</h2>
     <p>It reads the resonance doc, asks only the few identity gaps (name, tagline, colours, vibe), and writes the paste-into-Claude file.</p>
     <div class="cmd"><button class="copy">Copy</button><span class="x">/cc-brand-guide [Clinic Name]</span></div>
     <p class="small">Produces brand-guide.md. They paste its Claude Context Block into the clinic's Claude Project custom instructions - now every output sounds on-brand + AHPRA-safe.</p>
   </div>
   <div class="step">
-    <h2><span class="num">7</span> Let them play</h2>
+    <h2><span class="num">6</span> Let them play</h2>
     <p>Point them at the trial page and let them fire prompts - <b>/cc-prospect</b>, <b>/cc-ad-builder</b>, <b>/cc-pitch</b>.</p>
     <a class="link alt" href="https://clinic-catalyst-au.github.io/cc-onboard/try.html" target="_blank">Open try.html</a>
   </div>
