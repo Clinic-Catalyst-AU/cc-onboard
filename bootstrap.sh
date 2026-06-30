@@ -23,10 +23,16 @@ brew install node python git ffmpeg gh imagemagick yt-dlp 2>/dev/null
 say "      + superwhisper (dictation app)"
 brew install --cask superwhisper 2>/dev/null || echo "  (superwhisper cask skipped - install from superwhisper.com if needed)"
 
-# 2) Python packages
-say "[3/8] Python packages (Pillow, requests)"
-pip3 install --quiet --upgrade pip 2>/dev/null
-pip3 install --quiet Pillow requests 2>/dev/null
+# 2) Python packages (Pillow=image compositing, requests=API calls, playwright=deck-to-pdf + scraping)
+# Homebrew python is PEP-668 "externally managed" so plain pip fails. --break-system-packages is the supported fix.
+# NOTE: errors are NOT silenced here - a failed pip means CC image/scrape skills won't work, so it must be loud.
+say "[3/8] Python packages (Pillow, requests, playwright)"
+python3 -m pip install --quiet --upgrade --break-system-packages pip 2>/dev/null || true
+if python3 -m pip install --break-system-packages Pillow requests playwright; then
+  echo "  python packages installed"
+else
+  echo "  !! pip install FAILED - CC image/scrape/PDF skills will not work. Fix this before using Claude."
+fi
 
 # 3) Claude Code
 say "[4/8] Claude Code"
@@ -49,6 +55,8 @@ say "[6/8] Install CC skills + CLAUDE.md"
 # 6) Playwright (CC skills scrape sites + screenshot demos) + register the Playwright MCP
 say "[7/8] Playwright browser + MCP"
 npx --yes playwright install chromium 2>/dev/null
+# also install the browser for the PYTHON playwright package (deck-to-pdf uses python, not node)
+python3 -m playwright install chromium 2>/dev/null || true
 python3 - <<'PY' 2>/dev/null
 import json,os
 p=os.path.expanduser("~/.claude/settings.json")
@@ -83,5 +91,19 @@ EOF
 echo "  created $ENVF (fill in the values)"
 else echo "  $ENVF already exists - left it"; fi
 
-say "DONE - Clinic Catalyst environment installed"
+# 8) Self-check - prove the toolchain the CC skills actually need is really there (don't report DONE on a broken install)
+say "Self-check - verifying the CC skills can actually run"
+FAIL=0
+for c in brew node git gh ffmpeg convert npx claude; do
+  if command -v "$c" >/dev/null 2>&1; then echo "  ok   $c"; else echo "  MISSING  $c"; FAIL=1; fi
+done
+for m in PIL requests playwright; do
+  if python3 -c "import $m" >/dev/null 2>&1; then echo "  ok   python:$m"; else echo "  MISSING  python:$m"; FAIL=1; fi
+done
+
+if [ "$FAIL" -eq 0 ]; then
+  say "DONE - Clinic Catalyst environment installed and verified"
+else
+  say "DONE WITH PROBLEMS - one or more tools above are MISSING. Tell Kelly before using the CC skills."
+fi
 echo "Next:  1) fill ~/Systems/BusinessOps/.env   2) run 'claude' and log in to YOUR Anthropic account   3) accept the shared Dropbox folder   4) try /cc-prospect"
