@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>What's Changing + Why - Clinic Catalyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#00B4A0;--teal-bright:#00D4BC;--teal-dark:#007A6E;
+  --hero-dark:#0A2A28;--hero-mid:#0D3D38;
+  --off-white:#F4F6F5;--text-dark:#1A1A1A;--text-soft:#5A6664;
+  --border:#E0E4E3;--card:#FFFFFF;--gold:#C9A24B;--code:#0E2D2A;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Open Sans',sans-serif;background:var(--off-white);color:var(--text-dark);line-height:1.65}
+nav{position:sticky;top:0;z-index:100;background:rgba(10,42,40,.96);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:space-between;padding:.85rem 2rem;border-bottom:1px solid rgba(0,212,188,.15)}
+.nav-logo{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:900;color:#fff;letter-spacing:.04em;text-decoration:none}
+.nav-logo span{color:var(--teal-bright)}
+.nav-tag{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+
+.hero{padding:3.8rem 2rem 2.8rem;text-align:center;background:radial-gradient(ellipse at 50% -10%,var(--hero-mid),var(--hero-dark) 65%);color:#fff}
+.hero .eyebrow{font-family:'Montserrat',sans-serif;font-size:.66rem;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:var(--teal-bright);margin-bottom:1rem}
+.hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:900;line-height:1.07;max-width:720px;margin:0 auto .9rem}
+.hero h1 em{font-style:normal;color:var(--teal-bright)}
+.hero p{font-size:1.08rem;font-weight:300;color:rgba(255,255,255,.86);max-width:580px;margin:0 auto}
+
+.wrap{max-width:780px;margin:0 auto;padding:2.8rem 1.5rem 1rem}
+.lead{font-size:1.08rem;color:var(--text-dark);margin-bottom:1.4rem}
+.lead-soft{font-size:1.02rem;color:var(--text-soft);margin-bottom:1.6rem}
+.sec-label{font-family:'Montserrat',sans-serif;font-size:.66rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);margin:2.6rem 0 1rem;display:flex;align-items:center;gap:.6rem}
+.sec-label::before{content:'';width:26px;height:2px;background:var(--teal)}
+h2{font-family:'Montserrat',sans-serif;font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;line-height:1.12;margin-bottom:1rem}
+h2 em{font-style:normal;color:var(--teal-dark)}
+
+.bigidea{background:linear-gradient(135deg,var(--hero-dark),var(--hero-mid));color:#fff;border-radius:18px;padding:2rem 2.2rem;margin:1.4rem 0 2rem}
+.bigidea h3{font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:900;color:var(--teal-bright);margin-bottom:.6rem}
+.bigidea p{font-size:1.06rem;color:rgba(255,255,255,.92)}
+.bigidea p+p{margin-top:.7rem}
+.bigidea b{color:#fff;font-weight:700}
+
+.change{display:flex;gap:1.1rem;align-items:flex-start;background:#fff;border:1px solid var(--border);border-radius:15px;padding:1.4rem 1.5rem;margin-bottom:1rem}
+.change .n{flex-shrink:0;width:40px;height:40px;border-radius:11px;background:var(--hero-dark);color:#fff;font-family:'Montserrat',sans-serif;font-weight:900;display:flex;align-items:center;justify-content:center}
+.change .body h3{font-family:'Montserrat',sans-serif;font-size:1.08rem;font-weight:800;margin-bottom:.3rem}
+.change .body p{font-size:.95rem;color:var(--text-soft)}
+.change .body .was{font-size:.86rem;color:var(--text-soft);margin-top:.5rem;border-top:1px dashed var(--border);padding-top:.5rem}
+.change .body .was b{color:var(--text-dark)}
+.change .body .now{color:var(--teal-dark);font-weight:600}
+
+.mine{background:rgba(0,180,160,.07);border:1px solid var(--teal);border-radius:16px;padding:1.6rem 1.8rem;margin:1.4rem 0}
+.mine h3{font-family:'Montserrat',sans-serif;font-size:1.15rem;font-weight:800;color:var(--teal-dark);margin-bottom:.5rem}
+.mine p{font-size:1rem;color:var(--text-dark)}
+.mine .clock{font-family:'Montserrat',sans-serif;font-weight:800;color:var(--teal-dark)}
+
+.flow{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.2rem 0}
+@media(max-width:600px){.flow{grid-template-columns:1fr}}
+.fcard{background:#fff;border:1px solid var(--border);border-radius:14px;padding:1.2rem 1.3rem}
+.fcard h4{font-family:'Montserrat',sans-serif;font-size:.92rem;font-weight:800;margin-bottom:.5rem}
+.fcard ul{list-style:none;font-size:.9rem;color:var(--text-soft)}
+.fcard li{padding:.25rem 0 .25rem 1.1rem;position:relative}
+.fcard li::before{content:'';position:absolute;left:0;top:.7rem;width:5px;height:5px;border-radius:50%;background:var(--teal)}
+.fcard li b{color:var(--text-dark)}
+.fcard li code{background:var(--code);color:#CFF3EC;font-family:ui-monospace,Menlo,monospace;font-size:.78rem;padding:.05rem .35rem;border-radius:5px}
+
+.btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--teal-bright);color:var(--hero-dark);text-decoration:none;padding:.9rem 1.6rem;border-radius:10px;font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:900;letter-spacing:.05em;text-transform:uppercase;margin-top:.4rem}
+.btn:hover{background:var(--hero-dark);color:#fff}
+
+.close{text-align:center;background:linear-gradient(160deg,rgba(0,180,160,.1),rgba(201,162,75,.06));border-radius:20px;padding:2.4rem 1.8rem;margin:2.4rem 0 0}
+.close p{font-size:1.15rem;font-style:italic;color:var(--text-dark);max-width:560px;margin:0 auto;font-family:'Open Sans'}
+.foot{text-align:center;padding:2.4rem 1.5rem 3.4rem;color:var(--text-soft);font-size:.86rem}
+.foot .logo{font-family:'Montserrat',sans-serif;font-weight:900;color:var(--hero-dark);font-size:1rem}
+.foot .logo span{color:var(--teal)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">Clinic <span>Catalyst</span></a>
+  <span class="nav-tag">For Alicia</span>
+</nav>
+
+<div class="hero">
+  <div class="eyebrow">A quick heads-up before Thursday</div>
+  <h1>You designed the right day. <em>The system just makes it lighter.</em></h1>
+  <p>A few things shift in our run sheet once the AIOS is in the room - here's what and why, so it makes sense before you see it live.</p>
+</div>
+
+<div class="wrap">
+
+  <p class="lead">Hey lovely. Our run sheet is solid - the arc is exactly right (CRM, ads, video, Meta, nurture, AI reception, Google Ads, reporting). A handful of things just reorder once the system is on everyone's machine, and they all make the day <i>calmer</i>, not busier.</p>
+
+  <div class="sec-label">The one shift everything hangs off</div>
+  <div class="bigidea">
+    <h3>The agents are already built.</h3>
+    <p>Up to now we've built each AI agent from scratch in the room - the marketing agent, the ad agent, the offer agent, the video agent, the compliance agent. That's the slow way, and it's the way you know because you haven't had the system yet.</p>
+    <p>The whole point of the AIOS is that <b>those agents ship ready-made</b>. Every clinic installs a pack of skills on Day 1. So in the room we do not <b>build</b> them - we <b>run</b> them, by typing one command. Hours of building collapse into minutes of running.</p>
+  </div>
+
+  <div class="sec-label">So three things reorder</div>
+
+  <div class="change"><div class="n">1</div><div class="body">
+    <h3>The install runs in the background from 9:00</h3>
+    <p>The full install (Claude Code + the skill pack + the tools) takes 30-60 minutes. So we kick it off the moment everyone sits down, and it churns quietly while you run Welcome + CRM.</p>
+    <p class="was"><b>Was:</b> "Claude account setup" as a quick 11am task. <span class="now">Now: started at 9:00, done by morning tea - or we lose the afternoon.</span></p>
+  </div></div>
+
+  <div class="change"><div class="n">2</div><div class="body">
+    <h3>We build the Business Brain first</h3>
+    <p>Every skill reads one foundation - the clinic's Business Brain (their voice, their offer, their clients' real emotional truth). Build that first and every skill produces on-brand, compliant copy automatically.</p>
+    <p class="was"><b>Was:</b> "Marketing Agent Build", "Offer Creation", "Neuro-Emotive Framework" as separate blocks. <span class="now">Now: those are all just - build the Business Brain, then run the skills.</span></p>
+  </div></div>
+
+  <div class="change"><div class="n">3</div><div class="body">
+    <h3>The framework is branded Clinic Catalyst</h3>
+    <p>Your neuro-emotive method is brilliant and it stays - it runs inside the resonance skill. It's just branded Clinic Catalyst in this workshop, because AI With Soul is a separate brand and can't appear in a Clinic Catalyst room.</p>
+    <p class="was"><b>Was:</b> "using Alicia's AI With Soul Framework". <span class="now">Now: the Clinic Catalyst resonance method (same framework, our brand).</span></p>
+  </div></div>
+
+  <div class="sec-label">What I'm doing on my end</div>
+  <div class="mine">
+    <h3>I'm installing the complete system on my machine first</h3>
+    <p>Some of this is quicker on my end than it'll be in the room. <span class="clock">The full install takes me about an hour</span>, and then we'll <b>trial it working together</b> - so by the time we walk into the workshop, we've both seen the whole flow run end to end. No surprises, no figuring it out live.</p>
+  </div>
+
+  <div class="sec-label">The streamlined day, at a glance</div>
+  <div class="flow">
+    <div class="fcard"><h4>Day 1 - build the system</h4><ul>
+      <li><b>9:00</b> Welcome + offer + <b>install starts</b></li>
+      <li><b>9:30</b> CRM / GHL setup (you)</li>
+      <li><b>11:00</b> Build the Business Brain <code>/cc-resonance</code></li>
+      <li><b>12:00</b> Offer + ad copy <code>/cc-ad-builder</code></li>
+      <li><b>1:10</b> Video scripts + hooks</li>
+      <li><b>2:00</b> Video production (3 ads)</li>
+      <li><b>2:45</b> Meta lead-gen launch</li>
+    </ul></div>
+    <div class="fcard"><h4>Day 2 - automate + go live</h4><ul>
+      <li><b>9:00</b> Overnight review</li>
+      <li><b>9:30</b> Nurture <code>/cc-follow-up-agent</code></li>
+      <li><b>11:00</b> AI reception (GHL Sophia voice)</li>
+      <li><b>12:00</b> Reactivation + newsletter</li>
+      <li><b>1:10</b> Google Ads <code>/cc-ad-builder</code></li>
+      <li><b>2:30</b> Reporting + content calendar</li>
+      <li><b>3:30</b> 30-day plan + wrap</li>
+    </ul></div>
+  </div>
+  <a class="btn" href="facilitator.html">See the full run sheet &rarr;</a>
+
+  <div class="close">
+    <p>"You designed the right day - you just designed it for a world where the agents don't exist yet. Once you've got the system, you'll see: we don't build them in the room, we run them. That's why it all gets calmer, and we actually finish."</p>
+  </div>
+
+</div>
+
+<div class="foot">
+  <div class="logo">Clinic <span>Catalyst</span></div>
+  <p style="margin-top:.5rem">Alicia Hagen + Kelly Wotherspoon. See you Thursday. 💚</p>
+</div>
+
+</body>
+</html>
