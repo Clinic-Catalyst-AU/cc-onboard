@@ -56,6 +56,14 @@ if [ ! -d ~/Systems/cc-aios/.git ]; then gh repo clone Clinic-Catalyst-AU/cc-aio
 say "[6/8] Install CC skills + CLAUDE.md"
 [ -x ~/Systems/cc-aios/bin/apply-to-machine.sh ] && ~/Systems/cc-aios/bin/apply-to-machine.sh
 [ -f ~/CLAUDE.md ] || cp ~/Systems/cc-aios/CLAUDE.md ~/CLAUDE.md 2>/dev/null
+# cc-reel render engine (the /cc-reel skill drives this Remotion project). NON-FATAL - heavy
+# npm install must never break the rest of the install; /cc-reel can install it on demand.
+if [ -d ~/Systems/cc-aios/reel-render ]; then
+  say "      + cc-reel render engine (Remotion deps - heavy)"
+  ( cd ~/Systems/cc-aios/reel-render && npm install ) >/dev/null 2>&1 \
+    && echo "  cc-reel-render ready" \
+    || echo "  (cc-reel-render deps not installed - run 'cd ~/Systems/cc-aios/reel-render && npm install' before first /cc-reel)"
+fi
 
 # 6) Playwright (CC skills scrape sites + screenshot demos) + register the Playwright MCP
 say "[7/8] Playwright browser + MCP"
