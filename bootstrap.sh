@@ -11,9 +11,15 @@ say "Clinic Catalyst machine setup - starting"
 # 0) Homebrew
 if ! command -v brew >/dev/null 2>&1; then
   say "[1/8] Installing Homebrew"; /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  eval "$(/opt/homebrew/bin/brew shellenv)"; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
 else say "[1/8] Homebrew ok"; fi
-eval "$(/opt/homebrew/bin/brew shellenv)" 2>/dev/null || true
+# put brew on THIS shell + future shells - Apple Silicon (/opt/homebrew) OR Intel (/usr/local)
+for BP in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+  if [ -x "$BP" ]; then
+    eval "$("$BP" shellenv)"
+    grep -q "$BP shellenv" ~/.zprofile 2>/dev/null || echo "eval \"\$($BP shellenv)\"" >> ~/.zprofile
+    break
+  fi
+done
 
 # 1) CLI toolchain the CC skills call (node, python, git, ffmpeg, gh, image tools, media)
 say "[2/8] Core tools (node, python, git, ffmpeg, gh, imagemagick, yt-dlp)"
