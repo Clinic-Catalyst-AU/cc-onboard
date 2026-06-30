@@ -33,6 +33,11 @@ if python3 -m pip install --break-system-packages Pillow requests playwright; th
 else
   echo "  !! pip install FAILED - CC image/scrape/PDF skills will not work. Fix this before using Claude."
 fi
+# mlx-whisper = fast on-device transcription on Apple Silicon (CC video skills: cc-find-clip / cc-content-pipeline).
+# Apple-Silicon only, so failure is non-fatal - those skills fall back to the OpenAI Whisper API.
+python3 -m pip install --quiet --break-system-packages mlx-whisper 2>/dev/null \
+  && echo "  mlx-whisper installed (fast on-device transcription)" \
+  || echo "  (mlx-whisper skipped - Intel Mac? CC video skills will use the OpenAI Whisper API instead)"
 
 # 3) Claude Code
 say "[4/8] Claude Code"
