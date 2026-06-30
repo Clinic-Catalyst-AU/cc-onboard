@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>The Vision + The Install - Clinic Catalyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#00B4A0;--teal-bright:#00D4BC;--teal-dark:#007A6E;
+  --hero-dark:#0A2A28;--hero-mid:#0D3D38;
+  --off-white:#F4F6F5;--text-dark:#1A1A1A;--text-soft:#5A6664;
+  --border:#E0E4E3;--card:#FFFFFF;--gold:#C9A24B;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Open Sans',sans-serif;background:var(--off-white);color:var(--text-dark);line-height:1.65}
+nav{position:sticky;top:0;z-index:100;background:rgba(10,42,40,.96);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:space-between;padding:.85rem 2rem;border-bottom:1px solid rgba(0,212,188,.15)}
+.nav-logo{font-family:'Montserrat',sans-serif;font-size:1.05rem;font-weight:900;color:#fff;letter-spacing:.04em;text-decoration:none}
+.nav-logo span{color:var(--teal-bright)}
+.nav-links a{font-family:'Montserrat',sans-serif;font-size:.64rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;margin-left:1.1rem}
+.nav-links a:hover{color:var(--teal-bright)}
+
+.hero{padding:4rem 2rem 3rem;text-align:center;background:radial-gradient(ellipse at 50% -10%,var(--hero-mid),var(--hero-dark) 65%);color:#fff}
+.hero .eyebrow{font-family:'Montserrat',sans-serif;font-size:.66rem;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:var(--teal-bright);margin-bottom:1rem}
+.hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:900;line-height:1.05;max-width:760px;margin:0 auto 1rem}
+.hero h1 em{font-style:normal;color:var(--teal-bright)}
+.hero p{font-size:1.08rem;font-weight:300;color:rgba(255,255,255,.85);max-width:600px;margin:0 auto}
+
+.wrap{max-width:820px;margin:0 auto;padding:3rem 1.5rem}
+.sec-label{font-family:'Montserrat',sans-serif;font-size:.66rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);margin-bottom:.6rem;display:flex;align-items:center;gap:.6rem}
+.sec-label::before{content:'';width:26px;height:2px;background:var(--teal)}
+h2{font-family:'Montserrat',sans-serif;font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;line-height:1.12;margin-bottom:1rem}
+h2 em{font-style:normal;color:var(--teal-dark)}
+.lead{font-size:1.05rem;color:var(--text-soft);margin-bottom:1.6rem}
+
+.big-idea{background:linear-gradient(135deg,var(--hero-dark),var(--hero-mid));color:#fff;border-radius:18px;padding:2rem 2.2rem;margin:1.4rem 0 2rem}
+.big-idea p{font-size:1.1rem;color:rgba(255,255,255,.92)}
+.big-idea b{color:var(--teal-bright);font-weight:700}
+
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:1.4rem 0}
+@media(max-width:640px){.cards{grid-template-columns:1fr}}
+.c{background:#fff;border:1px solid var(--border);border-radius:14px;padding:1.4rem}
+.c .e{font-size:1.7rem}
+.c h3{font-family:'Montserrat',sans-serif;font-size:1.05rem;font-weight:800;margin:.5rem 0 .35rem}
+.c p{font-size:.92rem;color:var(--text-soft)}
+
+.diagram{background:#0E2D2A;border-radius:14px;padding:1.5rem;margin:1.4rem 0;overflow-x:auto}
+.diagram pre{font-family:'SF Mono',Menlo,monospace;font-size:.8rem;color:#CFEDE8;line-height:1.7;white-space:pre}
+.diagram .hl{color:var(--teal-bright);font-weight:700}
+.diagram .c2{color:var(--gold)}
+
+.flow{display:flex;align-items:stretch;gap:.6rem;flex-wrap:wrap;margin:1.2rem 0}
+.flow .node{flex:1;min-width:150px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:1rem;text-align:center}
+.flow .node .n{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:.4rem}
+.flow .node h4{font-family:'Montserrat',sans-serif;font-size:.92rem;font-weight:800;margin-bottom:.25rem}
+.flow .node p{font-size:.78rem;color:var(--text-soft)}
+.flow .arrow{display:flex;align-items:center;color:var(--teal);font-size:1.3rem;font-weight:700}
+@media(max-width:640px){.flow .arrow{transform:rotate(90deg);justify-content:center;width:100%}}
+
+.step{display:flex;gap:1.1rem;align-items:flex-start;background:#fff;border:1px solid var(--border);border-radius:14px;padding:1.3rem 1.5rem;margin-bottom:1rem}
+.step .num{flex-shrink:0;width:40px;height:40px;border-radius:11px;background:var(--hero-dark);color:#fff;font-family:'Montserrat',sans-serif;font-weight:900;display:flex;align-items:center;justify-content:center}
+.step .body{flex:1}
+.step h3{font-family:'Montserrat',sans-serif;font-size:1.05rem;font-weight:800;margin-bottom:.3rem}
+.step p{font-size:.92rem;color:var(--text-soft);margin-bottom:.4rem}
+.step code{background:#0E2D2A;color:#CFEDE8;font-family:'SF Mono',Menlo,monospace;font-size:.82rem;padding:.5rem .7rem;border-radius:7px;display:inline-block;margin-top:.2rem;word-break:break-all}
+.step .who{display:inline-block;font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:rgba(0,180,160,.1);color:var(--teal-dark);padding:.25rem .6rem;border-radius:999px;margin-bottom:.5rem}
+
+.note{background:#FFF8E8;border:1px solid #F0E2BF;border-radius:10px;padding:.9rem 1.1rem;font-size:.9rem;color:#5a4a1f;margin:1rem 0}
+.note b{color:#9A7B1F}
+
+.foot{text-align:center;padding:2.6rem 1.5rem 3.6rem;color:var(--text-soft);font-size:.88rem;border-top:1px solid var(--border);margin-top:2rem}
+.foot .logo{font-family:'Montserrat',sans-serif;font-weight:900;color:var(--hero-dark);font-size:1.1rem}
+.foot .logo span{color:var(--teal)}
+hr{border:none;border-top:1px solid var(--border);margin:3rem 0}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Clinic <span>Catalyst</span></a>
+  <div class="nav-links"><a href="#vision">The vision</a><a href="#how">How it works</a><a href="#install">The install</a></div>
+</nav>
+
+<div class="hero">
+  <div class="eyebrow">For Alicia &middot; The whole picture</div>
+  <h1>What we're building, <em>why it matters</em>, and how to install it</h1>
+  <p>Every clinic walks out of two days with their own AI system running their marketing and their front desk. Here is the vision, the architecture, and the install - all in one place.</p>
+</div>
+
+<div class="wrap">
+
+  <!-- VISION -->
+  <span id="vision"></span>
+  <div class="sec-label">01 &middot; The vision</div>
+  <h2>We hand each clinic a <em>system, not a service</em></h2>
+  <p class="lead">Agencies rent clinics their marketing. We do the opposite: we install the capability inside the clinic, on their own Claude and their own GHL, and we leave it running. They own it. That is why it is worth so much more than what we charge.</p>
+
+  <div class="big-idea">
+    <p>One <b>Business Brain</b> teaches the whole system who the clinic is - their voice, offers, machines, the concerns they love, their team, their strategy. Then every skill reads that brain and writes <b>on-brand, AHPRA-safe</b> work automatically. Content, follow-ups, ads, the lot. The owner just glances and approves.</p>
+  </div>
+
+  <div class="cards">
+    <div class="c"><div class="e">&#129504;</div><h3>One brain, every output</h3><p>Build the Business Brain once. Every post, email and ad inherits their exact voice - never generic, never robotic.</p></div>
+    <div class="c"><div class="e">&#128231;</div><h3>Nobody left behind</h3><p>The follow-up system catches every lead and walks them to a booking, then keeps past clients warm forever.</p></div>
+    <div class="c"><div class="e">&#128737;</div><h3>AHPRA-safe by design</h3><p>Every line is screened against the advertising rules before it can reach a patient. Peace of mind baked in.</p></div>
+    <div class="c"><div class="e">&#9201;</div><h3>Their time back</h3><p>Ten minutes a day of approving, not hours of doing. That is the promise - and the system keeps it.</p></div>
+  </div>
+
+  <hr>
+
+  <!-- HOW IT WORKS -->
+  <span id="how"></span>
+  <div class="sec-label">02 &middot; How it works</div>
+  <h2>The architecture, in <em>plain English</em></h2>
+  <p class="lead">Every clinic gets one workspace folder. Inside it sits their Business Brain (the knowledge) and three output folders. The skills read the brain and write the work. Fixed names, fixed places - that is what makes sixteen skills behave as one machine.</p>
+
+  <div class="diagram"><pre><span class="hl">~/Clinic/</span>                        their workspace - everything runs from here
+  <span class="hl">Business-Brain/</span>             the knowledge. skills READ here.
+    brand-guide.md            voice + the master context (the spine)
+    resonance-messaging.md    the emotional source-of-truth
+    offers.md  services-machines.md  concerns.md  team.md  strategy.md
+  <span class="c2">Content/</span>   <span class="c2">Emails/</span>   <span class="c2">Ads/</span>     the work. skills WRITE here.
+  CLAUDE.md                   the rules + where everything lives</pre></div>
+
+  <p class="lead" style="margin-top:1.4rem"><b style="color:var(--text-dark)">The build order is foundation-first.</b> Nothing downstream runs until the brain exists:</p>
+
+  <div class="flow">
+    <div class="node"><div class="n">Step 1</div><h4>Resonance</h4><p>You interview them (the emotional + offer work). Claude writes their resonance doc.</p></div>
+    <div class="arrow">&rarr;</div>
+    <div class="node"><div class="n">Step 2</div><h4>Brand Guide</h4><p>Claude turns it into the Business Brain spine - their voice, on paper.</p></div>
+    <div class="arrow">&rarr;</div>
+    <div class="node"><div class="n">Step 3</div><h4>The system runs</h4><p>Content, follow-up and ads all read the brain and produce on-brand work.</p></div>
+  </div>
+
+  <div class="note"><b>The bit that makes it sing:</b> the foundation is not a form they fill. It is a warm interview - Claude asks, they just talk, and you do the emotional and offer work alongside. They watch their own brand get written for them. That is the moment the room lights up.</div>
+
+  <hr>
+
+  <!-- INSTALL -->
+  <span id="install"></span>
+  <div class="sec-label">03 &middot; The install</div>
+  <h2>Clear as anything - <em>two paths</em></h2>
+  <p class="lead">There are two installs: yours (once, so you run the same system as Kelly) and theirs (each clinic, live in the room). Here is both.</p>
+
+  <h3 style="font-family:'Montserrat';font-weight:800;margin:1.6rem 0 .8rem">A. Your install (once)</h3>
+
+  <div class="step"><div class="num">1</div><div class="body"><span class="who">You</span><h3>Get your accounts</h3><p>A Claude account (claude.ai), and accept Kelly's invite to the Clinic-Catalyst-AU GitHub org.</p></div></div>
+  <div class="step"><div class="num">2</div><div class="body"><span class="who">You</span><h3>Install the basics</h3><p>Homebrew + the GitHub CLI, then sign in to GitHub.</p><code>brew install gh  &amp;&amp;  gh auth login &amp;&amp; gh auth setup-git</code></div></div>
+  <div class="step"><div class="num">3</div><div class="body"><span class="who">You</span><h3>Run the bootstrap</h3><p>One line installs Claude Code, Playwright, the CC skills, and your config.</p><code>curl -fsSL https://clinic-catalyst-au.github.io/cc-onboard/bootstrap.sh | bash</code></div></div>
+  <div class="step"><div class="num">4</div><div class="body"><span class="who">You + Kelly</span><h3>Connect the keys</h3><p>Paste the shared keys into your <code>.env</code>, connect the MCP connectors (Fireflies, Supabase, GitHub), and accept the shared Dropbox folder. Now you run the same AIOS as Kelly.</p></div></div>
+
+  <h3 style="font-family:'Montserrat';font-weight:800;margin:2rem 0 .8rem">B. A clinic's install (live, in the room)</h3>
+
+  <div class="step"><div class="num">1</div><div class="body"><span class="who">Before the day</span><h3>They arrive with the basics</h3><p>Claude account, an API key, a GHL trial + number claimed, and their business registration PDF from ABN Lookup. The pre-workshop checklist covers it.</p></div></div>
+  <div class="step"><div class="num">2</div><div class="body"><span class="who">Day 1 AM</span><h3>Set up their machine</h3><p>Install Claude Code and the CC skills together, screen by screen. Drive from one screen so the room follows.</p></div></div>
+  <div class="step"><div class="num">3</div><div class="body"><span class="who">Day 1 - the magic</span><h3>Build their Business Brain</h3><p>Run the resonance interview. You lead the emotional and offer work; Claude writes their resonance doc and brand guide into <code>Business-Brain/</code>. This is the foundation everything else stands on.</p></div></div>
+  <div class="step"><div class="num">4</div><div class="body"><span class="who">Day 1 PM</span><h3>Phone, SMS + voice</h3><p>Submit the regulatory bundle together (their ABN PDF), buy the GHL number, switch on the AI agents across every channel.</p></div></div>
+  <div class="step"><div class="num">5</div><div class="body"><span class="who">Day 2</span><h3>Push the GHL snapshot + go live</h3><p>Install the nurture snapshot, repopulate the templates in their voice, wire the workflows. Then the fun part - take it for a test drive and watch it all work.</p></div></div>
+
+  <div class="note"><b>The sweetener (if there is time):</b> GitHub + Supabase + Render so they can build their own landing pages in Claude Code and copy them into GHL. Worst case, demo it and tell them it is already in their system - they can do it too.</div>
+
+</div>
+
+<div class="foot">
+  <div class="logo">Clinic <span>Catalyst</span></div>
+  <p style="margin-top:.6rem">The system the clinic owns. Built with them, in two days.</p>
+</div>
+
+</body>
+</html>
