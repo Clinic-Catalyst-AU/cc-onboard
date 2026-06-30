@@ -89,15 +89,16 @@ ENVF=~/Systems/BusinessOps/.env
 if [ ! -f "$ENVF" ]; then
 cat > "$ENVF" <<'EOF'
 # Clinic Catalyst .env - fill these in (Kelly sends the SHARED ones securely; OWN = make your own)
+# Key NAMES must match exactly - the skills read these exact names.
 # --- SHARED (Kelly provides) ---
-GHL_API_KEY=
-GHL_LOCATION_ID=
+CC_GHL_PIT=
+CC_GHL_LOCATION_ID=
 CC_SUPABASE_URL=
 CC_SUPABASE_KEY=
 TELEGRAM_BOT_TOKEN=
 TELEGRAM_CHAT_ID=
 # --- OWN (your own keys) ---
-GEMINI_API_KEY=
+GEMINI_KEY=
 OPENAI_API_KEY=
 FIREFLIES_API_KEY=
 EOF
@@ -113,6 +114,10 @@ done
 for m in PIL requests playwright; do
   if python3 -c "import $m" >/dev/null 2>&1; then echo "  ok   python:$m"; else echo "  MISSING  python:$m"; FAIL=1; fi
 done
+# the repo + skills must actually be there - catches a skipped clone (e.g. gh auth not done first)
+if [ -d ~/Systems/cc-aios/.git ]; then echo "  ok   cc-aios repo"; else echo "  MISSING  cc-aios repo (run 'gh auth login' then re-run this)"; FAIL=1; fi
+if [ -d ~/.claude/skills/cc-prospect ]; then echo "  ok   CC skills installed"; else echo "  MISSING  CC skills (the repo did not clone, so nothing installed)"; FAIL=1; fi
+if [ -f ~/Systems/BusinessOps/.env ]; then echo "  ok   .env scaffold"; else echo "  MISSING  .env scaffold"; FAIL=1; fi
 
 if [ "$FAIL" -eq 0 ]; then
   say "DONE - Clinic Catalyst environment installed and verified"
