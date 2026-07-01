@@ -103,8 +103,11 @@ CC_SUPABASE_URL=
 CC_SUPABASE_KEY=
 TELEGRAM_BOT_TOKEN=
 TELEGRAM_CHAT_ID=
+GEMINI_API_KEY=
+# ^ Kelly's own key (covered by her Google One quota) - she's sharing it for now and watching
+#   usage; ask her before generating high-volume image batches, and she may switch this to
+#   your own key later if volume grows.
 # --- OWN (your own keys) ---
-GEMINI_KEY=
 OPENAI_API_KEY=
 FIREFLIES_API_KEY=
 EOF
