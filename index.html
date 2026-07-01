@@ -36,12 +36,13 @@
 <div class="hero">
   <div class="kicker">Clinic Catalyst</div>
   <h1>Welcome aboard, Alicia</h1>
-  <p>About 20 minutes and your Mac runs the entire Clinic Catalyst system - same as Kelly's.</p>
+  <p>By the end of today, both your machines run the entire Clinic Catalyst system - same as Kelly's.</p>
 </div>
 
 <div class="wrap">
 
   <div class="note teal"><b>You use your OWN Claude account</b> (not Kelly's). We share the <i>system</i> - the skills, rules, and client work - not the login. Cleaner + it's properly yours.</div>
+  <div class="note teal"><b>Two machines, one system.</b> Run this whole page on your laptop AND your Mac (steps 1-6 on each). The only once-only bits: accepting the two invite emails, and the Dropbox share - accept it once and it syncs to both machines by itself.</div>
   <div class="note"><b>First:</b> Kelly will have (1) invited you to the <b>Clinic-Catalyst-AU</b> GitHub org and (2) shared the <b>Clinic_Catalyst_Shared</b> Dropbox folder. Accept both emails before you start.</div>
 
   <div class="step">
@@ -66,14 +67,20 @@
     <div class="time">~25-45 min on a fresh Mac - start it FIRST and let it run in the background</div>
     <div class="body"><div class="cmd"><button class="copy">Copy</button><span class="t">curl -fsSL https://clinic-catalyst-au.github.io/cc-onboard/bootstrap.sh | bash</span></div>
       <p class="small">Kick this off first thing - it downloads a lot. Leave it running while we do the welcome + strategy session, and check back when it prints <b>DONE</b>. If it ever says <b>DONE WITH PROBLEMS</b>, screenshot it and text Kelly.</p>
+      <p class="small"><b>One catch:</b> if Dropbox was still syncing when this ran, it prints a note about the shared folder. No drama - once Dropbox finishes, just paste this same command again. Second pass links your <code>~/Clients</code> to the shared client folders (the pitch skill needs that).</p>
     </div>
   </div>
 
   <div class="step">
-    <h2><span class="num">4</span> Add the keys</h2>
-    <div class="sub">Kelly sends you the shared keys (GHL, Supabase, Telegram) securely - paste them in. Open the file:</div>
-    <div class="body"><div class="cmd"><button class="copy">Copy</button><span class="t">open -e ~/Systems/BusinessOps/.env</span></div>
-      <p class="small">Paste each value after its <code>=</code>, save, close. (The "OWN" keys you can add anytime - they're only needed for image/transcription skills.)</p>
+    <h2><span class="num">4</span> Add the keys (with Kelly, in person)</h2>
+    <div class="sub">Two files get the shared values typed in - Kelly has them. This happens on BOTH machines (these files never sync, on purpose).</div>
+    <div class="body">
+      <p class="small"><b>4a. The .env file</b> - GHL, Supabase, Telegram + the shared Gemini key:</p>
+      <div class="cmd"><button class="copy">Copy</button><span class="t">open -e ~/Systems/BusinessOps/.env</span></div>
+      <p class="small">Paste each SHARED value after its <code>=</code>, save, close. The Gemini key is Kelly's (shared for now) - check with her before any big image-generation batches. The "OWN" keys you can add anytime.</p>
+      <p class="small"><b>4b. The GHL connector token</b> - same GHL key (<code>CC_GHL_PIT</code>), one more home:</p>
+      <div class="cmd"><button class="copy">Copy</button><span class="t">open -e ~/.claude/settings.json</span></div>
+      <p class="small">Find <code>"gohighlevel"</code> and paste the GHL key into BOTH empty values - <code>BEARER_TOKEN_BEARERAUTH</code> and <code>BEARER_TOKEN_BEARER</code>. Keep the quotes, save, close.</p>
     </div>
   </div>
 
@@ -81,15 +88,23 @@
     <h2><span class="num">5</span> Start Claude Code (your account)</h2>
     <div class="sub">Close + reopen Terminal first, then:</div>
     <div class="body"><div class="cmd"><button class="copy">Copy</button><span class="t">claude</span></div>
-      <p class="small">Log in with <b>your own</b> Anthropic account when prompted.</p>
+      <p class="small">Log in with <b>your own</b> Anthropic account when prompted. Then connect your own <b>Fireflies</b>, <b>Supabase</b> and <b>GitHub</b> connectors when Claude offers them (your logins, per machine).</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <h2><span class="num">6</span> Prove it works (30 seconds)</h2>
+    <div class="sub">Paste this in Terminal - three OKs means this machine is done.</div>
+    <div class="body"><div class="cmd"><button class="copy">Copy</button><span class="t">ls ~/.claude/skills | grep -c '^cc-' | xargs -I{} echo "OK {} cc- skills installed"; [ -e ~/Clients/Dr_Mandi_Cosmetics/Deliverables/pitch-deck.html ] &amp;&amp; echo "OK pitch gold-standard resolves" || echo "NOT YET - re-run step 3 after Dropbox finishes"; command -v claude &gt;/dev/null &amp;&amp; echo "OK Claude Code installed"</span></div>
+      <p class="small">If the middle line says NOT YET, Dropbox is still syncing - finish your coffee, re-run step 3, check again.</p>
     </div>
   </div>
 
   <div class="reveal">
     <h2>You're in. Now watch this.</h2>
-    <p>In Claude Code, type:</p>
-    <div class="cmd"><button class="copy">Copy</button><span class="t">/cc-pitch</span></div>
-    <p>Paste a clinic's website and watch it scout the clinic, build the deck + demo pages, and deploy them live - AHPRA-compliant, on-brand, on your machine. You now have everything Kelly has for Clinic Catalyst.</p>
+    <p>In Claude Code, type (swap in a real clinic):</p>
+    <div class="cmd"><button class="copy">Copy</button><span class="t">/cc-pitch-prep [clinic name] [their website]</span></div>
+    <p>Watch it scout the clinic, build the deck + demo pages, and deploy them live - AHPRA-compliant, on-brand, on your machine. You now have everything Kelly has for Clinic Catalyst.</p>
   </div>
 
   <div class="foot">Clinic Catalyst &middot; shared system for Kelly + Alicia &middot; stuck on a step? Text Kelly.</div>
