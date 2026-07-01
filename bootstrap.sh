@@ -71,22 +71,41 @@ if [ -d ~/Systems/cc-aios/reel-render ]; then
     || echo "  (cc-reel-render deps not installed - run 'cd ~/Systems/cc-aios/reel-render && npm install' before first /cc-reel)"
 fi
 
-# 6) Playwright (CC skills scrape sites + screenshot demos) + register the Playwright MCP
-say "[7/8] Playwright browser + MCP"
+# 6) Playwright (CC skills scrape sites + screenshot demos) + register the Playwright + GoHighLevel MCPs
+say "[7/8] Playwright browser + MCPs (playwright, gohighlevel)"
 npx --yes playwright install chromium 2>/dev/null
 # also install the browser for the PYTHON playwright package (deck-to-pdf uses python, not node)
 python3 -m playwright install chromium 2>/dev/null || true
-python3 - <<'PY' 2>/dev/null
-import json,os
+python3 - <<'PY'
+import json,os,sys
 p=os.path.expanduser("~/.claude/settings.json")
 s={}
 if os.path.exists(p):
     try: s=json.load(open(p))
-    except: s={}
+    except Exception as e:
+        # NEVER overwrite a file we can't parse - that clobbers every setting in it
+        print(f"  !! ~/.claude/settings.json exists but is not valid JSON ({e}) - fix it, then re-run. Skipping MCP registration."); sys.exit(0)
 s.setdefault("mcpServers",{}).setdefault("playwright",{"command":"npx","args":["@playwright/mcp@latest"]})
+# gohighlevel: powers the /cc-content-engine social push + GHL skills. Tokens stay EMPTY here -
+# paste the shared CC GHL PIT into both values during the in-person key session (never over chat).
+s["mcpServers"].setdefault("gohighlevel",{"command":"npx","args":["-y","@drausal/gohighlevel-mcp"],"env":{"BEARER_TOKEN_BEARERAUTH":"","BEARER_TOKEN_BEARER":""}})
 json.dump(s,open(p,"w"),indent=2)
-print("  Playwright MCP added to ~/.claude/settings.json")
+print("  Playwright + GoHighLevel MCPs registered in ~/.claude/settings.json")
+print("  (gohighlevel token is EMPTY - paste the shared CC GHL PIT into both env values with Kelly)")
 PY
+
+# 6b) Shared clients workspace: on a fresh operator machine (no ~/Clients yet), link it to the
+# shared Dropbox clients so paths like ~/Clients/Dr_Mandi_Cosmetics/... resolve the same as on
+# Kelly's machine (which /cc-pitch depends on). NEVER touches an existing ~/Clients.
+say "      + shared clients link"
+SHARED_CLIENTS="$HOME/Dropbox/Clinic_Catalyst_Shared/Clients"
+if [ -e "$HOME/Clients" ]; then
+  echo "  ~/Clients already exists - left it"
+elif [ -d "$SHARED_CLIENTS" ]; then
+  ln -s "$SHARED_CLIENTS" "$HOME/Clients" && echo "  ~/Clients -> shared CC clients (Dropbox)"
+else
+  echo "  (shared Dropbox folder not synced yet - accept the Clinic_Catalyst_Shared share, let Dropbox finish, then re-run this installer)"
+fi
 
 # 7) .env scaffold (the CC skills read ~/Systems/BusinessOps/.env). Real values come from Kelly (shared) or your own.
 say "[8/8] .env scaffold"
