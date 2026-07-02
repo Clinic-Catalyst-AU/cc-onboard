@@ -28,6 +28,9 @@
   .rules li{margin:6px 0;font-size:14px}
   .foot{text-align:center;color:var(--muted);font-size:12px;margin-top:36px}
   .pill{display:inline-block;background:rgba(79,179,166,.15);color:var(--teal2);border-radius:20px;padding:2px 10px;font-size:11px;font-weight:700;margin-left:6px;vertical-align:middle}
+  .cmdbox{position:relative;background:var(--code);color:#CFF3EC;border-radius:10px;padding:14px 66px 14px 16px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;white-space:pre-wrap;word-break:break-word;margin:10px 0}
+  .copy{position:absolute;top:9px;right:9px;background:var(--mint);color:#06302c;border:none;border-radius:7px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer}
+  .copy:active{transform:scale(.96)}.copied{background:var(--gold)!important;color:#3a2d08!important}
 </style>
 </head>
 <body>
@@ -122,9 +125,23 @@
 
   <div class="note teal"><b>Stuck?</b> First: just tell Claude what's wrong - it fixes most things itself. Still stuck: paste it into the <a href="https://clinic-catalyst-au.github.io/cc-onboard/chat.html">Install Helpline chat</a> or text Kelly.</div>
 
-  <div class="note"><b>Keeping your system current:</b> when Kelly ships a new or improved skill, run this in Terminal and you have it: <br><span class="c">cd ~/Systems/cc-aios && git pull && bin/apply-to-machine.sh</span></div>
+  <h2><span class="tag">Stay Current</span>The Update Button - run this at the start of every session</h2>
+  <p class="lead"><b>What it does:</b> downloads whatever Kelly has improved in the shared system and installs it on this machine. <b>When:</b> start of every work session (10 seconds), and any time Kelly says "I've shipped something". <b>Why:</b> it guarantees you and Kelly are always running the exact same skills - no drift, no "works on her machine". It never touches your own files or client work.</p>
+  <div class="cmdbox"><button class="copy">Copy</button><span class="t">cd ~/Systems/cc-aios && git pull && bin/apply-to-machine.sh</span></div>
+  <p class="lead">Open Terminal, paste, enter. If Claude is already running, quit it (Ctrl+C twice) and start it again after - it reads skills at startup.</p>
 
   <div class="foot">Clinic Catalyst &middot; the shared system &middot; you drive, it does</div>
 </div>
+<script>
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var t=btn.parentElement.querySelector('.t'); var text=t?t.innerText:'';
+      navigator.clipboard.writeText(text).then(function(){
+        var old=btn.textContent; btn.textContent='Copied'; btn.classList.add('copied');
+        setTimeout(function(){btn.textContent=old; btn.classList.remove('copied');},1600);
+      });
+    });
+  });
+</script>
 </body>
 </html>
