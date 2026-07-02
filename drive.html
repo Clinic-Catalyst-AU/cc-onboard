@@ -98,6 +98,18 @@
     <tr><td><span class="c">/deck-to-pdf</span></td><td>Any online deck/presentation into a clean PDF to send.</td></tr>
   </table>
 
+  <h2><span class="tag">Making Changes</span>How to Edit Things</h2>
+  <p class="lead">You have full edit rights across the whole system - same as Kelly. You never edit code or HTML by hand: you tell Claude what to change and it does the work, shows you, and you approve.</p>
+  <div class="card">
+    <ul class="rules">
+      <li><b>Client docs &amp; content</b> (brand guides, offers, captions, anything in the client folders): just ask. <i>"Open Amar Skin Clinic's brand guide and soften the tone of the voice section"</i> - Claude edits the file, shows you exactly what changed, you approve. Because the folders are shared, Kelly sees it too.</li>
+      <li><b>The live workshop pages</b> (itinerary, workbook, guides - anything on the toolkit site): tell Claude the page and the change, and to deploy it. <i>"On the workshop toolkit itinerary page, change morning tea to 10:30. Clone the repo fresh, make the edit, push it live, and verify the live page shows the change before telling me it's done."</i> That last part is a house rule - <b>never trust "pushed", only "verified live".</b></li>
+      <li><b>The skills themselves</b>: if a skill keeps getting something wrong, you can fix it for both of you. <i>"The cc-cover skill always makes headlines too small - update the skill and push it so Kelly gets the fix too."</i></li>
+      <li><b>Getting Kelly's updates</b>: when she ships improvements, one line brings them to your machine: <span class="c">cd ~/Systems/cc-aios &amp;&amp; git pull &amp;&amp; bin/apply-to-machine.sh</span></li>
+      <li><b>Day-to-day rhythm</b>: one job per conversation works best. Be specific about the outcome you want, not the steps. Claude already knows the CC rules (AHPRA, drafts-only, no fabrication) - they're baked into its system.</li>
+    </ul>
+  </div>
+
   <h2><span class="tag">House Rules</span>The Non-Negotiables</h2>
   <div class="card">
     <ul class="rules">
