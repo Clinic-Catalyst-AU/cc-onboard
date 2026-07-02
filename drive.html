@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Drive Your Claude - Clinic Catalyst</title>
+<style>
+  :root{--teal:#0E4D4A;--teal2:#13615C;--mint:#4FB3A6;--gold:#C9A86A;--ink:#13211F;--muted:#5E726E;--bg:#F4F8F6;--card:#FFFFFF;--line:#DCE8E4;--code:#0B2E2B;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.55}
+  .hero{background:linear-gradient(150deg,var(--teal),var(--teal2));color:#fff;padding:44px 24px 36px;text-align:center}
+  .hero .kicker{letter-spacing:3px;text-transform:uppercase;font-size:12px;color:var(--mint);font-weight:700}
+  .hero h1{margin:10px 0 6px;font-size:30px}
+  .hero p{margin:0 auto;color:#CFE7E2;font-size:15px;max-width:560px}
+  .wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+  h2{font-size:20px;margin:34px 0 6px;color:var(--teal)}
+  h2 .tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px}
+  .lead{color:var(--muted);font-size:14px;margin:0 0 14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:10px 0}
+  .cmd-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .cmd-table th{background:var(--teal);color:#fff;text-align:left;padding:10px 14px;font-size:13px}
+  .cmd-table td{padding:11px 14px;border-top:1px solid var(--line);font-size:13.5px;vertical-align:top}
+  .cmd-table tr:nth-child(even) td{background:#FAFCFB}
+  .c{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;color:var(--teal2);white-space:nowrap}
+  .say{background:var(--code);color:#CFF3EC;border-radius:10px;padding:12px 14px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;margin:8px 0;white-space:pre-wrap}
+  .note{background:#FFF7E6;border:1px solid var(--gold);border-radius:12px;padding:12px 16px;margin:14px 0;font-size:13.5px;color:#6b531f}
+  .note.teal{background:#E7F3F0;border-color:var(--mint);color:#0e4d4a}
+  .rules li{margin:6px 0;font-size:14px}
+  .foot{text-align:center;color:var(--muted);font-size:12px;margin-top:36px}
+  .pill{display:inline-block;background:rgba(79,179,166,.15);color:var(--teal2);border-radius:20px;padding:2px 10px;font-size:11px;font-weight:700;margin-left:6px;vertical-align:middle}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="kicker">Clinic Catalyst</div>
+  <h1>How to Drive Your Claude</h1>
+  <p>Your whole system, one page. Open Terminal, type <b>claude</b>, then talk to it like a very capable new team member.</p>
+</div>
+
+<div class="wrap">
+
+  <h2><span class="tag">The Basics</span>Driving 101</h2>
+  <div class="card">
+    <ul class="rules">
+      <li><b>Start:</b> open Terminal (Cmd+Space, type "Terminal"), then type <span class="c">claude</span> and press enter.</li>
+      <li><b>Talk normally.</b> "Write me three Instagram captions about winter skin" works. You don't need commands for everything - the slash commands below are shortcuts to the big machines.</li>
+      <li><b>It asks before it acts.</b> When Claude wants to run something, it shows you first - press enter/y to approve. Nothing sneaky happens without you seeing it.</li>
+      <li><b>Press Esc</b> to interrupt if it's going the wrong way. Just tell it what you want instead.</li>
+      <li><b>Paste errors.</b> If anything breaks, copy the error, paste it in, say "fix this". It usually can.</li>
+      <li><b>Where things live:</b> client folders are in <span class="c">~/Clients</span> (shared with Kelly - same files, both machines). Content lands in the client folder or the Content-Library.</li>
+    </ul>
+  </div>
+
+  <h2><span class="tag">Winning Work</span>Sales &amp; Pitching</h2>
+  <table class="cmd-table">
+    <tr><th style="width:200px">Command</th><th>What it does</th></tr>
+    <tr><td><span class="c">/cc-pitch prep</span></td><td>The flagship. Give it a clinic name + website: it researches them, screenshots their site, builds the full pitch deck from the gold standard, deploys it to a live URL, makes the demo pages + PDF and a scoping brief. Run BEFORE a prospect call.</td></tr>
+    <tr><td><span class="c">/cc-pitch go</span></td><td>Run AFTER the call. Reads the Fireflies recording, edits the deck to match the outcome, adds deposit/payment buttons, writes the follow-up email package.</td></tr>
+    <tr><td><span class="c">/cc-prospect</span></td><td>Scoping only - pulls the Fireflies call + scouts their website, socials and reviews into an intelligence report. No deck, just the intel.</td></tr>
+    <tr><td><span class="c">/pre-call-brief</span></td><td>Research brief before ANY call - who they are, their business, quick wins to mention.</td></tr>
+  </table>
+  <div class="say">/cc-pitch prep Radiant Skin Clinic https://radiantskin.com.au</div>
+
+  <h2><span class="tag">Clinic Foundations</span>The Business Brain (run these first for every new clinic)</h2>
+  <table class="cmd-table">
+    <tr><th style="width:200px">Command</th><th>What it does</th></tr>
+    <tr><td><span class="c">/cc-resonance</span></td><td>Maps the clinic's ideal client emotionally - who they are, what they feel, the words that land. Everything else reads this.</td></tr>
+    <tr><td><span class="c">/cc-brand-guide</span></td><td>Turns the resonance doc into the clinic's brand guide - voice, words used/avoided, look and feel. Run straight after /cc-resonance.</td></tr>
+    <tr><td><span class="c">/cc-follow-up-agent</span></td><td>Builds the clinic's lead follow-up sequences (SMS + email) from their Business Brain.</td></tr>
+  </table>
+
+  <h2><span class="tag">Bye Canva</span>Content &amp; Creative</h2>
+  <table class="cmd-table">
+    <tr><th style="width:200px">Command</th><th>What it does</th></tr>
+    <tr><td><span class="c">/cc-content-engine</span></td><td>A month of organic social content for a clinic - planned across the four pillars, in their voice, AHPRA-checked, pushed to GHL as drafts.</td></tr>
+    <tr><td><span class="c">/cc-cover</span></td><td>Branded reel/story covers - give it a photo + a headline, it renders with the right logo, fonts and colours. No Canva.</td></tr>
+    <tr><td><span class="c">/cc-carousel</span></td><td>Multi-slide carousel posts, designed and written.</td></tr>
+    <tr><td><span class="c">/cc-hook</span></td><td>Scroll-stopping hooks and openers for posts and reels.</td></tr>
+    <tr><td><span class="c">/cc-find-clip</span></td><td>Finds the best moment in a long video (a consult recording, an event) and cuts it out.</td></tr>
+    <tr><td><span class="c">/cc-reel</span> <span class="pill">after macOS update</span></td><td>Turns a clip into a captioned reel - animated word-by-word captions, ready to post.</td></tr>
+    <tr><td><span class="c">/cc-assemble</span> <span class="pill">after macOS update</span></td><td>Stitches clips together with crossfades + music into one reel.</td></tr>
+    <tr><td><span class="c">/cc-content-pipeline</span></td><td>Raw video/audio in, finished platform content out - transcript, clips, captions, schedule.</td></tr>
+    <tr><td><span class="c">/stoptheslop</span></td><td>Runs over any draft and strips the "written by AI" tells. Use before anything ships.</td></tr>
+    <tr><td><span class="c">/transcribe</span></td><td>Any audio/video file into clean text.</td></tr>
+  </table>
+  <div class="say">/cc-cover use the awards photo of Kelly and me, headline "REAL RESULTS, REAL SCIENCE", accent word RESULTS</div>
+
+  <h2><span class="tag">Getting Found</span>Marketing, Ads &amp; SEO</h2>
+  <table class="cmd-table">
+    <tr><th style="width:200px">Command</th><th>What it does</th></tr>
+    <tr><td><span class="c">/cc-ad-builder</span></td><td>Paid ad campaigns for a clinic - angles, copy, creative briefs, AHPRA-safe.</td></tr>
+    <tr><td><span class="c">/cc-ad-spy</span></td><td>Spies on any clinic's Meta ads - what competitors are running, their angles and offers.</td></tr>
+    <tr><td><span class="c">/cc-marketing-genius</span></td><td>The strategist - reviews copy, sharpens offers, thinks through buyer psychology.</td></tr>
+    <tr><td><span class="c">/cc-keyword-research</span></td><td>What the clinic's clients are actually searching for.</td></tr>
+    <tr><td><span class="c">/cc-geo-seo</span></td><td>Gets clinics found by AI search (ChatGPT, Claude, Perplexity) - the new SEO.</td></tr>
+    <tr><td><span class="c">/cc-website-audit</span></td><td>Full audit of a clinic's website - what's broken, what's leaking leads, what to fix first.</td></tr>
+    <tr><td><span class="c">/cc-landing-page</span></td><td>Builds or audits a landing page against conversion principles.</td></tr>
+    <tr><td><span class="c">/deck-to-pdf</span></td><td>Any online deck/presentation into a clean PDF to send.</td></tr>
+  </table>
+
+  <h2><span class="tag">House Rules</span>The Non-Negotiables</h2>
+  <div class="card">
+    <ul class="rules">
+      <li><b>Everything social lands in GHL as a DRAFT.</b> A human approves in the planner - nothing auto-publishes. Ever.</li>
+      <li><b>AHPRA is a hard gate.</b> The skills check claims automatically and will stop and tell you rather than ship something non-compliant. If it stops, that's it working.</li>
+      <li><b>Never fabricate.</b> No invented testimonials, stats or results - the skills use verbatim quotes from real sources only.</li>
+      <li><b>Big image-generation batches:</b> check with Kelly first (shared key for now).</li>
+      <li><b>Client work saves into the shared folders</b> - so Kelly sees what you build and you see hers, automatically.</li>
+    </ul>
+  </div>
+
+  <div class="note teal"><b>Stuck?</b> First: just tell Claude what's wrong - it fixes most things itself. Still stuck: paste it into the <a href="https://clinic-catalyst-au.github.io/cc-onboard/chat.html">Install Helpline chat</a> or text Kelly.</div>
+
+  <div class="note"><b>Keeping your system current:</b> when Kelly ships a new or improved skill, run this in Terminal and you have it: <br><span class="c">cd ~/Systems/cc-aios && git pull && bin/apply-to-machine.sh</span></div>
+
+  <div class="foot">Clinic Catalyst &middot; the shared system &middot; you drive, it does</div>
+</div>
+</body>
+</html>
