@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Facilitator Run Sheet - Day 1 - Clinic Catalyst</title>
+<style>
+  :root{--teal:#0E4D4A;--teal2:#13615C;--mint:#4FB3A6;--gold:#C9A86A;--ink:#13211F;--muted:#5E726E;--bg:#F4F8F6;--card:#FFFFFF;--line:#DCE8E4;--code:#0B2E2B;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.55}
+  .hero{background:linear-gradient(150deg,var(--teal),var(--teal2));color:#fff;padding:44px 24px 36px;text-align:center}
+  .hero .kicker{letter-spacing:3px;text-transform:uppercase;font-size:12px;color:var(--mint);font-weight:700}
+  .hero h1{margin:10px 0 6px;font-size:30px}
+  .hero p{margin:0 auto;color:#CFE7E2;font-size:15px;max-width:560px}
+  .wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+  h2{font-size:20px;margin:34px 0 6px;color:var(--teal)}
+  h2 .tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px}
+  .lead{color:var(--muted);font-size:14px;margin:0 0 14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:10px 0}
+  .cmd-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .cmd-table th{background:var(--teal);color:#fff;text-align:left;padding:10px 14px;font-size:13px}
+  .cmd-table td{padding:11px 14px;border-top:1px solid var(--line);font-size:13.5px;vertical-align:top}
+  .cmd-table tr:nth-child(even) td{background:#FAFCFB}
+  .c{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;color:var(--teal2);white-space:nowrap}
+  .say{background:var(--code);color:#CFF3EC;border-radius:10px;padding:12px 14px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;margin:8px 0;white-space:pre-wrap}
+  .note{background:#FFF7E6;border:1px solid var(--gold);border-radius:12px;padding:12px 16px;margin:14px 0;font-size:13.5px;color:#6b531f}
+  .note.teal{background:#E7F3F0;border-color:var(--mint);color:#0e4d4a}
+  .rules li{margin:6px 0;font-size:14px}
+  .foot{text-align:center;color:var(--muted);font-size:12px;margin-top:36px}
+  .pill{display:inline-block;background:rgba(79,179,166,.15);color:var(--teal2);border-radius:20px;padding:2px 10px;font-size:11px;font-weight:700;margin-left:6px;vertical-align:middle}
+  .cmdbox{position:relative;background:var(--code);color:#CFF3EC;border-radius:10px;padding:14px 66px 14px 16px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;white-space:pre-wrap;word-break:break-word;margin:10px 0}
+  .copy{position:absolute;top:9px;right:9px;background:var(--mint);color:#06302c;border:none;border-radius:7px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer}
+  .copy:active{transform:scale(.96)}.copied{background:var(--gold)!important;color:#3a2d08!important}
+
+  .slot{display:grid;grid-template-columns:110px 1fr;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:10px 0}
+  .slot .time{font-family:ui-monospace,Menlo,monospace;font-weight:800;color:var(--teal2);font-size:14px}
+  .slot .time small{display:block;color:var(--muted);font-weight:600;font-size:11px;margin-top:2px}
+  .slot h3{margin:0 0 4px;font-size:16px}
+  .slot .who{display:inline-block;background:rgba(201,168,106,.18);color:#7a5f28;border-radius:14px;padding:1px 9px;font-size:11px;font-weight:800;margin-left:8px;vertical-align:middle}
+  .slot .ready{font-size:13px;margin:6px 0 2px}
+  .slot .ready b{color:var(--teal2)}
+  .slot .links{font-size:13px;margin:2px 0}
+  .slot .out{font-size:12.5px;color:var(--muted);margin-top:4px;font-style:italic}
+  .slot code{background:#EAF3F0;border-radius:5px;padding:1px 6px;font-size:12px}
+  .break{background:#FFF7E6;border-color:var(--gold)}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="kicker">Clinic Catalyst &middot; Facilitator only</div>
+  <h1>Day 1 Run Sheet</h1>
+  <p>One screen to run the room: the clock, what must already be working, the link or command to put on screen, and what attendees walk out of each block with.</p>
+</div>
+
+<div class="wrap">
+
+  <h2><span class="tag">Before anyone arrives</span>Pre-flight (night before + 8:30am)</h2>
+  <div class="card">
+    <ul class="rules">
+      <li>&#9744; Attendees reminded to bring: Claude account login, API key, laptop + charger, business registration PDF (for SMS), logins for their socials + website</li>
+      <li>&#9744; Hub loads on the room screen: <code>clinic-catalyst-au.github.io/workshop-toolkit/</code></li>
+      <li>&#9744; Your demo machine: <code>claude</code> opens, skills current (run the Update Button), Business Brain demo clinic ready</li>
+      <li>&#9744; Helpline chat page open on your machine (attendee tech issues go there): <code>/cc-onboard/chat.html</code></li>
+      <li>&#9744; Canva deck loaded; Issada presenter confirmed for lunch</li>
+      <li>&#9744; Wifi password on the whiteboard</li>
+    </ul>
+  </div>
+
+  <h2><span class="tag">The clock</span>Session by session</h2>
+
+  <div class="slot">
+    <div class="time">9:00<small>30 min</small></div>
+    <div>
+      <h3>Welcome &amp; Strategy Session <span class="who">BOTH</span></h3>
+      <div class="ready"><b>Must be ready:</b> every laptop starts the INSTALL now - it runs in the background all morning (30-60 min of downloads).</div>
+      <div class="links"><b>On screen:</b> install guide <code>/workshop-toolkit/guide-install-mac.html</code> (Windows: <code>guide-install-windows.html</code>) - they paste step 3 FIRST, then listen.</div>
+      <div class="out">Walks out with: install running, the day's map in their head.</div>
+    </div>
+  </div>
+
+  <div class="slot">
+    <div class="time">9:30<small>75 min</small></div>
+    <div>
+      <h3>CRM Setup &amp; Foundations (GHL) <span class="who">ALICIA</span></h3>
+      <div class="ready"><b>Must be ready:</b> attendees signed up to GHL (trial link), calendar snapshot loaded, ABN PDF in hand for SMS registration.</div>
+      <div class="links"><b>On screen:</b> the full build guide <code>/workshop-toolkit/guide-ghl-setup.html</code> - pipeline &amp; opportunities, SMS cert, calendar (snapshot button on the page), lead forms, 4 workflows, TEST. Keeping Timely/Cliniko? The two-way bridge: <code>calendar-bridge.html</code>.</div>
+      <div class="out">Walks out with: a CRM that catches, chases and books - tested with their own form submission.</div>
+    </div>
+  </div>
+
+  <div class="slot break">
+    <div class="time">10:45<small>15 min</small></div>
+    <div><h3>Morning tea</h3><div class="out">Check the room's installs: the 30-second verify (step 6 on the install page). Anyone stuck posts to the helpline chat.</div></div>
+  </div>
+
+  <div class="slot">
+    <div class="time">11:00<small>60 min</small></div>
+    <div>
+      <h3>AI Marketing Agent Build <span class="who">KELLY</span></h3>
+      <div class="ready"><b>Must be ready:</b> installs DONE (verified at tea), Claude signed in, skill pack installed, Business Brain workbook open.</div>
+      <div class="links"><b>On screen:</b> Foundation Workbook <code>/workshop-toolkit/foundation-workbook.html</code> - patient maths (worked example box is on the page), then <code>/cc-resonance</code> -&gt; <code>/cc-brand-guide</code> builds each clinic's Business Brain live.</div>
+      <div class="out">Walks out with: their Business Brain built - every skill now sounds like their clinic.</div>
+    </div>
+  </div>
+
+  <div class="slot">
+    <div class="time">12:00<small>30 min</small></div>
+    <div>
+      <h3>Offer Creation <span class="who">ALICIA</span></h3>
+      <div class="ready"><b>Must be ready:</b> Business Brains from the last block.</div>
+      <div class="links"><b>On screen:</b> workbook section 4 - Choose ONE treatment (box on the page), Offer Architecture (name/prices/inclusions/urgency/scarcity), Ascension Model graphic, validation checklist. All on <code>foundation-workbook.html</code>.</div>
+      <div class="out">Walks out with: ONE validated front-door offer, ad-ready, saved into their Business Brain.</div>
+    </div>
+  </div>
+
+  <div class="slot break">
+    <div class="time">12:30<small>40 min</small></div>
+    <div><h3>Lunch + Issada presentation</h3><div class="out">Back at 1:10 sharp. Good moment to triage any red-flag installs privately.</div></div>
+  </div>
+
+  <div class="slot">
+    <div class="time">1:10<small>50 min</small></div>
+    <div>
+      <h3>Video Script Agent &amp; Ad Creation Framework <span class="who">KELLY</span></h3>
+      <div class="ready"><b>Must be ready:</b> offers locked from 12:00 block, phones charged for recording, quiet corner identified.</div>
+      <div class="links"><b>On screen:</b> <code>/cc-script give me the set for my front-door offer</code> (six script types, hooks, shot lists) then record. Written copy: <code>/cc-metaad-builder</code> (5 headlines, 5 hooks, 5 primary texts). Google: <code>/cc-googlead-builder</code> + the RSA sheet.</div>
+      <div class="out">Walks out with: recorded raw takes + a full ad copy package, all AHPRA-screened.</div>
+    </div>
+  </div>
+
+  <div class="slot">
+    <div class="time">2:00<small>45 min</small></div>
+    <div>
+      <h3>CapCut / Canva Production <span class="who">ALICIA</span></h3>
+      <div class="ready"><b>Must be ready:</b> raw takes from the last block on their phones.</div>
+      <div class="links"><b>On screen:</b> the six Canva ad templates (linked on <code>workshop-toolkit-library.html</code> ad section + inside the workbook) - 3 single-image, 3 video. Edit takes in CapCut, drop into templates.</div>
+      <div class="out">Walks out with: 2-3 finished ad creatives in their own branding.</div>
+    </div>
+  </div>
+
+  <div class="slot">
+    <div class="time">2:45<small>75 min</small></div>
+    <div>
+      <h3>Meta Lead Generation System Build <span class="who">ALICIA</span></h3>
+      <div class="ready"><b>Must be ready:</b> creatives from 2:00, GHL lead form from the morning, a landing page for the ONE offer (build with <code>/cc-landing-page</code> if time allows - ads never point at a homepage).</div>
+      <div class="links"><b>On screen:</b> Business Manager setup, pixel + events, campaign build, Meta lead form -&gt; GHL integration (native, no Zapier), test with the FB Lead Form Test Tool (button on the library page), automation shell, submit for review overnight.</div>
+      <div class="out">Walks out with: a real campaign built, connected to their CRM, awaiting Meta approval overnight - live by Day 2.</div>
+    </div>
+  </div>
+
+  <h2><span class="tag">If things wobble</span>Time triage</h2>
+  <div class="card">
+    <ul class="rules">
+      <li><b>Running 15 min late by tea:</b> compress Offer Creation to 20 min - the workbook boxes do the teaching, they finish solo at lunch.</li>
+      <li><b>An install is broken:</b> do NOT debug in the room. Post the terminal output to the helpline chat, pair them with a neighbour's machine, fix at lunch.</li>
+      <li><b>Meta block overruns:</b> the only hard finish is the campaign submitted for review - polish can happen Day 2 morning.</li>
+      <li><b>Golden rule:</b> every block's output feeds the next. Protect the OUTPUTS, sacrifice the polish.</li>
+    </ul>
+  </div>
+
+  <div class="foot">Clinic Catalyst &middot; facilitator run sheet &middot; Day 1</div>
+</div>
+</body>
+</html>
