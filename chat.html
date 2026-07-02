@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Install Helpline - Clinic Catalyst</title>
+<style>
+  :root{--teal:#0E4D4A;--teal2:#13615C;--mint:#4FB3A6;--gold:#C9A86A;--ink:#13211F;--muted:#5E726E;--bg:#F4F8F6;--card:#FFFFFF;--line:#DCE8E4;--code:#0B2E2B;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.5;display:flex;flex-direction:column;height:100vh}
+  .hero{background:linear-gradient(150deg,var(--teal),var(--teal2));color:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;flex:0 0 auto}
+  .hero .t{font-weight:800;font-size:16px}
+  .hero .t span{color:var(--mint);font-weight:600;font-size:12px;display:block}
+  .who{display:flex;gap:6px}
+  .who button{border:1.5px solid rgba(255,255,255,.5);background:transparent;color:#fff;border-radius:9px;padding:6px 14px;font-size:13px;font-weight:700;cursor:pointer}
+  .who button.on{background:#fff;color:var(--teal)}
+  #feed{flex:1 1 auto;overflow-y:auto;padding:18px 16px;max-width:820px;width:100%;margin:0 auto}
+  .msg{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:0 0 12px;position:relative}
+  .msg .meta{font-size:11.5px;color:var(--muted);font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:.4px}
+  .msg.kelly .meta{color:var(--teal2)} .msg.claude .meta{color:#7c5db8} .msg.alicia .meta{color:#b8743d}
+  .msg pre{margin:0;white-space:pre-wrap;word-break:break-word;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
+  .msg .copy{position:absolute;top:10px;right:10px;background:var(--mint);color:#06302c;border:none;border-radius:7px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer;opacity:.85}
+  .msg .copy:active{transform:scale(.96)}
+  .composer{flex:0 0 auto;border-top:1px solid var(--line);background:#fff;padding:12px 16px}
+  .composer .inner{max-width:820px;margin:0 auto;display:flex;gap:10px;align-items:flex-end}
+  textarea{flex:1;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;min-height:64px;max-height:220px;resize:vertical}
+  textarea:focus{outline:none;border-color:var(--mint)}
+  .send{background:var(--teal);color:#fff;border:none;border-radius:12px;padding:12px 22px;font-weight:800;font-size:14px;cursor:pointer}
+  .send:disabled{opacity:.5}
+  .hint{max-width:820px;margin:6px auto 0;font-size:11.5px;color:var(--muted);text-align:right}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="t">Install Helpline<span>paste terminal output here - answers appear below</span></div>
+  <div class="who">
+    <button id="w-alicia">Alicia</button>
+    <button id="w-kelly">Kelly</button>
+  </div>
+</div>
+<div id="feed"></div>
+<div class="composer">
+  <div class="inner">
+    <textarea id="box" placeholder="Paste terminal output or type a question..."></textarea>
+    <button class="send" id="send">Send</button>
+  </div>
+  <div class="hint">Cmd+Enter sends &middot; refreshes every few seconds</div>
+</div>
+<script>
+const URL_ = "https://jiquevvzrdavgqonvvug.supabase.co/rest/v1/cc_install_chat";
+const KEY = "sb_publishable_siNrWACQh9utYNJ_g6Mt3Q_vWuxhkaJ";
+const H = {"apikey": KEY, "Authorization": "Bearer " + KEY, "Content-Type": "application/json"};
+let who = localStorage.getItem("cc-chat-who") || "Alicia";
+let lastId = 0;
+
+function setWho(w){
+  who = w; localStorage.setItem("cc-chat-who", w);
+  document.getElementById("w-alicia").classList.toggle("on", w === "Alicia");
+  document.getElementById("w-kelly").classList.toggle("on", w === "Kelly");
+}
+document.getElementById("w-alicia").onclick = () => setWho("Alicia");
+document.getElementById("w-kelly").onclick = () => setWho("Kelly");
+setWho(who);
+
+function render(rows){
+  const feed = document.getElementById("feed");
+  const stick = feed.scrollHeight - feed.scrollTop - feed.clientHeight < 80;
+  for (const r of rows){
+    if (r.id <= lastId) continue;
+    lastId = Math.max(lastId, r.id);
+    const d = document.createElement("div");
+    d.className = "msg " + r.sender.toLowerCase();
+    const when = new Date(r.created_at).toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"});
+    const meta = document.createElement("div"); meta.className = "meta"; meta.textContent = r.sender + " - " + when;
+    const pre = document.createElement("pre"); pre.textContent = r.message;
+    const btn = document.createElement("button"); btn.className = "copy"; btn.textContent = "Copy";
+    btn.onclick = () => { navigator.clipboard.writeText(r.message); btn.textContent = "Copied"; setTimeout(()=>btn.textContent="Copy", 1400); };
+    d.append(meta, pre, btn); feed.appendChild(d);
+  }
+  if (stick) feed.scrollTop = feed.scrollHeight;
+}
+
+async function poll(){
+  try {
+    const r = await fetch(URL_ + "?select=*&id=gt." + lastId + "&order=id.asc", {headers: H});
+    if (r.ok) render(await r.json());
+  } catch(e){}
+}
+
+async function send(){
+  const box = document.getElementById("box");
+  const text = box.value.trim();
+  if (!text) return;
+  document.getElementById("send").disabled = true;
+  try {
+    await fetch(URL_, {method: "POST", headers: H, body: JSON.stringify({sender: who, message: text})});
+    box.value = "";
+    await poll();
+  } finally { document.getElementById("send").disabled = false; }
+}
+document.getElementById("send").onclick = send;
+document.getElementById("box").addEventListener("keydown", e => {
+  if ((e.metaKey || e.ctrlKey) && e.key === "Enter") send();
+});
+
+poll();
+setInterval(poll, 4000);
+</script>
+</body>
+</html>
