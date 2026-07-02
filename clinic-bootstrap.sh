@@ -3,12 +3,24 @@
 # Usage:  curl -fsSL https://clinic-catalyst-au.github.io/cc-onboard/clinic-bootstrap.sh | bash
 # Installs: Homebrew, Node, Python, Claude Code, then downloads the Clinic Catalyst skill pack and
 # runs its installer (ffmpeg + imagemagick + python packages + mlx-whisper + the 19 skills + ~/Clinic).
+# On macOS 13 or older (Homebrew Tier 2, no bottles) it falls back to the official installers:
+# nodejs.org pkg + claude.ai native installer + pip on the system python. Video tools need macOS 14+.
 set -uo pipefail
 say(){ printf "\n\033[1;36m%s\033[0m\n" "$*"; }
 
 say "Clinic Catalyst install - starting (this takes ~25-45 min, mostly downloads)"
 
-# 1) Homebrew (arch-aware: Apple Silicon /opt/homebrew, Intel /usr/local)
+# 0) macOS version - 13 or older means Homebrew has no pre-built bottles and brew installs fail
+TIER2=0
+MACOS_MAJOR=$(sw_vers -productVersion 2>/dev/null | cut -d. -f1)
+if [ -n "${MACOS_MAJOR:-}" ] && [ "$MACOS_MAJOR" -le 13 ] 2>/dev/null; then
+  TIER2=1
+  say "This Mac runs macOS $MACOS_MAJOR - using the official installers instead of Homebrew."
+  echo "  Everything works except the video skills (ffmpeg) - those unlock when you upgrade macOS."
+fi
+
+# 1) Homebrew (arch-aware: Apple Silicon /opt/homebrew, Intel /usr/local). Still installed on old
+#    Macs - its installer provides the Command Line Tools (git + python3) even when bottles fail.
 if ! command -v brew >/dev/null 2>&1; then
   say "[1/4] Installing Homebrew"; /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else say "[1/4] Homebrew ok"; fi
@@ -18,8 +30,26 @@ done
 
 # 2) Node + Python + Claude Code
 say "[2/4] Node, Python + Claude Code"
-brew install node python git >/dev/null 2>&1 || echo "  (brew base tools issue)"
-npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 && echo "  Claude Code installed" || echo "  (Claude Code install issue - check Node)"
+if [ "$TIER2" -eq 0 ]; then
+  brew install node python git >/dev/null 2>&1 || echo "  (brew base tools issue)"
+fi
+# Fallback for old Macs OR any Mac where the brew install silently failed to produce node:
+if ! command -v node >/dev/null 2>&1; then
+  echo "  Installing Node from nodejs.org (you may be asked for your Mac password)"
+  NODE_PKG=$(curl -fsSL https://nodejs.org/dist/latest-v22.x/ | grep -o 'node-v[0-9.]*\.pkg' | head -1)
+  if [ -n "$NODE_PKG" ] && curl -fsSL "https://nodejs.org/dist/latest-v22.x/$NODE_PKG" -o /tmp/cc-node.pkg; then
+    sudo installer -pkg /tmp/cc-node.pkg -target / >/dev/null && echo "  Node installed (official pkg)" || echo "  (Node pkg install issue)"
+    rm -f /tmp/cc-node.pkg
+    export PATH="/usr/local/bin:$PATH"
+  else echo "  (could not download Node from nodejs.org)"; fi
+fi
+npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 && echo "  Claude Code installed" || echo "  (npm route unavailable - trying the official Claude installer)"
+# Native installer needs no Node/npm at all - covers Tier 2 and any npm permission snags
+if ! command -v claude >/dev/null 2>&1 && [ ! -x "$HOME/.local/bin/claude" ]; then
+  curl -fsSL https://claude.ai/install.sh | bash >/dev/null 2>&1 && echo "  Claude Code installed (official installer)" || echo "  (Claude Code install issue)"
+fi
+export PATH="$PATH:$HOME/.local/bin"
+grep -q '.local/bin' ~/.zprofile 2>/dev/null || echo 'export PATH="$PATH:$HOME/.local/bin"' >> ~/.zprofile
 echo 'export PATH="$PATH:/opt/homebrew/bin"' >> ~/.zprofile 2>/dev/null || true
 
 # 3) Download the skill pack + run its installer (it provisions ffmpeg/imagemagick/python + the skills + ~/Clinic)
@@ -30,13 +60,25 @@ if curl -fsSL https://clinic-catalyst-au.github.io/cc-onboard/cc-clinic-pack.zip
 else
   echo "  !! could not download the skill pack - check your internet, then re-run this command."
 fi
+# Python package rescue - covers old Macs where the pack's brew-python route failed.
+# System/CLT python takes plain pip; brew python needs --break-system-packages (PEP 668).
+if ! python3 -c "import PIL, requests" >/dev/null 2>&1; then
+  python3 -m pip install --user pillow requests >/dev/null 2>&1 || \
+  python3 -m pip install --user --break-system-packages pillow requests >/dev/null 2>&1 || true
+fi
 
 # 4) Self-check
 say "[4/4] Self-check"
 FAIL=0
-for c in brew node git ffmpeg convert claude; do command -v "$c" >/dev/null 2>&1 && echo "  ok   $c" || { echo "  MISSING  $c"; FAIL=1; }; done
+for c in node git claude; do command -v "$c" >/dev/null 2>&1 && echo "  ok   $c" || { echo "  MISSING  $c"; FAIL=1; }; done
+for c in brew ffmpeg convert; do
+  if command -v "$c" >/dev/null 2>&1; then echo "  ok   $c"
+  elif [ "$TIER2" -eq 1 ]; then echo "  skipped   $c (video tools need macOS 14+ - everything else works)"
+  else echo "  MISSING  $c"; FAIL=1; fi
+done
 for m in PIL requests; do python3 -c "import $m" >/dev/null 2>&1 && echo "  ok   python:$m" || { echo "  MISSING  python:$m"; FAIL=1; }; done
 [ -d "$HOME/.claude/skills/cc-content-engine" ] && echo "  ok   CC skills installed" || { echo "  MISSING  CC skills"; FAIL=1; }
 
 if [ "$FAIL" -eq 0 ]; then say "DONE - everything installed and verified"; else say "DONE WITH PROBLEMS - tell your facilitator what is MISSING above"; fi
+[ "$TIER2" -eq 1 ] && echo "Note: this Mac runs macOS $MACOS_MAJOR - when you upgrade macOS, re-run this one command and the video skills switch on."
 echo "Next:  1) close + reopen Terminal   2) type 'claude' and sign in + paste your API key   3) open ~/Clinic and run /cc-resonance"
