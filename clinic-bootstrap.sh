@@ -1,14 +1,14 @@
 #!/bin/bash
 # Clinic Catalyst - ONE-LINE clinic install (Mac). Sets up the whole baseline + the skill pack.
 # Usage:  curl -fsSL https://clinic-catalyst-au.github.io/cc-onboard/clinic-bootstrap.sh | bash
-# Installs: Homebrew, Node, Python, Claude Code, then downloads the Clinic Catalyst skill pack and
-# runs its installer (ffmpeg + imagemagick + python packages + mlx-whisper + the 19 skills + ~/Clinic).
+# ORDER MATTERS: Claude Code first (official installer, zero dependencies - working in ~2 min),
+# THEN Homebrew, THEN the tools + skill pack churn in the background (~25-45 min, mostly downloads).
 # On macOS 13 or older (Homebrew Tier 2, no bottles) it falls back to the official installers:
-# nodejs.org pkg + claude.ai native installer + pip on the system python. Video tools need macOS 14+.
+# nodejs.org pkg + pip on the system python. Video tools need macOS 14+.
 set -uo pipefail
 say(){ printf "\n\033[1;36m%s\033[0m\n" "$*"; }
 
-say "Clinic Catalyst install - starting (this takes ~25-45 min, mostly downloads)"
+say "Clinic Catalyst install - starting (Claude Code first, then the tools; ~25-45 min total)"
 
 # 0) macOS version - 13 or older means Homebrew has no pre-built bottles and brew installs fail
 TIER2=0
@@ -19,17 +19,28 @@ if [ -n "${MACOS_MAJOR:-}" ] && [ "$MACOS_MAJOR" -le 13 ] 2>/dev/null; then
   echo "  Everything works except the video skills (ffmpeg) - those unlock when you upgrade macOS."
 fi
 
-# 1) Homebrew (arch-aware: Apple Silicon /opt/homebrew, Intel /usr/local). Still installed on old
+# 1) Claude Code FIRST - the official installer needs nothing else (no Homebrew, no Node).
+#    You have a working 'claude' inside ~2 minutes while the rest downloads.
+say "[1/4] Claude Code"
+if curl -fsSL https://claude.ai/install.sh | bash >/dev/null 2>&1; then
+  echo "  Claude Code installed"
+else
+  echo "  (official installer had an issue - will retry via npm once Node is in)"
+fi
+export PATH="$PATH:$HOME/.local/bin"
+grep -q '.local/bin' ~/.zprofile 2>/dev/null || echo 'export PATH="$PATH:$HOME/.local/bin"' >> ~/.zprofile
+
+# 2) Homebrew (arch-aware: Apple Silicon /opt/homebrew, Intel /usr/local). Still installed on old
 #    Macs - its installer provides the Command Line Tools (git + python3) even when bottles fail.
 if ! command -v brew >/dev/null 2>&1; then
-  say "[1/4] Installing Homebrew"; /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-else say "[1/4] Homebrew ok"; fi
+  say "[2/4] Installing Homebrew"; /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else say "[2/4] Homebrew ok"; fi
 for BP in /opt/homebrew/bin/brew /usr/local/bin/brew; do
   if [ -x "$BP" ]; then eval "$("$BP" shellenv)"; grep -q "$BP shellenv" ~/.zprofile 2>/dev/null || echo "eval \"\$($BP shellenv)\"" >> ~/.zprofile; break; fi
 done
 
-# 2) Node + Python + Claude Code
-say "[2/4] Node, Python + Claude Code"
+# 3) Node + Python + the skill pack (its installer provisions ffmpeg/imagemagick/python + skills + ~/Clinic)
+say "[3/4] Node, Python + the Clinic Catalyst skill pack"
 if [ "$TIER2" -eq 0 ]; then
   brew install node python git >/dev/null 2>&1 || echo "  (brew base tools issue)"
 fi
@@ -43,17 +54,11 @@ if ! command -v node >/dev/null 2>&1; then
     export PATH="/usr/local/bin:$PATH"
   else echo "  (could not download Node from nodejs.org)"; fi
 fi
-npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 && echo "  Claude Code installed" || echo "  (npm route unavailable - trying the official Claude installer)"
-# Native installer needs no Node/npm at all - covers Tier 2 and any npm permission snags
+# npm fallback only if the official Claude installer failed in step 1
 if ! command -v claude >/dev/null 2>&1 && [ ! -x "$HOME/.local/bin/claude" ]; then
-  curl -fsSL https://claude.ai/install.sh | bash >/dev/null 2>&1 && echo "  Claude Code installed (official installer)" || echo "  (Claude Code install issue)"
+  npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 && echo "  Claude Code installed (npm fallback)" || echo "  (Claude Code still missing - flag your facilitator)"
 fi
-export PATH="$PATH:$HOME/.local/bin"
-grep -q '.local/bin' ~/.zprofile 2>/dev/null || echo 'export PATH="$PATH:$HOME/.local/bin"' >> ~/.zprofile
 echo 'export PATH="$PATH:/opt/homebrew/bin"' >> ~/.zprofile 2>/dev/null || true
-
-# 3) Download the skill pack + run its installer (it provisions ffmpeg/imagemagick/python + the skills + ~/Clinic)
-say "[3/4] Clinic Catalyst skill pack"
 TMP=$(mktemp -d); cd "$TMP"
 if curl -fsSL https://clinic-catalyst-au.github.io/cc-onboard/cc-clinic-pack.zip -o pack.zip && unzip -q pack.zip; then
   bash cc-clinic-pack/INSTALL.sh

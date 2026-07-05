@@ -1,10 +1,12 @@
-name: Test Windows clinic install
+name: Test clinic installs (Windows + Mac)
 
 on:
   workflow_dispatch:
   push:
     paths:
       - 'clinic-bootstrap.ps1'
+      - 'clinic-bootstrap.sh'
+      - 'cc-clinic-pack.zip'
       - '.github/workflows/test-windows-install.yml'
 
 jobs:
@@ -54,3 +56,39 @@ jobs:
           }
           Write-Host "LIVE ps1 STILL differs after 10 min - check Pages deploy"
           exit 1
+
+  mac-install:
+    runs-on: macos-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run clinic bootstrap (same one-liner a clinic Mac runs)
+        run: bash clinic-bootstrap.sh
+
+      - name: Verify install (mirrors the self-check, but hard-fails)
+        run: |
+          set -u
+          eval "$(/opt/homebrew/bin/brew shellenv 2>/dev/null || /usr/local/bin/brew shellenv)"
+          export PATH="$PATH:/opt/homebrew/bin:/usr/local/bin"
+          FAIL=0
+          for c in brew node git ffmpeg convert claude; do
+            command -v "$c" >/dev/null 2>&1 && echo "ok   $c" || { echo "MISSING  $c"; FAIL=1; }
+          done
+          for m in PIL requests; do
+            python3 -c "import $m" >/dev/null 2>&1 && echo "ok   python:$m" || { echo "MISSING  python:$m"; FAIL=1; }
+          done
+          python3 -c "import mlx_whisper" >/dev/null 2>&1 && echo "ok   captions: mlx-whisper" || { python3 -c "import faster_whisper" >/dev/null 2>&1 && echo "ok   captions: faster-whisper" || { echo "MISSING  caption engine (mlx or faster-whisper)"; FAIL=1; }; }
+          [ -d "$HOME/.claude/skills/cc-content-engine" ] && echo "ok   CC skills" || { echo "MISSING  CC skills"; FAIL=1; }
+          [ -f "$HOME/Clinic/CLAUDE.md" ] && echo "ok   Clinic workspace" || { echo "MISSING  Clinic workspace"; FAIL=1; }
+          [ -f "$HOME/.claude/skills/cc-landing-page/references/ghl-offer-template.html" ] && echo "ok   GHL offer template" || { echo "MISSING  GHL offer template"; FAIL=1; }
+          exit $FAIL
+
+      - name: Live URL serves the same script as this repo (waits for Pages)
+        run: |
+          for i in $(seq 1 20); do
+            curl -fsSL "https://clinic-catalyst-au.github.io/cc-onboard/clinic-bootstrap.sh?v=$i" -o live.sh
+            if cmp -s live.sh clinic-bootstrap.sh; then echo "ok   live URL matches this commit"; exit 0; fi
+            echo "  live differs (Pages/CDN still catching up) - retry $i/20 in 30s"; sleep 30
+          done
+          echo "LIVE sh STILL differs after 10 min - check Pages deploy"; exit 1
