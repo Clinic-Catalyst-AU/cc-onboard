@@ -38,12 +38,15 @@ jobs:
           if (Test-Path "$HOME\.claude.json") { Write-Host "ok   .claude.json (MCP config)" } else { Write-Host "MISSING  .claude.json"; $fail = $true }
           if ($fail) { exit 1 }
 
-      - name: Live URL serves the same script as this repo
+      - name: Live URL serves the same script as this repo (waits for Pages)
         shell: powershell
         run: |
-          Invoke-WebRequest -Uri "https://clinic-catalyst-au.github.io/cc-onboard/clinic-bootstrap.ps1" -OutFile live.ps1 -UseBasicParsing
-          if ((Get-FileHash live.ps1).Hash -ne (Get-FileHash clinic-bootstrap.ps1).Hash) {
-            Write-Host "LIVE ps1 DIFFERS from repo - Pages not yet deployed or stale"
-            exit 1
+          $want = (Get-FileHash clinic-bootstrap.ps1).Hash
+          foreach ($i in 1..20) {
+            Invoke-WebRequest -Uri "https://clinic-catalyst-au.github.io/cc-onboard/clinic-bootstrap.ps1?v=$i" -OutFile live.ps1 -UseBasicParsing
+            if ((Get-FileHash live.ps1).Hash -eq $want) { Write-Host "ok   live URL matches repo"; exit 0 }
+            Write-Host "  live differs (Pages still deploying?) - retry $i/20 in 30s"
+            Start-Sleep -Seconds 30
           }
-          Write-Host "ok   live URL matches repo"
+          Write-Host "LIVE ps1 STILL differs from repo after 10 min - check Pages deploy"
+          exit 1
