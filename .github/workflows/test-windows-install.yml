@@ -29,8 +29,10 @@ jobs:
             if (Get-Command $c -ErrorAction SilentlyContinue) { Write-Host "ok   $c" }
             else { Write-Host "MISSING  $c"; $fail = $true }
           }
-          python -c "import PIL, requests"
-          if ($LASTEXITCODE -ne 0) { Write-Host "MISSING  python deps (PIL/requests)"; $fail = $true }
+          python -c "import PIL, requests, faster_whisper"
+          if ($LASTEXITCODE -ne 0) { Write-Host "MISSING  python deps (PIL/requests/faster_whisper)"; $fail = $true }
+          python -c "from faster_whisper import WhisperModel; WhisperModel('small', compute_type='int8')"
+          if ($LASTEXITCODE -ne 0) { Write-Host "caption model not cached"; $fail = $true }
           if (Test-Path "$HOME\.claude\skills\cc-content-engine") { Write-Host "ok   CC skills" } else { Write-Host "MISSING  CC skills"; $fail = $true }
           if (Test-Path "$HOME\Clinic\CLAUDE.md") { Write-Host "ok   Clinic workspace" } else { Write-Host "MISSING  Clinic workspace"; $fail = $true }
           if (Test-Path "$HOME\.claude.json") { Write-Host "ok   .claude.json (MCP config)" } else { Write-Host "MISSING  .claude.json"; $fail = $true }

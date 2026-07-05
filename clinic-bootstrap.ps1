@@ -49,17 +49,22 @@ Refresh-Path
 # 3) Python deps for the skills (Pillow=covers, requests=API calls, playwright=scraping).
 #    NOTE: python.org's Windows build is not "externally managed" like Homebrew's, so plain
 #    pip works here - no --break-system-packages needed (that is a Mac-only wrinkle).
-Say "[3/4] Python packages (Pillow, requests, playwright)"
+Say "[3/4] Python packages (Pillow, requests, playwright, faster-whisper)"
 $py = if (Get-Command python -ErrorAction SilentlyContinue) { 'python' } elseif (Get-Command py -ErrorAction SilentlyContinue) { 'py' } else { $null }
 if ($py) {
-  & $py -m pip install --quiet --user Pillow requests playwright
+  & $py -m pip install --quiet --user Pillow requests playwright faster-whisper
   if ($LASTEXITCODE -eq 0) { Write-Host "  python packages ok" } else { Write-Host "  !! python deps failed - cc-cover/scrape skills need Pillow+requests" -ForegroundColor Yellow }
+  # faster-whisper = keyless on-device transcription for /cc-reel + /cc-find-clip captions
+  # (mlx-whisper is Apple Silicon only). Pre-download the model NOW on home wifi so the
+  # first caption run at the workshop does not stall on a ~500MB download.
+  Write-Host "  pre-downloading the caption model (one-off, ~500MB)..."
+  & $py -c "from faster_whisper import WhisperModel; WhisperModel('small', compute_type='int8')" 2>$null
+  if ($LASTEXITCODE -eq 0) { Write-Host "  caption model cached - /cc-reel captions work offline, no API key needed" }
+  else { Write-Host "  (caption model download skipped - it will download on first /cc-reel run instead)" -ForegroundColor Yellow }
 } else {
   Write-Host "  !! python not found on PATH - re-open PowerShell and re-run this command" -ForegroundColor Yellow
 }
-# No mlx-whisper on Windows (Apple Silicon only) and no superwhisper (Mac-only dictation app) -
-# /cc-reel and /cc-find-clip captions fall back to the OpenAI Whisper API on Windows, same as Intel Macs.
-Write-Host "  (on-device captions are Mac-only - Windows uses the OpenAI Whisper API for /cc-reel + /cc-find-clip)"
+# superwhisper is Mac-only - Windows folks use the built-in Win+H voice typing for dictation.
 
 # 3b) MCP servers two of the 19 skills need. Neither is set up by the Mac installer either -
 # this is a real gap, not a Windows-only one. Registering these makes /cc-ad-spy work; the
