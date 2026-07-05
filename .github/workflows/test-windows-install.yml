@@ -41,10 +41,11 @@ jobs:
       - name: Live URL serves the same script as this repo (waits for Pages)
         shell: powershell
         run: |
-          $want = (Get-FileHash clinic-bootstrap.ps1).Hash
+          # Compare NORMALIZED text - checkout gives the repo file CRLF on Windows, the live file is LF
+          $want = ((Get-Content clinic-bootstrap.ps1 -Raw) -replace "`r","")
           foreach ($i in 1..20) {
-            Invoke-WebRequest -Uri "https://clinic-catalyst-au.github.io/cc-onboard/clinic-bootstrap.ps1?v=$i" -OutFile live.ps1 -UseBasicParsing
-            if ((Get-FileHash live.ps1).Hash -eq $want) { Write-Host "ok   live URL matches repo"; exit 0 }
+            $live = (Invoke-WebRequest -Uri "https://clinic-catalyst-au.github.io/cc-onboard/clinic-bootstrap.ps1?v=$i" -UseBasicParsing).Content -replace "`r",""
+            if ($live -eq $want) { Write-Host "ok   live URL matches repo"; exit 0 }
             Write-Host "  live differs (Pages still deploying?) - retry $i/20 in 30s"
             Start-Sleep -Seconds 30
           }
