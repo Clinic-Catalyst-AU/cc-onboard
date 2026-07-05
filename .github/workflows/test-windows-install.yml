@@ -41,10 +41,13 @@ jobs:
       - name: Live URL serves the same script as this repo (waits for Pages)
         shell: powershell
         run: |
-          # Compare live Pages vs GitHub raw for THIS commit - both over HTTP, same decode path
-          $raw = (Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Clinic-Catalyst-AU/cc-onboard/$env:GITHUB_SHA/clinic-bootstrap.ps1" -UseBasicParsing).Content -replace "`r",""
+          # Pages serves .ps1 as octet-stream (PS 5.1 gives byte[] for .Content) - so download
+          # BOTH to files and compare through the identical Get-Content decode path.
+          Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Clinic-Catalyst-AU/cc-onboard/$env:GITHUB_SHA/clinic-bootstrap.ps1" -OutFile raw.txt -UseBasicParsing
+          $raw = (Get-Content raw.txt -Raw) -replace "`r",""
           foreach ($i in 1..20) {
-            $live = (Invoke-WebRequest -Uri "https://clinic-catalyst-au.github.io/cc-onboard/clinic-bootstrap.ps1?v=$i" -UseBasicParsing).Content -replace "`r",""
+            Invoke-WebRequest -Uri "https://clinic-catalyst-au.github.io/cc-onboard/clinic-bootstrap.ps1?v=$i" -OutFile live.txt -UseBasicParsing
+            $live = (Get-Content live.txt -Raw) -replace "`r",""
             if ($live -eq $raw) { Write-Host "ok   live URL matches this commit"; exit 0 }
             Write-Host "  live differs (Pages/CDN still catching up) - retry $i/20 in 30s"
             Start-Sleep -Seconds 30
