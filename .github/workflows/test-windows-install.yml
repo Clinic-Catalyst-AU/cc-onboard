@@ -1,0 +1,47 @@
+name: Test Windows clinic install
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'clinic-bootstrap.ps1'
+      - '.github/workflows/test-windows-install.yml'
+
+jobs:
+  windows-install:
+    runs-on: windows-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run clinic bootstrap (Windows PowerShell 5.1, same as a real clinic)
+        shell: powershell
+        run: .\clinic-bootstrap.ps1
+
+      - name: Verify install (mirrors the self-check, but hard-fails)
+        shell: powershell
+        run: |
+          $machine = [Environment]::GetEnvironmentVariable('Path','Machine')
+          $user = [Environment]::GetEnvironmentVariable('Path','User')
+          $env:Path = "$machine;$user;$env:USERPROFILE\.local\bin"
+          $fail = $false
+          foreach ($c in @('git','node','python','ffmpeg','claude')) {
+            if (Get-Command $c -ErrorAction SilentlyContinue) { Write-Host "ok   $c" }
+            else { Write-Host "MISSING  $c"; $fail = $true }
+          }
+          python -c "import PIL, requests"
+          if ($LASTEXITCODE -ne 0) { Write-Host "MISSING  python deps (PIL/requests)"; $fail = $true }
+          if (Test-Path "$HOME\.claude\skills\cc-content-engine") { Write-Host "ok   CC skills" } else { Write-Host "MISSING  CC skills"; $fail = $true }
+          if (Test-Path "$HOME\Clinic\CLAUDE.md") { Write-Host "ok   Clinic workspace" } else { Write-Host "MISSING  Clinic workspace"; $fail = $true }
+          if (Test-Path "$HOME\.claude.json") { Write-Host "ok   .claude.json (MCP config)" } else { Write-Host "MISSING  .claude.json"; $fail = $true }
+          if ($fail) { exit 1 }
+
+      - name: Live URL serves the same script as this repo
+        shell: powershell
+        run: |
+          Invoke-WebRequest -Uri "https://clinic-catalyst-au.github.io/cc-onboard/clinic-bootstrap.ps1" -OutFile live.ps1 -UseBasicParsing
+          if ((Get-FileHash live.ps1).Hash -ne (Get-FileHash clinic-bootstrap.ps1).Hash) {
+            Write-Host "LIVE ps1 DIFFERS from repo - Pages not yet deployed or stale"
+            exit 1
+          }
+          Write-Host "ok   live URL matches repo"
