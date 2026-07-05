@@ -41,13 +41,13 @@ jobs:
       - name: Live URL serves the same script as this repo (waits for Pages)
         shell: powershell
         run: |
-          # Compare NORMALIZED text - checkout gives the repo file CRLF on Windows, the live file is LF
-          $want = ((Get-Content clinic-bootstrap.ps1 -Raw) -replace "`r","")
+          # Compare live Pages vs GitHub raw for THIS commit - both over HTTP, same decode path
+          $raw = (Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Clinic-Catalyst-AU/cc-onboard/$env:GITHUB_SHA/clinic-bootstrap.ps1" -UseBasicParsing).Content -replace "`r",""
           foreach ($i in 1..20) {
             $live = (Invoke-WebRequest -Uri "https://clinic-catalyst-au.github.io/cc-onboard/clinic-bootstrap.ps1?v=$i" -UseBasicParsing).Content -replace "`r",""
-            if ($live -eq $want) { Write-Host "ok   live URL matches repo"; exit 0 }
-            Write-Host "  live differs (Pages still deploying?) - retry $i/20 in 30s"
+            if ($live -eq $raw) { Write-Host "ok   live URL matches this commit"; exit 0 }
+            Write-Host "  live differs (Pages/CDN still catching up) - retry $i/20 in 30s"
             Start-Sleep -Seconds 30
           }
-          Write-Host "LIVE ps1 STILL differs from repo after 10 min - check Pages deploy"
+          Write-Host "LIVE ps1 STILL differs after 10 min - check Pages deploy"
           exit 1
