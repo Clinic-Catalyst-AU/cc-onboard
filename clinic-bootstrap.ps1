@@ -58,7 +58,8 @@ if ($py) {
   # (mlx-whisper is Apple Silicon only). Pre-download the model NOW on home wifi so the
   # first caption run at the workshop does not stall on a ~500MB download.
   Write-Host "  pre-downloading the caption model (one-off, ~500MB)..."
-  & $py -c "from faster_whisper import WhisperModel; WhisperModel('small', compute_type='int8')" 2>$null
+  # stderr is silenced INSIDE python - PS 5.1 turns redirected stderr into NativeCommandError
+  & $py -c "import sys, os; sys.stderr = open(os.devnull, 'w'); from faster_whisper import WhisperModel; WhisperModel('small', compute_type='int8')"
   if ($LASTEXITCODE -eq 0) { Write-Host "  caption model cached - /cc-reel captions work offline, no API key needed" }
   else { Write-Host "  (caption model download skipped - it will download on first /cc-reel run instead)" -ForegroundColor Yellow }
 } else {
@@ -184,8 +185,8 @@ $fail = $false
 foreach ($c in @('git','node','python','ffmpeg','claude')) {
   if (Get-Command $c -ErrorAction SilentlyContinue) { Write-Host "  ok   $c" } else { Write-Host "  MISSING  $c" -ForegroundColor Yellow; $fail = $true }
 }
-foreach ($m in @('PIL','requests')) {
-  & $py -c "import $m" 2>$null
+foreach ($m in @('PIL','requests','faster_whisper')) {
+  & $py -c "import sys, os; sys.stderr = open(os.devnull, 'w'); import $m"
   if ($LASTEXITCODE -eq 0) { Write-Host "  ok   python:$m" } else { Write-Host "  MISSING  python:$m" -ForegroundColor Yellow; $fail = $true }
 }
 if (Test-Path (Join-Path $HOME ".claude\skills\cc-content-engine")) { Write-Host "  ok   CC skills installed" } else { Write-Host "  MISSING  CC skills" -ForegroundColor Yellow; $fail = $true }
