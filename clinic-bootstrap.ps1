@@ -44,7 +44,16 @@ try {
 } catch {
   Write-Host "  !! Claude Code install failed - see https://code.claude.com/docs/en/setup for manual steps" -ForegroundColor Yellow
 }
+# The #1 real-world failure: %USERPROFILE%\.local\bin never makes it onto PATH, so typing
+# 'claude' says "not recognized". Persist it on the USER PATH ourselves - harmless if already there.
+$localBin = Join-Path $env:USERPROFILE '.local\bin'
+$userPath = [Environment]::GetEnvironmentVariable('Path', 'User')
+if ($userPath -notlike "*$localBin*") {
+  [Environment]::SetEnvironmentVariable('Path', "$userPath;$localBin", 'User')
+  Write-Host "  added $localBin to your PATH (claude command works in new windows)"
+}
 Refresh-Path
+$env:Path = "$env:Path;$localBin"
 
 # 3) Python deps for the skills (Pillow=covers, requests=API calls, playwright=scraping).
 #    NOTE: python.org's Windows build is not "externally managed" like Homebrew's, so plain
