@@ -36,6 +36,20 @@ foreach ($p in $packages) {
 }
 Refresh-Path
 
+# ffmpeg fallback: winget's Gyan.FFmpeg reliably installs but often lands OUTSIDE PATH
+# (WinGet Links dir quirk). Deterministic fix: static binaries into .local\bin, which this
+# script already persists on PATH. Caught by CI 6 Jul - do not remove.
+if (-not (Get-Command ffmpeg -ErrorAction SilentlyContinue)) {
+  Write-Host "  ffmpeg not on PATH - installing static build to .local\bin"
+  $ProgressPreference = 'SilentlyContinue'
+  $bin = "$env:USERPROFILE\.local\bin"; New-Item -ItemType Directory -Force -Path $bin | Out-Null
+  $zip = "$env:TEMP\ffmpeg.zip"
+  Invoke-WebRequest -Uri 'https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip' -OutFile $zip
+  $dest = "$env:TEMP\ffmpeg-extract"; Expand-Archive -Path $zip -DestinationPath $dest -Force
+  Get-ChildItem -Path $dest -Recurse -Include ffmpeg.exe,ffprobe.exe | ForEach-Object { Copy-Item $_.FullName $bin -Force }
+  Refresh-Path
+}
+
 # 2) Claude Code (native installer - no WSL, no admin rights needed)
 Say "[2/4] Claude Code"
 try {
