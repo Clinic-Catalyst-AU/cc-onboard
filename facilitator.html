@@ -23,50 +23,62 @@ nav{position:sticky;top:0;z-index:100;background:rgba(10,42,40,.96);backdrop-fil
 .nav-logo span{color:var(--teal-bright)}
 .nav-tag{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.55)}
 
-.hero{padding:3.4rem 2rem 2.4rem;text-align:center;background:radial-gradient(ellipse at 50% -10%,var(--hero-mid),var(--hero-dark) 65%);color:#fff}
+.hero{padding:3rem 2rem 2rem;text-align:center;background:radial-gradient(ellipse at 50% -10%,var(--hero-mid),var(--hero-dark) 65%);color:#fff}
 .hero .eyebrow{font-family:'Montserrat',sans-serif;font-size:.66rem;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:var(--teal-bright);margin-bottom:.9rem}
-.hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.9rem,4.6vw,2.9rem);font-weight:900;line-height:1.06;max-width:680px;margin:0 auto .7rem}
+.hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.9rem,4.6vw,2.7rem);font-weight:900;line-height:1.06;max-width:680px;margin:0 auto .6rem}
 .hero h1 em{font-style:normal;color:var(--teal-bright)}
-.hero p{font-size:1.04rem;font-weight:300;color:rgba(255,255,255,.84);max-width:560px;margin:0 auto}
+.hero p{font-size:1.02rem;font-weight:300;color:rgba(255,255,255,.84);max-width:580px;margin:0 auto}
 
-.wrap{max-width:820px;margin:0 auto;padding:2.4rem 1.5rem 4rem}
+.wrap{max-width:860px;margin:0 auto;padding:2rem 1.5rem 4rem}
 .sec-label{font-family:'Montserrat',sans-serif;font-size:.66rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);margin:2.4rem 0 1rem;display:flex;align-items:center;gap:.6rem}
 .sec-label::before{content:'';width:26px;height:2px;background:var(--teal)}
 .sec-label:first-child{margin-top:0}
 
 /* quick links */
-.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem}
+.quick{display:grid;grid-template-columns:repeat(5,1fr);gap:.7rem}
 @media(max-width:640px){.quick{grid-template-columns:repeat(2,1fr)}}
-.ql{background:#fff;border:1px solid var(--border);border-radius:13px;padding:1.1rem;text-decoration:none;color:inherit;transition:all .15s;text-align:center}
+.ql{background:#fff;border:1px solid var(--border);border-radius:12px;padding:.9rem .6rem;text-decoration:none;color:inherit;transition:all .15s;text-align:center}
 .ql:hover{border-color:var(--teal);transform:translateY(-2px);box-shadow:0 10px 24px rgba(10,42,40,.07)}
-.ql .e{font-size:1.6rem}
-.ql h3{font-family:'Montserrat',sans-serif;font-size:.84rem;font-weight:800;margin:.4rem 0 .2rem}
-.ql p{font-size:.74rem;color:var(--text-soft);line-height:1.4}
+.ql .e{font-size:1.4rem}
+.ql h3{font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:800;margin:.35rem 0 .15rem}
+.ql p{font-size:.68rem;color:var(--text-soft);line-height:1.35}
 
-/* run sheet */
-.day{font-family:'Montserrat',sans-serif;font-size:.96rem;font-weight:800;color:var(--teal-dark);background:rgba(0,180,160,.08);border-radius:9px;padding:.5rem .9rem;margin:1.4rem 0 .8rem;display:inline-block}
-.step{display:flex;gap:1rem;align-items:flex-start;background:#fff;border:1px solid var(--border);border-radius:13px;padding:1.1rem 1.3rem;margin-bottom:.8rem}
-.step .num{flex-shrink:0;width:34px;height:34px;border-radius:9px;background:var(--hero-dark);color:#fff;font-family:'Montserrat',sans-serif;font-weight:900;font-size:.95rem;display:flex;align-items:center;justify-content:center}
-.step .body{flex:1}
-.step h3{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;margin-bottom:.25rem}
-.step p{font-size:.9rem;color:var(--text-soft);margin-bottom:.35rem}
-.cmd{position:relative;background:var(--code);color:#CFF3EC;border-radius:8px;padding:.7rem 3.4rem .7rem .85rem;font-family:ui-monospace,Menlo,monospace;font-size:.82rem;white-space:pre-wrap;word-break:break-word;margin:.4rem 0}
-.cmd .copy{position:absolute;top:.45rem;right:.45rem;background:var(--teal-bright);color:var(--hero-dark);border:none;border-radius:6px;padding:.32rem .6rem;font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+/* install codes block */
+.install{background:linear-gradient(135deg,var(--hero-dark),var(--hero-mid));color:#fff;border-radius:16px;padding:1.6rem 1.7rem;margin-bottom:1.4rem}
+.install h2{font-family:'Montserrat',sans-serif;font-size:1.15rem;font-weight:900;margin-bottom:.3rem;color:#fff}
+.install .lead{color:rgba(255,255,255,.8);font-size:.9rem;margin-bottom:1rem}
+.install .lbl{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-bright);margin:.9rem 0 .35rem}
+
+.cmd{position:relative;background:var(--code);color:#CFF3EC;border-radius:9px;padding:.8rem 4rem .8rem .9rem;font-family:ui-monospace,Menlo,monospace;font-size:.84rem;white-space:pre-wrap;word-break:break-word;margin:.35rem 0}
+.cmd .copy{position:absolute;top:.5rem;right:.5rem;background:var(--teal-bright);color:var(--hero-dark);border:none;border-radius:6px;padding:.35rem .65rem;font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
 .cmd .copy.done{background:var(--gold);color:#fff}
-.step .lk{font-family:'Montserrat',sans-serif;font-size:.66rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--teal-dark);text-decoration:none}
-.step .lk:hover{color:var(--teal)}
 
-.note{background:#FFF8E8;border:1px solid #F0E2BF;border-radius:10px;padding:.85rem 1.1rem;font-size:.9rem;color:#5a4a1f;margin:1rem 0}
+.day{font-family:'Montserrat',sans-serif;font-size:.95rem;font-weight:800;color:var(--teal-dark);background:rgba(0,180,160,.1);border-radius:9px;padding:.55rem .95rem;margin:1.5rem 0 .8rem;display:block}
+.daybar{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:900;color:#fff;background:var(--hero-dark);border-radius:10px;padding:.7rem 1.1rem;margin:2rem 0 1rem}
+.daybar span{color:var(--teal-bright)}
+
+.step{background:#fff;border:1px solid var(--border);border-radius:13px;padding:1.1rem 1.3rem;margin-bottom:.8rem}
+.step .who{display:inline-block;background:rgba(201,162,75,.18);color:#7a5f28;border-radius:14px;padding:1px 9px;font-size:.66rem;font-weight:800;margin-left:8px;vertical-align:middle;font-family:'Montserrat',sans-serif;letter-spacing:.04em}
+.step h3{font-family:'Montserrat',sans-serif;font-size:1.02rem;font-weight:800;margin-bottom:.3rem}
+.step p{font-size:.9rem;color:var(--text-soft);margin-bottom:.4rem}
+.onscreen{font-size:.82rem;margin:.5rem 0 .2rem}
+.onscreen .tag{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-dark)}
+.lk{display:inline-block;font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:800;letter-spacing:.02em;background:rgba(0,180,160,.1);color:var(--teal-dark);padding:.3rem .65rem;border-radius:7px;text-decoration:none;margin:.15rem .3rem .15rem 0}
+.lk:hover{background:var(--teal);color:#fff}
+.out{font-size:.82rem;color:var(--text-soft);margin-top:.5rem;font-style:italic}
+.out b{color:var(--teal-dark);font-style:normal}
+
+.break{background:#FFF8E8;border:1px solid #F0E2BF;color:#6b531f;border-radius:10px;padding:.7rem 1.1rem;margin:.8rem 0;font-size:.88rem;font-weight:600}
+.note{background:#FFF8E8;border:1px solid #F0E2BF;border-radius:10px;padding:.85rem 1.1rem;font-size:.88rem;color:#5a4a1f;margin:1rem 0}
 .note b{color:#9A7B1F}
-.tealnote{background:rgba(0,180,160,.07);border:1px solid var(--teal);border-radius:10px;padding:.85rem 1.1rem;font-size:.92rem;color:var(--teal-dark);margin:1rem 0}
-.tealnote b{font-weight:700}
+.tealnote{background:rgba(0,180,160,.07);border:1px solid var(--teal);border-radius:10px;padding:.85rem 1.1rem;font-size:.9rem;color:var(--teal-dark);margin:1rem 0}
 
 details{background:#fff;border:1px solid var(--border);border-radius:13px;padding:.4rem 1.3rem;margin-bottom:.8rem}
-details summary{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.95rem;padding:.8rem 0;cursor:pointer}
-details p{font-size:.88rem;color:var(--text-soft);margin:.3rem 0 .6rem}
-details .cmd{margin:.3rem 0}
+details summary{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.92rem;padding:.8rem 0;cursor:pointer}
+details p{font-size:.86rem;color:var(--text-soft);margin:.3rem 0 .6rem}
+details code{background:#EAF3F0;border-radius:5px;padding:1px 6px;font-size:.82rem}
 
-.foot{text-align:center;padding:2.4rem 1.5rem 3.4rem;color:var(--text-soft);font-size:.85rem;border-top:1px solid var(--border);margin-top:2rem}
+.foot{text-align:center;padding:2.4rem 1.5rem 3rem;color:var(--text-soft);font-size:.84rem;border-top:1px solid var(--border);margin-top:2rem}
 .foot .logo{font-family:'Montserrat',sans-serif;font-weight:900;color:var(--hero-dark);font-size:1rem}
 .foot .logo span{color:var(--teal)}
 </style>
@@ -81,93 +93,196 @@ details .cmd{margin:.3rem 0}
 <div class="hero">
   <div class="eyebrow">Your home base</div>
   <h1>Drive the whole day <em>from here</em></h1>
-  <p>One screen. The run sheet in order, every tool one click away. This is the only page you need open.</p>
+  <p>Every block in order, the link to put on screen and the command to run, all on one page. This is the only page you need open.</p>
 </div>
 
 <div class="wrap">
 
-  <div class="sec-label">Your quick links</div>
+  <div class="sec-label">Quick links</div>
   <div class="quick">
-    <a class="ql" href="vision.html"><div class="e">&#10024;</div><h3>The Vision</h3><p>The why + the full picture</p></a>
-    <a class="ql" href="https://clinic-catalyst-au.github.io/workshop-toolkit/" target="_blank"><div class="e">&#129520;</div><h3>Their Hub</h3><p>What they open</p></a>
-    <a class="ql" href="https://clinic-catalyst-au.github.io/workshop-toolkit/#cheats" target="_blank"><div class="e">&#128221;</div><h3>Cheat sheets</h3><p>The quick guides</p></a>
-    <a class="ql" href="https://clinic-catalyst-au.github.io/workshop-toolkit/test-drive.html" target="_blank"><div class="e">&#128640;</div><h3>Test drive</h3><p>The prompts to wow them</p></a>
+    <a class="ql" href="vision.html"><div class="e">&#10024;</div><h3>The Vision</h3><p>The why + full picture</p></a>
+    <a class="ql" href="https://clinic-catalyst-au.github.io/workshop-toolkit/" target="_blank"><div class="e">&#129520;</div><h3>Their Hub</h3><p>The one page they open</p></a>
+    <a class="ql" href="https://clinic-catalyst-au.github.io/workshop-toolkit/guide-claude-setup.html" target="_blank"><div class="e">&#128187;</div><h3>Install page</h3><p>Codes + steps</p></a>
+    <a class="ql" href="https://clinic-catalyst-au.github.io/workshop-toolkit/cheat-sheets.html" target="_blank"><div class="e">&#128221;</div><h3>Cheat sheets</h3><p>Reference shelf</p></a>
+    <a class="ql" href="https://clinic-catalyst-au.github.io/workshop-toolkit/test-drive.html" target="_blank"><div class="e">&#128640;</div><h3>Test drive</h3><p>Wow-them prompts</p></a>
   </div>
 
-  <div class="tealnote"><b>Foundation first, always.</b> Nothing gets built until their Business Brain exists. The whole day hangs off that one truth: interview &rarr; brand guide &rarr; then the system runs.</div>
+  <div class="sec-label">The install codes &middot; put these on screen at 9:00</div>
+  <div class="install">
+    <h2>One command each &middot; it installs everything</h2>
+    <p class="lead">Every laptop runs this first thing and it churns in the background all morning (~25-45 min, mostly downloads). Claude Code lands in ~2 min; the rest follows. Approvals (password, Claude + GitHub login) batched now.</p>
 
-  <div class="sec-label">The run sheet &middot; Day 1 - Build the system</div>
-  <div class="tealnote"><b>The streamline:</b> the skills are already built. Where Alicia's old sheet said "build the agent", we just <i>run the skill</i>. And the install runs in the background from 9:00 while she presents - so nobody watches a progress bar.</div>
+    <div class="lbl">Mac &middot; Terminal (Cmd+Space, type Terminal)</div>
+    <div class="cmd"><button class="copy">Copy</button><span class="x">curl -fsSL https://clinic-catalyst-au.github.io/cc-onboard/clinic-bootstrap.sh | bash</span></div>
+
+    <div class="lbl">Windows &middot; Windows PowerShell (the blue one)</div>
+    <div class="cmd"><button class="copy">Copy</button><span class="x">irm https://clinic-catalyst-au.github.io/cc-onboard/clinic-bootstrap.ps1 | iex</span></div>
+
+    <div class="lbl">Then prove it &middot; close the window, open a fresh one</div>
+    <div class="cmd"><button class="copy">Copy</button><span class="x">claude --version</span></div>
+
+    <div class="lbl">Start it, sign in, paste the API key</div>
+    <div class="cmd"><button class="copy">Copy</button><span class="x">claude</span></div>
+  </div>
+  <div class="tealnote"><b>Foundation first, always.</b> Nothing gets built until the Business Brain exists. The whole day hangs off that one truth: interview &rarr; brand guide &rarr; then the system runs. And where Alicia's old sheet said "build the agent", we just <i>run the skill</i> - the skills are already installed.</div>
+
+  <!-- ================= DAY 1 ================= -->
+  <div class="daybar">Day 1 &middot; <span>Build the system</span> &middot; 9:00-4:00</div>
 
   <div class="day">9:00-9:30 &middot; Welcome &amp; Strategy + kick off the install</div>
-  <div class="step"><div class="num">1</div><div class="body"><h3>Intros, pick the offer, START the install</h3><p>Alicia leads intros + the <b>Foundation Workbook</b> (everyone picks ONE treatment to advertise). At the same time, get every machine running the install command - it churns in the background for the rest of this block. Approvals (password, Claude + GitHub login) batched now.</p><a class="lk" href="https://clinic-catalyst-au.github.io/workshop-toolkit/foundation-workbook.html" target="_blank">Open the Foundation Workbook &rarr;</a></div></div>
+  <div class="step">
+    <h3>Intros, pick the offer, START the install <span class="who">BOTH</span></h3>
+    <p>Alicia leads intros + the Foundation Workbook (everyone picks ONE treatment to advertise). At the same time every machine runs the install code above - it churns in the background for the rest of this block.</p>
+    <div class="onscreen"><span class="tag">On screen:</span> <a class="lk" href="https://clinic-catalyst-au.github.io/workshop-toolkit/guide-claude-setup.html" target="_blank">Install page</a> <a class="lk" href="https://clinic-catalyst-au.github.io/workshop-toolkit/foundation-workbook.html" target="_blank">Foundation Workbook</a></div>
+    <div class="out"><b>Walk out with:</b> install running in the background, the day's map in their head.</div>
+  </div>
 
   <div class="day">9:30-10:45 &middot; CRM Setup &amp; Foundations (Alicia)</div>
-  <div class="step"><div class="num">2</div><div class="body"><h3>GHL: account, pipeline, calendar, lead form, workflows</h3><p>GHL trial (affiliate link), business profile, the 6-step pipeline, calendar, treatment lead form, the new-lead + notification workflows, test lead. Bring the ABN PDF for the SMS bundle. <i>(Install still running in the background.)</i></p></div></div>
+  <div class="step">
+    <h3>GHL: account, pipeline, calendar, lead form, workflows <span class="who">ALICIA</span></h3>
+    <p>GHL trial (affiliate link), business profile, the pipeline, calendar, treatment lead form, the new-lead + notification workflows, test lead. Bring the ABN PDF for the SMS bundle. <i>(Install still running.)</i></p>
+    <div class="onscreen"><span class="tag">On screen:</span> <a class="lk" href="https://clinic-catalyst-au.github.io/workshop-toolkit/guide-ghl-setup.html" target="_blank">GHL full build guide</a> <a class="lk" href="https://clinic-catalyst-au.github.io/workshop-toolkit/calendar-bridge.html" target="_blank">Booking calendar</a></div>
+    <div class="out"><b>Walk out with:</b> a CRM that catches, chases and books - tested with their own form submission.</div>
+  </div>
 
-  <div class="day">☕ 10:45-11:00 &middot; Morning tea &middot; install should be done</div>
+  <div class="break">&#9749; 10:45-11:00 &middot; Morning tea &middot; install should be done - run the 30-second verify (<code>claude --version</code>). Anyone stuck posts to the install chat.</div>
 
   <div class="day">11:00-12:00 &middot; Build the Business Brain (Kelly) - the magic moment</div>
-  <div class="step"><div class="num">3</div><div class="body"><h3>Run the resonance interview + brand guide</h3><p>This is the foundation everything reads. Claude interviews them (the <b>Clinic Catalyst resonance method</b> - not a generic framework); they just talk and watch their brand appear. Then the brand guide writes the spine.</p><div class="cmd"><button class="copy">Copy</button><span class="x">/cc-resonance [Clinic] then /cc-brand-guide [Clinic]</span></div></div></div>
+  <div class="step">
+    <h3>Run the resonance interview + brand guide <span class="who">KELLY</span></h3>
+    <p>The foundation everything reads. Claude interviews them (the Clinic Catalyst resonance method - not a generic framework); they just talk and watch their brand appear. Then the brand guide writes the spine.</p>
+    <div class="cmd"><button class="copy">Copy</button><span class="x">/cc-resonance [Clinic]   then   /cc-brand-guide [Clinic]</span></div>
+    <div class="onscreen"><span class="tag">On screen:</span> <a class="lk" href="https://clinic-catalyst-au.github.io/workshop-toolkit/foundation-workbook.html" target="_blank">Foundation Workbook</a></div>
+    <div class="out"><b>Walk out with:</b> their Business Brain built - every skill now sounds like their clinic.</div>
+  </div>
 
   <div class="day">12:00-12:30 &middot; Offer + ad copy (run, don't build)</div>
-  <div class="step"><div class="num">4</div><div class="body"><h3>The skills write the offer + ad copy from the brain</h3><p>No "build the agent" - it exists. Run the strategist for the offer + copy, and the ad builder for compliant Google/Meta copy. Both read the brand guide, both AHPRA-gated.</p><div class="cmd"><button class="copy">Copy</button><span class="x">/cc-marketing-genius  +  /cc-ad-builder</span></div></div></div>
+  <div class="step">
+    <h3>The skills write the offer + Meta ad copy from the brain</h3>
+    <p>Run the strategist for the offer, then the Meta ad builder for compliant Facebook/Instagram copy. Both read the brand guide, both AHPRA-gated.</p>
+    <div class="cmd"><button class="copy">Copy</button><span class="x">/cc-marketing-genius   +   /cc-metaad-builder</span></div>
+    <div class="onscreen"><span class="tag">On screen:</span> <a class="lk" href="https://clinic-catalyst-au.github.io/workshop-toolkit/foundation-workbook.html" target="_blank">Workbook - Offer Architecture</a></div>
+    <div class="out"><b>Walk out with:</b> one validated front-door offer + Meta ad copy, AHPRA-screened.</div>
+  </div>
 
-  <div class="day">🍽 12:30-1:10 &middot; Lunch + Issada presentation</div>
+  <div class="break">&#127869; 12:30-1:10 &middot; Lunch. Back at 1:10 sharp. Good moment to triage any red-flag installs privately.</div>
 
-  <div class="day">1:10-2:00 &middot; Video scripts + hooks</div>
-  <div class="step"><div class="num">5</div><div class="body"><h3>Scripts + scroll-stopping hooks, generated</h3><p>Hero / secondary / retargeting scripts and scored hooks - run the skills, then record voiceovers. CapCut export as MP4.</p><div class="cmd"><button class="copy">Copy</button><span class="x">/cc-hook  +  /cc-content-engine (video angles)</span></div></div></div>
+  <div class="day">1:10-2:00 &middot; Video scripts + hooks (Kelly)</div>
+  <div class="step">
+    <h3>Scripts + scroll-stopping hooks, generated <span class="who">KELLY</span></h3>
+    <p>Six script types with a 3-second hook, talking-head script AND a b-roll shot list, plus scored hooks - run the skills, then record voiceovers. CapCut export as MP4.</p>
+    <div class="cmd"><button class="copy">Copy</button><span class="x">/cc-script give me the set for my front-door offer   +   /cc-hook</span></div>
+    <div class="onscreen"><span class="tag">On screen:</span> <a class="lk" href="https://clinic-catalyst-au.github.io/workshop-toolkit/advertising-system.html" target="_blank">The Ad System</a></div>
+    <div class="out"><b>Walk out with:</b> recorded raw takes + scored hooks, all AHPRA-screened.</div>
+  </div>
 
   <div class="day">2:00-2:45 &middot; Video production (CapCut / the Multiplier)</div>
-  <div class="step"><div class="num">6</div><div class="body"><h3>3 ads out - hero, offer, retargeting</h3><p>Their footage + the ffmpeg Multiplier turns one clip into brand-font variants. Captions, B-roll, CTA screens. Aim for DONE, not perfect. Export 9:16 MP4.</p></div></div>
+  <div class="step">
+    <h3>3 ads out - hero, offer, retargeting <span class="who">ALICIA</span></h3>
+    <p>Their footage + the six Canva ad templates (3 single-image, 3 video). Edit takes in CapCut, drop into the templates. Aim for DONE, not perfect. Export 9:16 MP4.</p>
+    <div class="onscreen"><span class="tag">On screen:</span> <a class="lk" href="https://clinic-catalyst-au.github.io/workshop-toolkit/advertising-system.html" target="_blank">Ad System - Canva templates</a></div>
+    <div class="out"><b>Walk out with:</b> 2-3 finished ad creatives in their own branding.</div>
+  </div>
 
-  <div class="day">2:45-4:00 &middot; Meta lead-gen launch &middot; END DAY 1</div>
-  <div class="step"><div class="num">7</div><div class="body"><h3>Pixel, campaign, lead form → GHL, launch</h3><p>Business Manager, pixel + conversions, Lead/Conversion campaign only, upload creatives, connect Meta lead form to GHL, instant SMS+email follow-up, test lead, submit for overnight review. Group photo. 🎉 <a href="alicia-nurture-guide.html">Alicia's segment guide &rarr;</a></p></div></div>
+  <div class="day">2:45-4:00 &middot; Meta lead-gen launch (Alicia) &middot; END DAY 1</div>
+  <div class="step">
+    <h3>Pixel, campaign, lead form &rarr; GHL, launch <span class="who">ALICIA</span></h3>
+    <p>Business Manager, pixel + conversions, Lead/Conversion campaign only, upload creatives, connect the Meta lead form to GHL (native, no Zapier), instant SMS+email follow-up, test lead, submit for overnight review. A landing page for the ONE offer if time (ads never point at a homepage). Group photo. &#127881;</p>
+    <div class="cmd"><button class="copy">Copy</button><span class="x">/cc-metaad-builder   (+ /cc-landing-page if time)</span></div>
+    <div class="onscreen"><span class="tag">On screen:</span> <a class="lk" href="https://clinic-catalyst-au.github.io/workshop-toolkit/advertising-system.html" target="_blank">Ad System</a> <a class="lk" href="https://clinic-catalyst-au.github.io/workshop-toolkit/lead-nurture-generator.html" target="_blank">Lead Nurture Generator</a></div>
+    <div class="out"><b>Walk out with:</b> a real campaign built, connected to their CRM, awaiting Meta approval overnight - live by Day 2.</div>
+  </div>
 
-  <div class="sec-label">The run sheet &middot; Day 2 - Automate + go live</div>
+  <!-- ================= DAY 2 ================= -->
+  <div class="daybar">Day 2 &middot; <span>Automate + go live</span> &middot; 9:00-4:00</div>
 
   <div class="day">9:00-9:30 &middot; Overnight review + kickoff</div>
-  <div class="step"><div class="num">8</div><div class="body"><h3>Check approvals, debrief, set up Day 2</h3><p>Check Meta ad status BEFORE they arrive. Celebrate overnight wins. Keep it to 30 min.</p></div></div>
+  <div class="step">
+    <h3>Check approvals, debrief, set up Day 2 <span class="who">BOTH</span></h3>
+    <p>Check Meta ad status BEFORE they arrive. Celebrate overnight wins. Keep it to 30 min.</p>
+    <div class="out"><b>Walk out with:</b> live ad data and the day mapped.</div>
+  </div>
 
-  <div class="day">9:30-10:45 &middot; Nurture automation</div>
-  <div class="step"><div class="num">9</div><div class="body"><h3>Push the snapshot + write the ladder in their voice</h3><p>The 7-email ladder + newsletter + reminders + win-back - the snapshot installs the workflow; the skill repopulates every template in their voice. The real ROI.</p><div class="cmd"><button class="copy">Copy</button><span class="x">/cc-follow-up-agent [Clinic]</span></div></div></div>
+  <div class="day">9:30-10:45 &middot; Nurture automation (Alicia)</div>
+  <div class="step">
+    <h3>Write the whole follow-up nurture in their voice <span class="who">ALICIA</span></h3>
+    <p>The enquiry ladder + organic welcome + newsletter + win-back - the snapshot installs the workflows; the skill writes every template in their voice. The real ROI.</p>
+    <div class="cmd"><button class="copy">Copy</button><span class="x">/cc-follow-up-agent [Clinic]</span></div>
+    <div class="onscreen"><span class="tag">On screen:</span> <a class="lk" href="https://clinic-catalyst-au.github.io/workshop-toolkit/lead-nurture-generator.html" target="_blank">Lead Nurture Generator</a></div>
+    <div class="out"><b>Walk out with:</b> a full follow-up system loaded into GHL, in their voice.</div>
+  </div>
 
-  <div class="day">☕ 10:45-11:00 &middot; Morning tea</div>
+  <div class="break">&#9749; 10:45-11:00 &middot; Morning tea</div>
 
   <div class="day">11:00-12:00 &middot; AI reception agent (GHL Sophia)</div>
-  <div class="step"><div class="num">10</div><div class="body"><h3>Voice + chat agent across every channel</h3><p>Configure the GHL AI agent (built-in Sophia voice), train on their FAQ/treatments, connect Messenger + IG DMs + web chat, set the human-escalation. Demo the live booking moment - biggest wow.</p></div></div>
+  <div class="step">
+    <h3>Voice + chat agent across every channel</h3>
+    <p>Configure the GHL AI agent (built-in Sophia voice), train on their FAQ/treatments, connect Messenger + IG DMs + web chat, set the human-escalation. Demo the live booking moment - biggest wow.</p>
+    <div class="onscreen"><span class="tag">On screen:</span> <a class="lk" href="https://clinic-catalyst-au.github.io/workshop-toolkit/ai-system-build-process.html" target="_blank">Your AI Front Desk</a></div>
+    <div class="out"><b>Walk out with:</b> an AI receptionist answering and booking across every channel.</div>
+  </div>
 
   <div class="day">12:00-12:30 &middot; Reactivation + newsletter</div>
-  <div class="step"><div class="num">11</div><div class="body"><h3>Win back the dormant list + the monthly newsletter</h3><p>The follow-up agent's win-back flow + the content engine's newsletter - reactivation often returns revenue in week one.</p><div class="cmd"><button class="copy">Copy</button><span class="x">/cc-follow-up-agent (win-back)  +  /cc-content-engine (newsletter)</span></div></div></div>
+  <div class="step">
+    <h3>Win back the dormant list + the monthly newsletter</h3>
+    <p>Upload their cold list, tag it on import to fire the reactivation sequence, and run the content engine's newsletter. Reactivation often returns revenue in week one.</p>
+    <div class="cmd"><button class="copy">Copy</button><span class="x">/cc-follow-up-agent reactivation   +   /cc-content-engine (newsletter)</span></div>
+    <div class="onscreen"><span class="tag">On screen:</span> <a class="lk" href="https://clinic-catalyst-au.github.io/workshop-toolkit/content-engine-explained.html" target="_blank">Content Engine, explained</a></div>
+    <div class="out"><b>Walk out with:</b> a cold-list reactivation campaign running + a monthly newsletter.</div>
+  </div>
 
-  <div class="day">🍽 12:30-1:10 &middot; Lunch</div>
+  <div class="break">&#127869; 12:30-1:10 &middot; Lunch</div>
 
-  <div class="day">1:10-2:30 &middot; Google Ads system</div>
-  <div class="step"><div class="num">12</div><div class="body"><h3>Search campaign + the RSA the skill already writes</h3><p>Account + conversion tracking, keyword research, the 15-headline / 4-description RSA - run the skill, it fills the sheet. Exact + phrase only, the negatives pre-loaded, all AHPRA-screened.</p><div class="cmd"><button class="copy">Copy</button><span class="x">/cc-keyword-research  +  /cc-ad-builder</span></div></div></div>
+  <div class="day">1:10-2:30 &middot; Google Ads system (Alicia)</div>
+  <div class="step">
+    <h3>Search campaign + the RSA the skill already writes <span class="who">ALICIA</span></h3>
+    <p>Account + conversion tracking, keyword research, the 15-headline / 4-description RSA - run the skill, it fills the sheet. Exact + phrase only, the negatives pre-loaded, all AHPRA-screened.</p>
+    <div class="cmd"><button class="copy">Copy</button><span class="x">/cc-keyword-research   +   /cc-googlead-builder</span></div>
+    <div class="onscreen"><span class="tag">On screen:</span> <a class="lk" href="https://clinic-catalyst-au.github.io/workshop-toolkit/advertising-system.html" target="_blank">The Ad System</a></div>
+    <div class="out"><b>Walk out with:</b> a Google Search campaign built and tracked.</div>
+  </div>
 
-  <div class="day">2:30-3:30 &middot; Reporting + content calendar</div>
-  <div class="step"><div class="num">13</div><div class="body"><h3>The Monday 10-min check + a month of content</h3><p>KPI dashboard (cost per lead/consult/acquisition, show rate), the scale-vs-pause framework, and a full month of organic posts generated live.</p><div class="cmd"><button class="copy">Copy</button><span class="x">/cc-content-engine (30-day calendar)</span></div></div></div>
+  <div class="day">2:30-3:30 &middot; Reporting, get found + content calendar</div>
+  <div class="step">
+    <h3>The Monday 10-min check, AI search + a month of content</h3>
+    <p>KPI dashboard (cost per lead/consult/acquisition, show rate), the scale-vs-pause framework, get found in Google + AI search, and a full month of organic posts generated live.</p>
+    <div class="cmd"><button class="copy">Copy</button><span class="x">/cc-content-engine (30-day calendar)   +   /cc-geo-seo</span></div>
+    <div class="onscreen"><span class="tag">On screen:</span> <a class="lk" href="https://clinic-catalyst-au.github.io/workshop-toolkit/guide-daily-routine.html" target="_blank">Your daily routine</a></div>
+    <div class="out"><b>Walk out with:</b> a reporting routine + a month of content ready to post.</div>
+  </div>
 
   <div class="day">3:30-4:00 &middot; Q&amp;A, 30-day plan, wrap</div>
-  <div class="step"><div class="num">14</div><div class="body"><h3>Take it for a test drive + close on a high</h3><p>Each person says their #1 action out loud. Hand them the test-drive prompts to feel the system working. Feedback form in the room.</p><a class="lk" href="https://clinic-catalyst-au.github.io/workshop-toolkit/test-drive.html" target="_blank">Open the test drive &rarr;</a></div></div>
+  <div class="step">
+    <h3>Take it for a test drive + close on a high</h3>
+    <p>Each person says their #1 action out loud. Hand them the test-drive prompts to feel the system working. Feedback form in the room.</p>
+    <div class="onscreen"><span class="tag">On screen:</span> <a class="lk" href="https://clinic-catalyst-au.github.io/workshop-toolkit/test-drive.html" target="_blank">Take it for a test drive</a></div>
+    <div class="out"><b>Walk out with:</b> hands on their own wheel and a 30-day plan.</div>
+  </div>
 
-  <div class="note"><b>Sweetener (if time):</b> GitHub + Supabase + Render so they build their own landing pages in Claude Code and copy into GHL. Or just demo it - it is already in their system.</div>
+  <div class="sec-label">If things wobble &middot; time triage</div>
+  <div class="note">
+    &#8226; <b>Alicia's two ad builds are protected time</b> - Meta (Day 1, 2:45-4:00) and Google (Day 2, 1:10-2:30). Don't let earlier blocks eat into them; the workbook boxes can teach solo if you run late.<br>
+    &#8226; <b>An install is broken:</b> do NOT debug in the room. Post the terminal output to the install chat, pair them with a neighbour's machine, fix at lunch.<br>
+    &#8226; <b>Meta block overruns:</b> the only hard finish is the campaign submitted for review - polish can happen Day 2 morning.<br>
+    &#8226; <b>Golden rule:</b> every block's output feeds the next. Protect the OUTPUTS, sacrifice the polish.
+  </div>
 
-  <div class="sec-label">First time only - set up a new facilitator (Alicia)</div>
+  <div class="sec-label">First time only - set up a new facilitator</div>
   <details>
     <summary>Onboard a new operator onto the joint system &rarr;</summary>
     <p><b>1. Invite them to the GitHub org</b> (from your machine). Swap in their email:</p>
     <div class="cmd"><button class="copy">Copy</button><span class="x">gh api -X POST orgs/Clinic-Catalyst-AU/invitations -f email=THEIR_EMAIL -f role=direct_member</span></div>
-    <p><b>2. They run the install page</b> top to bottom (4 apps, gh auth, the one-line bootstrap that installs Claude Code, Playwright + all CC skills): <a class="lk" href="index.html">open the install page &rarr;</a></p>
+    <p><b>2. They run the install page</b> top to bottom: <a class="lk" href="index.html">open the install page &rarr;</a></p>
     <p><b>3. The 2 things the script can't do (do live):</b> type the SHARED keys into their <code>~/Systems/BusinessOps/.env</code> in person (never over chat), and connect the MCP connectors (Fireflies, Supabase, GitHub) with their own logins.</p>
   </details>
 
   <div class="sec-label">If something sticks</div>
   <details>
     <summary>Quick fixes &rarr;</summary>
+    <p><b>claude not recognised</b> &rarr; close the window, open a fresh one (the command only exists in windows opened AFTER install). Mac: <code>source ~/.zprofile</code> &middot; Windows: <code>$env:Path += ";$env:USERPROFILE\.local\bin"</code></p>
     <p><b>git asks for a username</b> &rarr; <code>gh auth setup-git</code> (already in the bootstrap)</p>
     <p><b>a skill is missing</b> &rarr; <code>cd ~/Systems/cc-aios &amp;&amp; git pull &amp;&amp; bin/apply-to-machine.sh</code></p>
-    <p><b>shared folder empty</b> &rarr; let Dropbox finish syncing, re-check the share was accepted</p>
+    <p><b>winget not found (Windows)</b> &rarr; install "App Installer" from the Microsoft Store (aka.ms/getwinget), paste the command again</p>
     <p><b>AHPRA worry</b> &rarr; every CC skill bakes it in (concern-led, no specialist/expert, no outcome claims)</p>
   </details>
 
@@ -175,7 +290,7 @@ details .cmd{margin:.3rem 0}
 
 <div class="foot">
   <div class="logo">Clinic <span>Catalyst</span></div>
-  <p style="margin-top:.5rem">Your one screen to run the day. Everything else is one click from here.</p>
+  <p style="margin-top:.5rem">Your one screen to run the day. Every link and command is right here.</p>
 </div>
 
 <script>
