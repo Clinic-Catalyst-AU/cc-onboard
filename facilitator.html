@@ -276,12 +276,21 @@ details code{background:#EAF3F0;border-radius:5px;padding:1px 6px;font-size:.82r
     <p><b>3. The 2 things the script can't do (do live):</b> type the SHARED keys into their <code>~/Systems/BusinessOps/.env</code> in person (never over chat), and connect the MCP connectors (Fireflies, Supabase, GitHub) with their own logins.</p>
   </details>
 
+  <div class="sec-label">Update everyone (start of Day 2)</div>
+  <details open>
+    <summary>Get the latest skills &rarr;</summary>
+    <p>New skills shipped overnight (the ad-enquiry <b>nurture sequence</b>, <b>lead form</b> and <b>thank-you page</b>). Have everyone run their update, then <b>restart Claude Code</b> so the new slash-commands register.</p>
+    <p><b>Mac</b> &rarr; <code>curl -fsSL https://clinic-catalyst-au.github.io/cc-onboard/clinic-update.sh | bash</code></p>
+    <p><b>Windows</b> &rarr; <code>irm https://clinic-catalyst-au.github.io/cc-onboard/clinic-update.ps1 | iex</code></p>
+    <p>Non-destructive - it only refreshes the skills, never their Business Brain or their own work. (The old <code>git pull</code> command is operator-only - clinics have no repo, so it will not work for them.)</p>
+  </details>
+
   <div class="sec-label">If something sticks</div>
   <details>
     <summary>Quick fixes &rarr;</summary>
     <p><b>claude not recognised</b> &rarr; close the window, open a fresh one (the command only exists in windows opened AFTER install). Mac: <code>source ~/.zprofile</code> &middot; Windows: <code>$env:Path += ";$env:USERPROFILE\.local\bin"</code></p>
     <p><b>git asks for a username</b> &rarr; <code>gh auth setup-git</code> (already in the bootstrap)</p>
-    <p><b>a skill is missing</b> &rarr; <code>cd ~/Systems/cc-aios &amp;&amp; git pull &amp;&amp; bin/apply-to-machine.sh</code></p>
+    <p><b>a skill is missing</b> &rarr; run the update above (Mac: <code>curl -fsSL https://clinic-catalyst-au.github.io/cc-onboard/clinic-update.sh | bash</code>), then restart Claude Code</p>
     <p><b>winget not found (Windows)</b> &rarr; install "App Installer" from the Microsoft Store (aka.ms/getwinget), paste the command again</p>
     <p><b>AHPRA worry</b> &rarr; every CC skill bakes it in (concern-led, no specialist/expert, no outcome claims)</p>
   </details>
