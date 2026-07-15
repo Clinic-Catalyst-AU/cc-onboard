@@ -73,9 +73,24 @@ const P = new URLSearchParams(location.search);
 const CLIENT = (P.get("c") || "client").trim();
 const NAME   = P.get("name") || "";
 const SNAP   = P.get("s") || "";
+const AS     = (P.get("as") || "").trim();          // operator mode: post as this name (e.g. Kelly)
+const OPERATOR = AS !== "";
+const SENDER = OPERATOR ? AS : (NAME || CLIENT);     // who this page posts as
 
-if (NAME) document.getElementById("heroTitle").innerHTML =
-  NAME + " Setup<span>install your nurture system below, then use the chat if anything gets stuck</span>";
+if (OPERATOR) {
+  // operator side - hide the client install card, this is Kelly's console
+  document.querySelector(".install").style.display = "none";
+  document.querySelector(".divider").textContent =
+    "Operator console - " + (NAME || CLIENT) + " - posting as " + AS;
+  document.getElementById("heroTitle").innerHTML =
+    (NAME || CLIENT) + " - Operator<span>type here; every message gets a Copy button on their side</span>";
+  document.getElementById("box").placeholder =
+    "Type the exact block for " + (NAME || CLIENT) + " to copy-paste...";
+} else if (NAME) {
+  document.getElementById("heroTitle").innerHTML =
+    NAME + " Setup<span>install your nurture system below, then use the chat if anything gets stuck</span>";
+}
+
 const snapBtn = document.getElementById("snapBtn");
 if (SNAP) { snapBtn.href = SNAP; }
 else { snapBtn.textContent = "Install link coming from Kelly"; snapBtn.style.pointerEvents = "none"; snapBtn.style.opacity = ".6"; }
@@ -127,7 +142,7 @@ async function send(){
   if (!text) return;
   document.getElementById("send").disabled = true;
   try {
-    await fetch(URL_, {method: "POST", headers: H, body: JSON.stringify({client: CLIENT, sender: NAME || CLIENT, message: text})});
+    await fetch(URL_, {method: "POST", headers: H, body: JSON.stringify({client: CLIENT, sender: SENDER, message: text})});
     box.value = "";
     await poll();
   } finally { document.getElementById("send").disabled = false; }
