@@ -15,6 +15,7 @@ if curl -fsSL https://clinic-catalyst-au.github.io/cc-onboard/cc-clinic-pack.zip
   rsync -a cc-clinic-pack/skills/ "$HOME/.claude/skills/"
   N=$(ls -1 "$HOME/.claude/skills" | grep -c '^cc-')
   rm -f ccpack-update.zip
+  rm -rf cc-clinic-pack
   echo "  updated - $N CC skills now installed"
   echo ""
   echo "DONE. Now CLOSE and REOPEN Claude Code so the new skills register:"
