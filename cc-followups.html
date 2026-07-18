@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CC Client Follow-Ups - Kelly's Tick List</title>
+<style>
+body{margin:0;background:#f6f4ef;color:#1d2a28;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.5}
+.wrap{max-width:780px;margin:0 auto;padding:28px 18px 80px}
+.eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#0a3d39;font-weight:700;text-align:center}
+h1{font-size:24px;margin:6px 0 2px;text-align:center}
+.sub{color:#5d6b68;font-size:13.5px;margin:0 0 8px;text-align:center}
+.progress{text-align:center;font-size:13px;color:#0a3d39;font-weight:700;margin-bottom:20px}
+h2{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#0a3d39;margin:26px 0 10px;display:flex;align-items:center;gap:10px}
+h2::before{content:"";width:26px;height:2px;background:#0f5a54}
+h3{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#5d6b68;margin:14px 0 4px}
+.card{background:#fff;border:1px solid #e2ddd3;border-radius:12px;padding:8px 14px 12px;margin-bottom:10px}
+label{display:flex;gap:11px;align-items:flex-start;padding:9px 4px;border-bottom:1px solid #f0ece5;font-size:14.5px;cursor:pointer}
+label:last-child{border-bottom:none}
+input[type=checkbox]{width:19px;height:19px;accent-color:#0f5a54;flex:0 0 auto;margin-top:2px;cursor:pointer}
+input:checked + span{text-decoration:line-through;color:#9aa5a2}
+.wait{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:#fdeeea;color:#a33d2a;border-radius:999px;padding:1px 8px;margin-left:6px;vertical-align:middle}
+.go{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:#e5f2ec;color:#2e7d5b;border-radius:999px;padding:1px 8px;margin-left:6px;vertical-align:middle}
+.note{font-size:12.5px;color:#5d6b68;padding:6px 4px 2px;font-style:italic}
+.cmd{font-family:ui-monospace,Menlo,monospace;font-size:12px;background:#edf2f1;border-radius:5px;padding:0 5px}
+</style></head>
+<body><div class="wrap">
+<div class="eyebrow">Clinic Catalyst - internal</div>
+<h1>Client follow-ups - tick list</h1>
+<p class="sub">Everything Kelly owes the three delivered clinics (18 Jul handovers). Ticks sync across all your devices.</p>
+<div class="progress" id="prog">Loading...</div>
+
+<h2>Rachel - Skin Haven</h2>
+<div class="card">
+<label><input type="checkbox" id="rach-igfb"><span>Reconnect Instagram + Facebook in her GHL and fix the messaging automation so the bot answers those channels <span class="go">can do now</span></span></label>
+<label><input type="checkbox" id="rach-mirror"><span>Create <span class="cmd">skinhaven.bookings@gmail</span>, run the Google mirror runsheet, send her the login <span class="go">can do now</span></span></label>
+<label><input type="checkbox" id="rach-bundle"><span>Resubmit the REJECTED regulatory bundle when her docs arrive (ID, ASIC, address) - read the rejection reason first <span class="wait">waiting on Rachel</span></span></label>
+<label><input type="checkbox" id="rach-number"><span>Then: buy the LC number, attach to voice agent Aria as inbound, test call (injectable price must deflect)</span></label>
+<label><input type="checkbox" id="rach-vendor"><span>Map the old provider's system for migration when she forwards their emails <span class="wait">waiting on Rachel</span></span></label>
+<label><input type="checkbox" id="rach-helpline"><span>Watch her helpline + Telegram pings through her first list imports</span></label>
+</div>
+
+<h2>Tracey + Rhiannon - Bonnie Lass</h2>
+<div class="card">
+<h3>Kelly - unblocked, any time</h3>
+<label><input type="checkbox" id="bl-google-cal"><span>Create the dedicated clinic Google account/calendar for the Timely-GHL mirror, send them the login <span class="go">can do now</span></span></label>
+<label><input type="checkbox" id="bl-shared-folder"><span>Set up the shared clinic cloud folder (Dropbox or Google Drive, pending their answer) and move the Business Brain into it as the ONE central source</span></label>
+<h3>Kelly - blocked on their inputs</h3>
+<label><input type="checkbox" id="bl-domain"><span>Domain: transfer hosting to GHL + wire <span class="cmd">bonnielassbeauty.com.au</span> <span class="wait">needs website approval + DNS/hosting login</span></span></label>
+<label><input type="checkbox" id="bl-timely-sync"><span>Calendar wiring: switch on Timely-to-Google sync + connect the calendar in GHL <span class="wait">needs Timely admin access</span></span></label>
+<label><input type="checkbox" id="bl-title"><span>Title/meta update on the site <span class="wait">needs their wording decision</span></span></label>
+<label><input type="checkbox" id="bl-gallery"><span>Gallery: load real before/after pairs, then wire the server-side gate so images are actually protected <span class="wait">needs consented photos</span></span></label>
+<label><input type="checkbox" id="bl-site-adds"><span>Site adds: gift voucher links now, IV treatment pages later <span class="wait">needs their links/content</span></span></label>
+<label><input type="checkbox" id="bl-bot-mode"><span>Bonnie chat bot: set suggestive vs automatic + human handover <span class="wait">needs their preference</span></span></label>
+<label><input type="checkbox" id="bl-machines"><span>Team machines: connect each new computer to the central brain (5-min screen share each, after they run the installer)</span></label>
+<h3>Chasing - waiting on Tracey / Rhiannan</h3>
+<label><input type="checkbox" id="bl-wait-website"><span>Website feedback / approval</span></label>
+<label><input type="checkbox" id="bl-wait-dns"><span>DNS / hosting login</span></label>
+<label><input type="checkbox" id="bl-wait-timely"><span>Timely admin access</span></label>
+<label><input type="checkbox" id="bl-wait-cloud"><span>Dropbox or Google Drive? (which the clinic runs)</span></label>
+<label><input type="checkbox" id="bl-wait-title"><span>Title wording decision ("Skin and Wellness Clinic"?)</span></label>
+<label><input type="checkbox" id="bl-wait-photos"><span>Consented before/after photos</span></label>
+<label><input type="checkbox" id="bl-wait-rhi"><span>Rhiannan: photos + copy for site/socials</span></label>
+<label><input type="checkbox" id="bl-wait-reactivation"><span>Reactivation (all theirs): choose offer, offer link, landing page, then run the sequence</span></label>
+<div class="note">Done + live, no action: website, gated gallery + placeholders, July newsletter 4/4, booking_link/consult_link, Bonnie bot, Aria, walkthrough, skill library, runsheet, both follow-up emails sent.</div>
+</div>
+
+<h2>Liam + Amanda - You Beauty</h2>
+<div class="card">
+<label><input type="checkbox" id="yb-email"><span>Send his handover email (HTML at <span class="cmd">~/Clients/You_Beauty_Cosmetics/Deliverables/liam-handover-email.html</span>) via CC email <span class="go">can do now</span></span></label>
+<label><input type="checkbox" id="yb-archive"><span>GHL cleanup: archive leftover draft workflow "Newsletter Nurture July-August" (rest already deleted)</span></label>
+<label><input type="checkbox" id="yb-bot-check"><span>GHL 2-min check: only ONE clearly-named conversational bot remains</span></label>
+<label><input type="checkbox" id="yb-kb"><span>Fold the old-KB missing-facts list (prices, cancellation, memberships) into his bot knowledge base <span class="wait">waiting on Liam's Claude</span></span></label>
+<label><input type="checkbox" id="yb-residency"><span>Send data-residency compliance confirmation to ALL CC clinics <span class="wait">waiting on GHL Sydney migration</span></span></label>
+<label><input type="checkbox" id="yb-alicia"><span>Alicia: Google-ads setup video for the skill library + her Dapple/Google conversation <span class="wait">Alicia's</span></span></label>
+<label><input type="checkbox" id="yb-voice"><span>Voice AI: parked until Liam is ready - prompt written (<span class="cmd">you-beauty-voice-agent-prompt.md</span>); check his AU regulatory bundle at deploy <span class="wait">parked</span></span></label>
+<div class="note">Done tonight: the Telegram helpline bridge (promised in his session) is LIVE - all clinic messages ping Kelly.</div>
+</div>
+
+<script>
+const T_URL = "https://jiquevvzrdavgqonvvug.supabase.co/rest/v1/cc_task_ticks";
+const KEY = "sb_publishable_siNrWACQh9utYNJ_g6Mt3Q_vWuxhkaJ";
+const H = {"apikey": KEY, "Authorization": "Bearer " + KEY, "Content-Type": "application/json"};
+const boxes = document.querySelectorAll('input[type=checkbox]');
+
+function prog(){
+  const done = [...boxes].filter(b=>b.checked).length;
+  document.getElementById('prog').textContent = done + ' of ' + boxes.length + ' done';
+}
+
+async function loadTicks(){
+  try{
+    const r = await fetch(T_URL + "?select=task_id,done", {headers:H});
+    const ticks = await r.json();
+    for (const t of ticks){ const b = document.getElementById(t.task_id); if (b) b.checked = t.done; }
+  }catch(e){}
+  prog();
+}
+
+boxes.forEach(b => b.addEventListener('change', async () => {
+  prog();
+  try{
+    await fetch(T_URL, {method:"POST", headers:{...H, "Prefer":"resolution=merge-duplicates"},
+      body: JSON.stringify({task_id: b.id, done: b.checked, updated_at: new Date().toISOString()})});
+  }catch(e){}
+}));
+
+loadTicks();
+setInterval(loadTicks, 15000);
+</script>
+</div></body></html>
