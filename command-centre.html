@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CC Command Centre - Client Helplines</title>
+<style>
+body{margin:0;background:#f6f4ef;color:#1d2a28;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.5}
+.wrap{max-width:860px;margin:0 auto;padding:24px 16px 90px}
+.eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#0a3d39;font-weight:700;text-align:center}
+h1{font-size:23px;margin:4px 0 2px;text-align:center}
+.sub{color:#5d6b68;font-size:13px;margin:0 0 20px;text-align:center}
+.clinic{background:#fff;border:1px solid #e2ddd3;border-radius:14px;margin-bottom:12px;overflow:hidden}
+.chead{display:flex;align-items:center;gap:12px;padding:15px 18px;cursor:pointer}
+.chead:hover{background:#faf8f4}
+.cname{font-weight:700;font-size:16px;flex:0 0 auto}
+.clast{flex:1;color:#5d6b68;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.badge{flex:0 0 auto;background:#a33d2a;color:#fff;border-radius:999px;font-size:12px;font-weight:800;padding:2px 10px}
+.badge.zero{background:#dfe7e4;color:#5d6b68}
+.thread{display:none;border-top:1px solid #e2ddd3;background:#faf8f4;max-height:420px;overflow-y:auto;padding:14px 18px}
+.clinic.open .thread{display:block}
+.msg{max-width:78%;margin:0 0 10px;padding:9px 13px;border-radius:12px;font-size:14px;background:#fff;border:1px solid #e2ddd3}
+.msg .meta{font-size:11px;color:#8a958f;margin-bottom:3px}
+.msg pre{margin:0;white-space:pre-wrap;font-family:inherit}
+.msg.team{margin-left:auto;background:#0f5a54;color:#fff;border-color:#0f5a54}
+.msg.team .meta{color:#bcd8d2}
+.composer{display:none;border-top:1px solid #e2ddd3;padding:12px 18px;background:#fff}
+.clinic.open .composer{display:flex;gap:10px}
+.composer textarea{flex:1;border:1px solid #cbd6d1;border-radius:9px;padding:9px 12px;font-family:inherit;font-size:14px;resize:vertical;min-height:44px}
+.composer button{background:#0a3d39;color:#fff;border:0;border-radius:9px;padding:0 22px;font-weight:700;font-size:14px;cursor:pointer}
+.empty{text-align:center;color:#5d6b68;padding:40px 0;font-style:italic}
+</style></head>
+<body><div class="wrap">
+<div class="eyebrow">Clinic Catalyst</div>
+<h1>Command centre</h1>
+<p class="sub">Every clinic helpline in one place. New client messages ping your Telegram. Replies here post as Kelly and land on their page within seconds.</p>
+<div id="board"><div class="empty">Loading clinics...</div></div>
+</div>
+<script>
+const URL_ = "https://jiquevvzrdavgqonvvug.supabase.co/rest/v1/cc_client_helpline";
+const KEY = "sb_publishable_siNrWACQh9utYNJ_g6Mt3Q_vWuxhkaJ";
+const H = {"apikey": KEY, "Authorization": "Bearer " + KEY, "Content-Type": "application/json"};
+const TEAM = ["kelly","claude","alicia","team"];
+const NAMES = {"skin-haven":"Skin Haven (Rachel)","you-beauty":"You Beauty (Liam + Amanda)","bonnie-lass":"Bonnie Lass (Tracey + Rhiannon)","amor-sui":"Amor Sui (Charm)","simply-aesthetics":"Simply Aesthetics (Julia)"};
+const seenKey = c => "cc-cmd-lastseen-" + c;
+let rows = [], openClinic = (location.hash||"").replace("#","") || null;
+
+function pretty(c){ return NAMES[c] || (c||"unknown").replace(/-/g," ").replace(/\b\w/g, m=>m.toUpperCase()); }
+function isTeam(s){ return TEAM.includes((s||"").trim().toLowerCase()); }
+
+async function load(){
+  try{
+    const r = await fetch(URL_ + "?select=*&order=id.asc&limit=2000", {headers:H});
+    rows = await r.json();
+    render();
+  }catch(e){ /* keep last view */ }
+}
+
+function render(){
+  const by = {};
+  for (const r of rows){ (by[r.client] = by[r.client] || []).push(r); }
+  const board = document.getElementById("board");
+  const clinics = Object.keys(by).sort((a,b)=>{
+    return by[b][by[b].length-1].id - by[a][by[a].length-1].id;
+  });
+  if (!clinics.length){ board.innerHTML = '<div class="empty">No helpline messages yet. They will appear here the moment a clinic types.</div>'; return; }
+  board.innerHTML = "";
+  for (const c of clinics){
+    const msgs = by[c];
+    const last = msgs[msgs.length-1];
+    const lastSeen = parseInt(localStorage.getItem(seenKey(c)) || "0");
+    const unread = msgs.filter(m => m.id > lastSeen && !isTeam(m.sender)).length;
+    const div = document.createElement("div");
+    div.className = "clinic" + (openClinic === c ? " open" : "");
+    div.innerHTML =
+      '<div class="chead">' +
+        '<span class="cname">' + pretty(c) + '</span>' +
+        '<span class="clast">' + (last.sender||"") + ': ' + (last.message||"").slice(0,90).replace(/</g,"&lt;") + '</span>' +
+        '<span class="badge' + (unread ? "" : " zero") + '">' + (unread || "0") + '</span>' +
+      '</div>' +
+      '<div class="thread"></div>' +
+      '<div class="composer"><textarea placeholder="Reply as Kelly..."></textarea><button>Send</button></div>';
+    const thread = div.querySelector(".thread");
+    for (const m of msgs){
+      const d = document.createElement("div");
+      d.className = "msg" + (isTeam(m.sender) ? " team" : "");
+      const when = new Date(m.created_at).toLocaleString([], {day:"2-digit", month:"short", hour:"2-digit", minute:"2-digit"});
+      d.innerHTML = '<div class="meta">' + (m.sender||"") + ' - ' + when + '</div>';
+      const pre = document.createElement("pre"); pre.textContent = m.message || "";
+      d.appendChild(pre);
+      thread.appendChild(d);
+    }
+    div.querySelector(".chead").onclick = () => {
+      openClinic = (openClinic === c) ? null : c;
+      if (openClinic === c){
+        localStorage.setItem(seenKey(c), String(last.id));
+        history.replaceState(null, "", "#" + c);
+      }
+      render();
+      if (openClinic === c){ const t = document.querySelector(".clinic.open .thread"); if(t) t.scrollTop = t.scrollHeight; }
+    };
+    const ta = div.querySelector("textarea"), btn = div.querySelector("button");
+    btn.onclick = async () => {
+      const text = ta.value.trim(); if (!text) return;
+      btn.disabled = true; btn.textContent = "...";
+      try{
+        await fetch(URL_, {method:"POST", headers:H, body: JSON.stringify({client:c, sender:"Kelly", message:text})});
+        ta.value = "";
+        await load();
+      } finally { btn.disabled = false; btn.textContent = "Send"; }
+    };
+    ta.addEventListener("keydown", e => { if ((e.metaKey||e.ctrlKey) && e.key === "Enter") btn.onclick(); });
+    board.appendChild(div);
+  }
+  const totalUnread = clinics.reduce((n,c)=>{
+    const lastSeen = parseInt(localStorage.getItem(seenKey(c)) || "0");
+    return n + by[c].filter(m => m.id > lastSeen && !isTeam(m.sender)).length;
+  },0);
+  document.title = (totalUnread ? "(" + totalUnread + ") " : "") + "CC Command Centre - Client Helplines";
+}
+
+load();
+setInterval(load, 5000);
+</script>
+</body></html>

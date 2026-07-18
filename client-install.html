@@ -111,6 +111,7 @@ function render(rows){
     const d = document.createElement("div");
     const who = (r.sender || "").trim().toLowerCase();
     const team = TEAM.includes(who);
+    if (window.__loaded && (OPERATOR ? !team : team)) ding();
     d.className = "msg" + (team ? " team" : " mine");
     const when = new Date(r.created_at).toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"});
     const meta = document.createElement("div"); meta.className = "meta"; meta.textContent = r.sender + " - " + when;
@@ -151,7 +152,25 @@ document.getElementById("send").onclick = send;
 document.getElementById("box").addEventListener("keydown", e => {
   if ((e.metaKey || e.ctrlKey) && e.key === "Enter") send();
 });
-poll();
+let flashTimer = null;
+function ding(){
+  try{
+    const a = new (window.AudioContext || window.webkitAudioContext)();
+    const o = a.createOscillator(), g = a.createGain();
+    o.connect(g); g.connect(a.destination); o.frequency.value = 880;
+    g.gain.setValueAtTime(.001, a.currentTime);
+    g.gain.exponentialRampToValueAtTime(.2, a.currentTime + .02);
+    g.gain.exponentialRampToValueAtTime(.001, a.currentTime + .5);
+    o.start(); o.stop(a.currentTime + .55);
+  }catch(e){}
+  if (flashTimer) return;
+  const orig = document.title; let n = 0;
+  flashTimer = setInterval(() => {
+    document.title = (n++ % 2) ? orig : "● New message";
+    if (n > 10){ clearInterval(flashTimer); flashTimer = null; document.title = orig; }
+  }, 900);
+}
+poll().then(() => { window.__loaded = true; });
 setInterval(poll, 4000);
 </script>
 </body>
