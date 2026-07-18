@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Your Clinic System - Walkthrough</title>
+<style>
+:root{--ink:#2b2320;--muted:#6f625b;--paper:#faf6f3;--card:#ffffff;--accent:#C9A197;--accent-ink:#4A2C1D;--line:#ece2db;--good:#2e7d5b}
+*{box-sizing:border-box}
+body{margin:0;background:#efe8e3;color:var(--ink);font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.5}
+.wrap{max-width:960px;margin:0 auto;padding:30px 20px 80px}
+.top{text-align:center;margin-bottom:8px}
+.eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-ink);font-weight:700}
+h1{font-size:30px;margin:6px 0 4px}
+.sub{color:var(--muted);font-size:16px;margin:0 0 26px}
+.fill{display:inline-block;border-bottom:2px dashed var(--accent);min-width:220px}
+h2{font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink);margin:34px 0 14px;display:flex;align-items:center;gap:10px}
+h2::before{content:"";width:26px;height:2px;background:var(--accent)}
+.brain{background:var(--accent-ink);color:#fff;border-radius:16px;padding:22px 24px;text-align:center}
+.brain b{font-size:18px}
+.brain p{margin:6px 0 0;color:#e9ddd6;font-size:14.5px}
+.flow{display:flex;flex-direction:column;gap:0}
+.step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;gap:16px;align-items:flex-start;box-shadow:0 1px 3px rgba(74,44,29,.05)}
+.num{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:15px}
+.step h3{margin:2px 0 3px;font-size:17px}
+.step p{margin:0;color:var(--muted);font-size:14.5px}
+.arrow{align-self:center;color:var(--accent);font-size:20px;line-height:1;margin:5px 0}
+.tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:#f1e7e1;color:var(--accent-ink);border-radius:999px;padding:2px 9px;margin-left:8px;vertical-align:middle}
+.auto{background:#e5f2ec;color:var(--good)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.skill{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+.skill b{font-size:14.5px}
+.skill span{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.cmd{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;color:var(--accent-ink);background:#f7efeb;border-radius:6px;padding:1px 6px}
+.monthly{background:#fff7f2;border:1px solid #ead9cf;border-radius:14px;padding:18px 20px}
+.monthly ul{margin:8px 0 0;padding-left:18px}
+.monthly li{margin:6px 0;font-size:14.5px}
+.path{background:#fff;border:1px solid var(--accent);border-radius:10px;padding:12px 14px;font-size:14px;line-height:1.9}
+.foot{text-align:center;color:var(--muted);font-size:13px;margin-top:34px;font-style:italic}
+.links .skill a{color:var(--accent-ink);font-weight:700;text-decoration:none;border-bottom:2px solid var(--accent)}
+.links .skill .url{display:block;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:var(--muted);margin-top:6px;word-break:break-all}
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
+@media print{body{background:#fff}.wrap{max-width:100%}}
+</style></head>
+<body><div class="wrap">
+
+  <div class="top">
+    <div class="eyebrow">Clinic Catalyst</div>
+    <h1>Your System - the walkthrough</h1>
+    <p class="sub">Clinic: <span class="fill" id="clinicName">&nbsp;</span> &nbsp; How every piece works together, and what runs itself.</p>
+  </div>
+
+  <h2>Your links - bookmark these</h2>
+  <div class="grid links">
+    <div class="skill"><b>Your skill library</b><span>A video for every skill - watch it, copy the prompt, run it in Claude.</span>
+      <a href="https://clinic-catalyst-au.github.io/skill-library/">Open the skill library</a>
+      <span class="url">clinic-catalyst-au.github.io/skill-library</span></div>
+    <div class="skill"><b>Your setup + help page</b><span>Your install page, with a live chat straight to Kelly if anything gets stuck.</span>
+      <a id="installLink" href="https://clinic-catalyst-au.github.io/cc-onboard/client-install.html">Open your setup page</a>
+      <span class="url" id="installUrl">clinic-catalyst-au.github.io/cc-onboard/client-install.html</span></div>
+  </div>
+
+  <h2>The heart of it</h2>
+  <div class="brain">
+    <b>Your Business Brain</b>
+    <p>Your voice, your offers, your services, your team - written down once. Every tool below reads from it, so everything sounds like you. Update it in one place and everything follows.</p>
+  </div>
+
+  <h2>How a client moves through it</h2>
+  <div class="flow">
+    <div class="step"><div class="num">1</div><div><h3>They find you</h3><p>A Facebook or Instagram ad, an organic post, or a word-of-mouth referral.</p></div></div>
+    <div class="arrow">&darr;</div>
+    <div class="step"><div class="num">2</div><div><h3>They land on your offer page</h3><p>Your landing page tells the story and sends them to book on Timely, or to enquire.</p></div></div>
+    <div class="arrow">&darr;</div>
+    <div class="step"><div class="num">3</div><div><h3>GHL catches every enquiry <span class="tag auto">automatic</span></h3><p>Every lead lands in GHL. Nobody slips through the cracks.</p></div></div>
+    <div class="arrow">&darr;</div>
+    <div class="step"><div class="num">4</div><div><h3>The nurture warms them up <span class="tag auto">automatic</span></h3><p>Reactivation + follow-up emails and SMS, in your voice, sent for you. They stop the moment the person books.</p></div></div>
+    <div class="arrow">&darr;</div>
+    <div class="step"><div class="num">5</div><div><h3>The AI agent answers 24/7 <span class="tag auto">automatic</span></h3><p>Answers questions in your voice, hands over the current booking link, and passes anything clinical straight to you.</p></div></div>
+    <div class="arrow">&darr;</div>
+    <div class="step"><div class="num">6</div><div><h3>They book, and your calendars stay in sync <span class="tag auto">automatic</span></h3><p>Timely and GHL share one Google calendar behind the scenes - book in either, and the slot is protected in both. No double-bookings.</p></div></div>
+    <div class="arrow">&darr;</div>
+    <div class="step"><div class="num">7</div><div><h3>They stay close, forever <span class="tag auto">automatic</span></h3><p>The weekly newsletter keeps past clients warm so they come back, without you chasing.</p></div></div>
+  </div>
+
+  <h2>What you can run yourself - your skill library</h2>
+  <p class="sub" style="margin-top:-4px">Type the command in Claude, it does the work - on-brand and AHPRA-safe, every time.</p>
+  <div class="grid">
+    <div class="skill"><b>Month of social content</b><span><span class="cmd">/cc-content-engine</span> - a month of posts across your 4 pillars</span></div>
+    <div class="skill"><b>Caption your videos</b><span><span class="cmd">/cc-reeltalkinghead</span> - film yourself, get a ready-to-post reel</span></div>
+    <div class="skill"><b>Carousels</b><span><span class="cmd">/cc-carousel</span> - a swipeable teaching post</span></div>
+    <div class="skill"><b>Facebook + Google ads</b><span><span class="cmd">/cc-metaad-builder</span> &middot; <span class="cmd">/cc-googlead-builder</span></span></div>
+    <div class="skill"><b>Landing + thank-you pages</b><span><span class="cmd">/cc-landing-page</span> &middot; <span class="cmd">/cc-thankyou-page</span></span></div>
+    <div class="skill"><b>Chase quiet enquiries</b><span><span class="cmd">/cc-enquiry-sweep</span> - nobody left behind</span></div>
+    <div class="skill"><b>Refresh the newsletter</b><span><span class="cmd">/cc-newsletter-engine</span> - the month's 4 editions</span></div>
+    <div class="skill"><b>Spy on competitor ads</b><span><span class="cmd">/cc-ad-spy</span> - the gap nobody's filling</span></div>
+  </div>
+
+  <h2>The one spot you update each month - your booking link</h2>
+  <div class="monthly">
+    <p style="margin:0 0 10px;font-size:14.5px">Whenever your offer changes, you update your booking link in <b>one place</b> in GHL. Everything that hands out a link reads from this spot, so you never edit the AI agent or the emails.</p>
+    <div class="path"><b>In GHL:</b> Settings &nbsp;&rarr;&nbsp; Custom Values &nbsp;&rarr;&nbsp; <span class="cmd">booking_link</span> &nbsp;&rarr;&nbsp; paste this month's booking link &nbsp;&rarr;&nbsp; Save</div>
+    <p style="margin:12px 0 0;font-size:14.5px">That single change updates <b>both</b>:</p>
+    <ul style="margin:6px 0 0">
+      <li><b>Your AI agent</b> - the link it gives anyone who wants to book</li>
+      <li><b>Every nurture + newsletter email</b> - they all pull the same link</li>
+    </ul>
+    <p style="margin:12px 0 0;font-size:13.5px;color:var(--muted)"><b>Tip:</b> make sure the <span class="cmd">booking_link</span> value is filled for your contacts too, so every message points to the right place.</p>
+  </div>
+
+  <h2>Also each month</h2>
+  <div class="monthly">
+    <ul style="margin:0">
+      <li><b>Fresh content</b> - run <span class="cmd">/cc-content-engine</span> for the month's social posts.</li>
+      <li><b>Fresh newsletter</b> - run <span class="cmd">/cc-newsletter-engine</span> for the month's 4 editions (it loads them into GHL for you).</li>
+    </ul>
+  </div>
+
+  <p class="foot">Built with Clinic Catalyst - your system, running for you.</p>
+</div>
+<script>
+const P = new URLSearchParams(location.search);
+const C = (P.get("c") || "").trim();
+const N = (P.get("name") || "").trim();
+if (N) { const el = document.getElementById("clinicName"); el.textContent = N; el.style.borderBottom = "none"; el.style.fontWeight = "700"; }
+if (C) {
+  const u = "https://clinic-catalyst-au.github.io/cc-onboard/client-install.html?c=" + encodeURIComponent(C) + (N ? "&name=" + encodeURIComponent(N) : "");
+  document.getElementById("installLink").href = u;
+  document.getElementById("installUrl").textContent = u.replace("https://", "");
+}
+</script>
+</body></html>
