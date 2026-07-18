@@ -53,30 +53,32 @@ h2::before{content:"";width:26px;height:2px;background:var(--accent)}
     <p>Amanda's voice, your offers, your services, your philosophy - written down once. Every tool below reads from it, so everything sounds like you: warm, honest, natural. Update it in one place and everything follows.</p>
   </div>
 
-  <h2>One-time setup - answer Claude's Business Brain question</h2>
+  <h2>Your handover pack - 18 July session</h2>
   <div class="monthly">
-    <p style="margin:0 0 10px;font-size:14.5px">When you installed the new Business Brain, Claude asked whether to carry over your old files (README, the old knowledge base, and your brand-assets library with your logo, fonts, photos and videos). The answer is <b>yes - merge them</b>. Copy this and paste it into Claude:</p>
-    <div style="position:relative;background:#fff;border:1px solid var(--accent);border-radius:10px;padding:12px 14px">
-      <button id="mergeCopy" style="position:absolute;top:8px;right:8px;background:var(--accent-ink);color:#fff;border:0;border-radius:8px;padding:5px 12px;font-size:12px;font-weight:700;cursor:pointer">Copy</button>
-      <pre id="mergeMsg" style="white-space:pre-wrap;font-family:inherit;font-size:13.5px;margin:0;padding-right:60px">Yes please - merge them. Keep the NEW text files as the source of truth, and copy these across from the backup into the new Business-Brain: the entire brand-assets media library, README.md, and ghl-ai-agent-knowledge-base.md.
-
-Then inside Business-Brain/brand-assets, make sure these exact filenames exist (the rendering skills read them by name):
-- logo.png (transparent PNG - the one I just added)
-- headline-font.ttf (use Belleza)
-- body-font.ttf (use Montserrat)
-Keep Amsterdam One in the folder as well - it is our accent/script font.
-
-Last thing: read ghl-ai-agent-knowledge-base.md from the backup and list me any facts in it that are NOT in the new you-beauty knowledge base - especially prices, cancellation policy, memberships and treatment details - and send that list to Kelly.</pre>
-    </div>
-    <p style="margin:10px 0 0;font-size:13.5px;color:var(--muted)">Your brand fonts for reference: Amsterdam One (script/accent), Belleza (headlines), Montserrat (body). Once merged, every visual Claude makes renders in your real fonts and logo.</p>
+    <p style="margin:0 0 12px;font-size:14.5px">Everything from your handover with Kelly, in one spot:</p>
+    <p style="margin:0 0 6px;font-size:14.5px"><b>Session replay (video)</b> - <a href="https://www.dropbox.com/scl/fi/qkyt2canac18e6v5u47ft/Liam-AIOS-Clinic-Catalyst-System-Handover.mp4?rlkey=g2j2tloecb6p89x37gtvcw90q&amp;dl=0">watch or download the full walkthrough</a></p>
+    <p style="margin:0;font-size:14.5px"><b>Your AI knowledge base</b> - <a href="https://www.dropbox.com/scl/fi/phwg7koeepcbmv4i63nyu/you-beauty-knowledge-base.md?rlkey=8xdln56n9j8fltmii8mgjajos&amp;dl=0">the file your AI agent is built on</a>. Give it to your Claude and ask: "this is what our AI agent is built off - is anything missing? Update it."</p>
   </div>
-  <script>
-  document.getElementById("mergeCopy").onclick = function(){
-    navigator.clipboard.writeText(document.getElementById("mergeMsg").textContent);
-    this.textContent = "Copied"; var b = this;
-    setTimeout(function(){ b.textContent = "Copy"; }, 1500);
-  };
-  </script>
+
+  <h2>Your next steps (from the session)</h2>
+  <div class="flow">
+    <div class="step"><div class="num">1</div><div><h3>Run your system update</h3><p>Open Claude and run the update Kelly sent you. It pushes all the new pieces into your setup automatically so nothing is manual.</p></div></div>
+    <div class="arrow">&darr;</div>
+    <div class="step"><div class="num">2</div><div><h3>Check the knowledge base</h3><p>Give the knowledge base file above to your Claude and ask if anything is missing - prices, policies, memberships. Anything it flags, send to Kelly or update it yourself in GHL (AI Agents &rarr; Knowledge Base).</p></div></div>
+    <div class="arrow">&darr;</div>
+    <div class="step"><div class="num">3</div><div><h3>Train your bot</h3><p>In GHL: AI Agents &rarr; Conversational AI &rarr; Bot Training - attach the knowledge base and ask it your five test questions. It should give your offers, and redirect anything injectable to a consult.</p></div></div>
+    <div class="arrow">&darr;</div>
+    <div class="step"><div class="num">4</div><div><h3>Set up reactivation - offers first, people second</h3><p>Open the reactivation workflow and put your offer and wording into the shells BEFORE adding anyone - it is live, so people get the first SMS the moment they enter. Then give your imported client list (the "18th July dapple" smart list) to Claude: split injectables vs skin clients, set the "haven't seen in X months" rule for each, break into lists of 30 to 50 with tags, and drip them through - never all at once.</p></div></div>
+    <div class="arrow">&darr;</div>
+    <div class="step"><div class="num">5</div><div><h3>Set your monthly reminder</h3><p>Ask Claude: "set a reminder to run /cc-newsletter-engine on the 1st of each month". That one run writes and loads the month's four newsletters. If your offer changes, update the booking_link custom value too (sub-account &rarr; Settings &rarr; Custom Values).</p></div></div>
+    <div class="arrow">&darr;</div>
+    <div class="step"><div class="num">6</div><div><h3>When you're comfortable: autopilot</h3><p>Once the AI's suggested replies are right every time, flip Conversational AI to autopilot and it answers everyone for you. You can also enable the human-handover trigger so "I want to talk to Amanda" gets escalated to you.</p></div></div>
+  </div>
+
+  <h2>Worth doing sometime - free SEO sprint</h2>
+  <div class="monthly">
+    <p style="margin:0;font-size:14.5px">Grab the Semrush 7-day free trial, run the keyword research, GEO/SEO and website audit skills while it lasts, then cancel. You keep the reports and the plan - the videos in your skill library show every step.</p>
+  </div>
 
   <h2>How a client moves through it</h2>
   <div class="flow">
