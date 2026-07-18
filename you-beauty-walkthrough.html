@@ -53,6 +53,31 @@ h2::before{content:"";width:26px;height:2px;background:var(--accent)}
     <p>Amanda's voice, your offers, your services, your philosophy - written down once. Every tool below reads from it, so everything sounds like you: warm, honest, natural. Update it in one place and everything follows.</p>
   </div>
 
+  <h2>One-time setup - answer Claude's Business Brain question</h2>
+  <div class="monthly">
+    <p style="margin:0 0 10px;font-size:14.5px">When you installed the new Business Brain, Claude asked whether to carry over your old files (README, the old knowledge base, and your brand-assets library with your logo, fonts, photos and videos). The answer is <b>yes - merge them</b>. Copy this and paste it into Claude:</p>
+    <div style="position:relative;background:#fff;border:1px solid var(--accent);border-radius:10px;padding:12px 14px">
+      <button id="mergeCopy" style="position:absolute;top:8px;right:8px;background:var(--accent-ink);color:#fff;border:0;border-radius:8px;padding:5px 12px;font-size:12px;font-weight:700;cursor:pointer">Copy</button>
+      <pre id="mergeMsg" style="white-space:pre-wrap;font-family:inherit;font-size:13.5px;margin:0;padding-right:60px">Yes please - merge them. Keep the NEW text files as the source of truth, and copy these across from the backup into the new Business-Brain: the entire brand-assets media library, README.md, and ghl-ai-agent-knowledge-base.md.
+
+Then inside Business-Brain/brand-assets, make sure these exact filenames exist (the rendering skills read them by name):
+- logo.png (transparent PNG - the one I just added)
+- headline-font.ttf (use Belleza)
+- body-font.ttf (use Montserrat)
+Keep Amsterdam One in the folder as well - it is our accent/script font.
+
+Last thing: read ghl-ai-agent-knowledge-base.md from the backup and list me any facts in it that are NOT in the new you-beauty knowledge base - especially prices, cancellation policy, memberships and treatment details - and send that list to Kelly.</pre>
+    </div>
+    <p style="margin:10px 0 0;font-size:13.5px;color:var(--muted)">Your brand fonts for reference: Amsterdam One (script/accent), Belleza (headlines), Montserrat (body). Once merged, every visual Claude makes renders in your real fonts and logo.</p>
+  </div>
+  <script>
+  document.getElementById("mergeCopy").onclick = function(){
+    navigator.clipboard.writeText(document.getElementById("mergeMsg").textContent);
+    this.textContent = "Copied"; var b = this;
+    setTimeout(function(){ b.textContent = "Copy"; }, 1500);
+  };
+  </script>
+
   <h2>How a client moves through it</h2>
   <div class="flow">
     <div class="step"><div class="num">1</div><div><h3>She finds you</h3><p>A Facebook or Instagram ad, an organic post, or a word-of-mouth referral.</p></div></div>
