@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rachel / Skin Haven - Session Facilitator Guide</title>
+<style>
+body{margin:0;background:#f6f4ef;color:#1d2a28;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+.eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#0a3d39;font-weight:700;text-align:center}
+h1{font-size:25px;margin:6px 0 2px;text-align:center}
+.sub{color:#5d6b68;font-size:14px;margin:0 0 24px;text-align:center}
+h2{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#0a3d39;margin:26px 0 10px;display:flex;align-items:center;gap:10px}
+h2::before{content:"";width:26px;height:2px;background:#0f5a54}
+.card{background:#fff;border:1px solid #e2ddd3;border-radius:12px;padding:14px 17px;margin-bottom:10px;font-size:14.5px}
+.card ul{margin:6px 0 0;padding-left:20px}
+.card li{margin:5px 0}
+.done{background:#e5f2ec;border-color:#bcdccd}
+.linkrow{display:flex;align-items:center;gap:8px;background:#edf2f1;border-radius:8px;padding:7px 10px;margin:6px 0;font-size:12.5px}
+.linkrow .u{font-family:ui-monospace,Menlo,monospace;flex:1;word-break:break-all;color:#0a3d39}
+.linkrow .lbl{font-weight:700;flex:0 0 auto;font-size:12px}
+.linkrow button{flex:0 0 auto;background:#0a3d39;color:#fff;border:0;border-radius:6px;padding:4px 12px;font-size:12px;font-weight:700;cursor:pointer}
+.linkrow button.ok{background:#2e7d5b}
+.warn{background:#fdeeea;border-left:3px solid #a33d2a;padding:9px 12px;border-radius:0 8px 8px 0;font-size:13.5px;margin:8px 0}
+.say{background:#f3f7f6;border-left:3px solid #0f5a54;padding:8px 12px;border-radius:0 8px 8px 0;font-style:italic;font-size:13.5px;margin:8px 0}
+.cmd{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;background:#edf2f1;border-radius:6px;padding:1px 6px}
+</style></head>
+<body><div class="wrap">
+<div class="eyebrow">Clinic Catalyst - internal</div>
+<h1>Rachel / Skin Haven - session facilitator guide</h1>
+<p class="sub">GHL location 9Ne950cy4OmoXB5Oc4vv &middot; Rachel Rayson, RN &middot; Mount Martha</p>
+
+<h2>Already done before the session (tell Rachel, don't redo)</h2>
+<div class="card done">
+  <ul>
+    <li><b>Conversation AI bot FINISHED today</b> - Rachel's voice, AHPRA guardrails, Skin Reset Sessions knowledge base + 18 FAQs, set primary, channels on.</li>
+    <li><b>Voice agent "Aria" BUILT today</b> - full phone persona saved; waiting only on a phone number.</li>
+    <li><b>Booking links wired</b> - <span class="cmd">booking_link</span> = the $100 Skin Reset offer link, <span class="cmd">consult_link</span> = the general Timely page. Bot and emails use both automatically.</li>
+    <li><b>Live already</b> - the skin-reset landing page (CTAs verified), reactivation email copy in the GHL shells, August newsletters loaded.</li>
+  </ul>
+</div>
+
+<h2>1 - Open the session: send her these</h2>
+<div class="card">
+  <div class="linkrow"><span class="lbl">Walkthrough</span><span class="u">https://clinic-catalyst-au.github.io/cc-onboard/walkthrough.html?c=skin-haven&amp;name=Skin+Haven</span><button>Copy</button></div>
+  <div class="linkrow"><span class="lbl">Setup + help</span><span class="u">https://clinic-catalyst-au.github.io/cc-onboard/client-install.html?c=skin-haven&amp;name=Skin+Haven</span><button>Copy</button></div>
+  <div class="linkrow"><span class="lbl">Skill library</span><span class="u">https://clinic-catalyst-au.github.io/skill-library/</span><button>Copy</button></div>
+  <div class="linkrow"><span class="lbl">Timely import guide</span><span class="u">https://clinic-catalyst-au.github.io/cc-onboard/timely-import.html</span><button>Copy</button></div>
+  <p style="margin:8px 0 0;font-size:13px;color:#5d6b68">Your operator console (do NOT send): add <span class="cmd">&amp;as=Kelly</span> to her setup link.</p>
+</div>
+
+<h2>2 - Show the system live (the wow moment)</h2>
+<div class="card">
+  <ul>
+    <li>Walk her page's 7 steps, showing the real thing in GHL at each: landing page, an enquiry, the nurture workflow, the bot answering, calendar, newsletters.</li>
+    <li>Demo the bot in trial: ask it an injectable price (watch it deflect to consult) and "how do I book" (hands out her offer link).</li>
+    <li>Show the one-value trick: Settings &rarr; Custom Values &rarr; <span class="cmd">booking_link</span>.</li>
+  </ul>
+  <div class="say">"I changed one value this morning and your bot, your emails and your newsletter all updated themselves. That's the whole monthly job."</div>
+</div>
+
+<h2>3 - Voice AI: redo the Regulatory Bundle (it was REJECTED)</h2>
+<div class="card">
+  <div class="warn">Bundle rejected 18 Jul. With Rachel: open Compliance/Trust Center, read the stated rejection reason (usually ABN / address / ID mismatch), fix that one thing, RESUBMIT. If it blocks resubmission, that's the known sub-account block - GHL support ticket.</div>
+  <ul>
+    <li>Approval takes days. Once approved: buy the LC number &rarr; open agent <b>Aria</b> &rarr; attach as inbound number &rarr; test call.</li>
+    <li>While in there: preview voices with her (stock skews American; she can import an ElevenLabs Australian voice).</li>
+  </ul>
+</div>
+
+<h2>4 - Google mirror (the calendar piece)</h2>
+<div class="card">
+  <ul>
+    <li>She needs a clinic Google account - recommend a dedicated <span class="cmd">skinhaven.bookings@gmail</span>. Create it together if she's up for it.</li>
+    <li>Then it's ~15 min off the runsheet: <span class="cmd">~/Clinic/skinhaven-google-mirror-runsheet.md</span>.</li>
+  </ul>
+</div>
+
+<h2>5 - Reactivation: her homework</h2>
+<div class="card">
+  <ul>
+    <li>Send her the <b>Timely import guide</b> (link above - there is NO video for this, the page replaces it): export from Timely, Claude sections the list, import 50 at a time with tag <span class="cmd">reactivation</span>, 2-3 days between batches.</li>
+    <li>The workflow fires per contact the moment each import lands - so batch size IS the send rate. Never bulk-import the whole list.</li>
+    <li>SMS steps stay OFF until her number exists (same bundle as Aria).</li>
+  </ul>
+</div>
+
+<h2>6 - Housekeeping while you're in her account</h2>
+<div class="card">
+  <ul>
+    <li>Check her existing workflow <b>"Booked to Won Tag (Timely)"</b> - can it also apply our <span class="cmd">booked</span> tag? (Matters for booked-exit + the mirror.)</li>
+    <li>Capture her GHL login into <span class="cmd">~/Clinic/Credentials/credentials-reference.txt</span>.</li>
+    <li>Newsletter Week 3 (her story) - get her sign-off. Ideas: <span class="cmd">~/Clinic/Emails/skinhaven-newsletter-ideas-JULY.md</span>.</li>
+    <li>Confirm her clinic email spelling (<span class="cmd">skinhavenaestheics@outlook.com</span> - missing a 't'?).</li>
+  </ul>
+</div>
+
+<h2>7 - Close</h2>
+<div class="card">
+  <ul>
+    <li>Her monthly rhythm: update <span class="cmd">booking_link</span> when the offer changes, <span class="cmd">/cc-content-engine</span> for posts, <span class="cmd">/cc-newsletter-engine</span> for the month's editions.</li>
+    <li>Anything stuck: the chat on her setup + help page comes straight to you.</li>
+  </ul>
+  <div class="say">"You now have a system most clinics pay an agency $3K a month for - and yours sounds like you."</div>
+</div>
+
+<script>
+document.querySelectorAll(".linkrow button").forEach(b=>{b.onclick=()=>{navigator.clipboard.writeText(b.previousElementSibling.textContent);b.textContent="Copied";b.classList.add("ok");setTimeout(()=>{b.textContent="Copy";b.classList.remove("ok")},1500)}});
+</script>
+</body></html>
