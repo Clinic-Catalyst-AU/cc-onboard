@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bring Your Clients Across - Timely to Your System</title>
+<style>
+body{margin:0;background:#f6f4ef;color:#1d2a28;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55}
+.wrap{max-width:820px;margin:0 auto;padding:30px 20px 80px}
+.eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#0a3d39;font-weight:700;text-align:center}
+h1{font-size:26px;margin:6px 0 4px;text-align:center}
+.sub{color:#5d6b68;font-size:15px;margin:0 0 26px;text-align:center}
+h2{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#0a3d39;margin:28px 0 10px;display:flex;align-items:center;gap:10px}
+h2::before{content:"";width:26px;height:2px;background:#0f5a54}
+.step{background:#fff;border:1px solid #e2ddd3;border-radius:12px;padding:15px 17px;margin-bottom:10px;font-size:14.5px;display:flex;gap:14px;align-items:flex-start}
+.num{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:#0f5a54;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px}
+.step p{margin:0 0 6px}
+.step p:last-child{margin-bottom:0}
+.block{position:relative;background:#fff;border:1px solid #0f5a54;border-radius:12px;padding:14px 16px;margin:10px 0 14px}
+.block pre{white-space:pre-wrap;font-family:inherit;font-size:13.5px;margin:0;color:#1d2a28}
+.copy{position:absolute;top:10px;right:10px;background:#0a3d39;color:#fff;border:0;border-radius:8px;padding:6px 14px;font-size:13px;font-weight:700;cursor:pointer}
+.copy.done{background:#2e7d5b}
+.warn{background:#fdeeea;border-left:3px solid #a33d2a;padding:10px 13px;border-radius:0 8px 8px 0;font-size:14px;margin:12px 0}
+.cmd{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;background:#edf2f1;border-radius:6px;padding:1px 6px}
+.foot{text-align:center;color:#5d6b68;font-size:13px;margin-top:34px;font-style:italic}
+</style></head>
+<body><div class="wrap">
+<div class="eyebrow">Clinic Catalyst</div>
+<h1>Bring your clients across</h1>
+<p class="sub">Get your client list out of your booking system, let Claude sort it into sections, and import it in small batches - so your reactivation runs safely and nobody gets spammed.</p>
+
+<h2>Step 1 - Export your clients from Timely</h2>
+<div class="step"><div class="num">1</div><div>
+<p>In Timely: <b>Customers</b> (or Clients) &rarr; <b>Export</b> &rarr; download the CSV. Save it to your <span class="cmd">Downloads</span> folder. That file is every client you've ever had - names, contact details, last visit.</p>
+</div></div>
+
+<h2>Step 2 - Let Claude section it</h2>
+<div class="step"><div class="num">2</div><div>
+<p>Open Claude Code and paste this in:</p>
+</div></div>
+<div class="block"><button class="copy">Copy</button><pre>I've exported my client list from my booking system - it's the newest CSV in my Downloads folder. Please:
+1. Read it and tell me how many clients it has and what columns it found.
+2. Remove anyone with no email AND no mobile, and anyone marked do-not-contact.
+3. Split the rest into sections by how recently they visited: (a) visited in the last 3 months, (b) 3-6 months ago, (c) 6-12 months ago, (d) over 12 months ago.
+4. Save each section as its own CSV in my Clinic folder, in files of no more than 50 clients each (e.g. section-b-part-1.csv, section-b-part-2.csv), with columns ready for a GHL contact import (first name, last name, email, phone).
+5. Show me the counts per section before I import anything.</pre></div>
+
+<h2>Step 3 - Import ONE small file into GHL</h2>
+<div class="step"><div class="num">3</div><div>
+<p>In GHL: <b>Contacts</b> &rarr; <b>Import</b> &rarr; upload ONE file (max 50 clients) &rarr; map the columns when asked.</p>
+<p><b>The important part:</b> on the import screen, add the tag <span class="cmd">reactivation</span> to every imported contact. That tag is the switch - the moment the import finishes, your reactivation messages start going to those people automatically, in your voice.</p>
+</div></div>
+
+<h2>Step 4 - Wait, then repeat</h2>
+<div class="step"><div class="num">4</div><div>
+<p>Wait <b>2-3 days</b>, then import the next file of 50. Repeat until done - start with the most recent section first (they know you best).</p>
+</div></div>
+
+<div class="warn"><b>Why only 50 at a time?</b> Two reasons: email providers trust senders who ramp up gradually (dump 800 emails at once and you land in spam for everyone), and replies come back in waves you can actually answer. Slow is fast here.</div>
+
+<h2>If anything looks off</h2>
+<div class="step"><div class="num">?</div><div>
+<p>Stop before importing and yell out on your setup + help page chat - we're watching it. Never push through an import that looks wrong; imports are easy to do twice, hard to undo.</p>
+</div></div>
+
+<p class="foot">Built with Clinic Catalyst - your system, running for you.</p>
+</div>
+<script>
+document.querySelectorAll(".copy").forEach(b=>{b.onclick=()=>{navigator.clipboard.writeText(b.nextElementSibling.textContent);b.textContent="Copied";b.classList.add("done");setTimeout(()=>{b.textContent="Copy";b.classList.remove("done")},1600)}});
+</script>
+</body></html>
