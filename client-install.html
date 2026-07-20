@@ -98,6 +98,16 @@ else { snapBtn.textContent = "Install link coming from Kelly"; snapBtn.style.poi
 const URL_ = "https://jiquevvzrdavgqonvvug.supabase.co/rest/v1/cc_client_helpline";
 const KEY = "sb_publishable_siNrWACQh9utYNJ_g6Mt3Q_vWuxhkaJ";
 const H = {"apikey": KEY, "Authorization": "Bearer " + KEY, "Content-Type": "application/json"};
+// Telegram ping to Kelly when a CLIENT (not the operator) sends a message.
+// Same Supabase project's tg-notify relay holds the bot token + chat id server-side,
+// so nothing secret lives in this page. Body is just {text}.
+const RELAY = "https://jiquevvzrdavgqonvvug.supabase.co/functions/v1/tg-notify";
+function pingKelly(text){
+  const msg = "New helpline message\n" + (NAME || CLIENT) + "\n" + SENDER + ": " + text +
+    "\n\nReply: https://clinic-catalyst-au.github.io/cc-onboard/command-centre.html#" + CLIENT;
+  fetch(RELAY, {method: "POST", headers: {"Authorization": "Bearer " + KEY, "Content-Type": "application/json"},
+    body: JSON.stringify({text: msg})}).catch(() => {});
+}
 const TEAM = ["kelly", "claude", "alicia", "team"];
 const seen = new Set();
 
@@ -144,6 +154,7 @@ async function send(){
   document.getElementById("send").disabled = true;
   try {
     await fetch(URL_, {method: "POST", headers: H, body: JSON.stringify({client: CLIENT, sender: SENDER, message: text})});
+    if (!OPERATOR) pingKelly(text);   // client messaged -> ping Kelly's Telegram; her own replies never ping
     box.value = "";
     await poll();
   } finally { document.getElementById("send").disabled = false; }
