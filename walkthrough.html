@@ -56,6 +56,8 @@ h2::before{content:"";width:26px;height:2px;background:var(--accent)}
     <div class="skill"><b>Your setup + help page</b><span>Your install page, with a live chat straight to Kelly if anything gets stuck.</span>
       <a id="installLink" href="https://clinic-catalyst-au.github.io/cc-onboard/client-install.html">Open your setup page</a>
       <span class="url" id="installUrl">clinic-catalyst-au.github.io/cc-onboard/client-install.html</span></div>
+    <div class="skill" id="recCard" style="display:none"><b>Rewatch your session</b><span>Your whole walkthrough with Kelly, any time you want it.</span>
+      <a id="recLink" href="#" target="_blank" rel="noopener">Watch the recording</a></div>
   </div>
 
   <h2>The heart of it</h2>
@@ -133,6 +135,11 @@ if (C) {
   const u = "https://clinic-catalyst-au.github.io/cc-onboard/client-install.html?c=" + encodeURIComponent(C) + (N ? "&name=" + encodeURIComponent(N) : "");
   document.getElementById("installLink").href = u;
   document.getElementById("installUrl").textContent = u.replace("https://", "");
+}
+const R = (P.get("rec") || "").trim();   // optional session recording link (url-encoded)
+if (R) {
+  document.getElementById("recLink").href = R;
+  document.getElementById("recCard").style.display = "";
 }
 </script>
 </body></html>
