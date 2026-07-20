@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Esha Medi Spa - Session Facilitator Guide</title>
+<style>
+body{margin:0;background:#f6f4ef;color:#1d2a28;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+.eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#0a3d39;font-weight:700;text-align:center}
+h1{font-size:25px;margin:6px 0 2px;text-align:center}
+.sub{color:#5d6b68;font-size:14px;margin:0 0 24px;text-align:center}
+h2{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#0a3d39;margin:26px 0 10px;display:flex;align-items:center;gap:10px}
+h2::before{content:"";width:26px;height:2px;background:#0f5a54}
+.card{background:#fff;border:1px solid #e2ddd3;border-radius:12px;padding:14px 17px;margin-bottom:10px;font-size:14.5px}
+.card ul{margin:6px 0 0;padding-left:20px}
+.card li{margin:5px 0}
+.done{background:#e5f2ec;border-color:#bcdccd}
+.todo{background:#fbf6ec;border-color:#e6d7b3}
+.linkrow{display:flex;align-items:center;gap:8px;background:#edf2f1;border-radius:8px;padding:7px 10px;margin:6px 0;font-size:12.5px}
+.linkrow .u{font-family:ui-monospace,Menlo,monospace;flex:1;word-break:break-all;color:#0a3d39}
+.linkrow .lbl{font-weight:700;flex:0 0 auto;font-size:12px}
+.linkrow button{flex:0 0 auto;background:#0a3d39;color:#fff;border:0;border-radius:6px;padding:4px 12px;font-size:12px;font-weight:700;cursor:pointer}
+.linkrow button.ok{background:#2e7d5b}
+.warn{background:#fdeeea;border-left:3px solid #a33d2a;padding:9px 12px;border-radius:0 8px 8px 0;font-size:13.5px;margin:8px 0}
+.say{background:#f3f7f6;border-left:3px solid #0f5a54;padding:8px 12px;border-radius:0 8px 8px 0;font-style:italic;font-size:13.5px;margin:8px 0}
+.cmd{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;background:#edf2f1;border-radius:6px;padding:1px 6px}
+</style></head>
+<body><div class="wrap">
+<div class="eyebrow">Clinic Catalyst - internal</div>
+<h1>Esha Medi Spa - session facilitator guide</h1>
+<p class="sub">Amanda Savis, RN &middot; Kyneton VIC &middot; Timely &middot; solo cosmetic nurse (keep it lean, low-tech)</p>
+
+<div class="warn">Amanda is early-stage and not a computer person. This walkthrough is "here's your system + here's what we build next", NOT "everything's live". Go slow, one screen at a time, let her drive where she can.</div>
+
+<h2>Already done before the session (tell Amanda, don't redo)</h2>
+<div class="card done">
+  <ul>
+    <li><b>Reactivation + newsletter snapshot INSTALLED today (20 Jul)</b> into her GHL - the reactivation workflow and the email shells are already sitting in her account. She never has to build them.</li>
+    <li>Imported via a <b>one-time share link</b> after the permanent link was rejected by her account - it's in, nothing more to do on the install itself.</li>
+  </ul>
+</div>
+
+<h2>The one blocker - her Business Brain (still outstanding)</h2>
+<div class="card todo">
+  <p style="margin:0 0 6px">Everything that sounds like her - the AI bot, the nurture emails, the newsletter, landing pages - reads from her Business Brain. <b>We don't have it yet.</b> Until it lands, outputs are generic, not in her voice.</p>
+  <ul>
+    <li>In the session: have her run <span class="cmd">/cc-resonance</span> then <span class="cmd">/cc-brand-guide</span> - or hand over whatever brand material she already has (tone, offers, services, team, before/afters).</li>
+    <li>This unblocks every "build next" item below. Frame it as the one homework that makes the rest sound like her.</li>
+  </ul>
+</div>
+
+<h2>1 - Open the session: send her these</h2>
+<div class="card">
+  <div class="linkrow"><span class="lbl">Walkthrough</span><span class="u">https://clinic-catalyst-au.github.io/cc-onboard/walkthrough.html?c=esha&amp;name=Esha+Medi+Spa</span><button>Copy</button></div>
+  <div class="linkrow"><span class="lbl">Setup + help</span><span class="u">https://clinic-catalyst-au.github.io/cc-onboard/client-install.html?c=esha&amp;name=Esha+Medi+Spa</span><button>Copy</button></div>
+  <div class="linkrow"><span class="lbl">Skill library</span><span class="u">https://clinic-catalyst-au.github.io/skill-library/</span><button>Copy</button></div>
+  <div class="linkrow"><span class="lbl">Timely import guide</span><span class="u">https://clinic-catalyst-au.github.io/cc-onboard/timely-import.html</span><button>Copy</button></div>
+  <p style="margin:8px 0 0;font-size:13px;color:#5d6b68">Your operator console (do NOT send): add <span class="cmd">&amp;as=Kelly</span> to her setup link - then you can type into her help chat live and a Copy button appears on her side.</p>
+</div>
+
+<h2>2 - Show the system live (the wow moment)</h2>
+<div class="card">
+  <ul>
+    <li>Walk her walkthrough page's 7 steps. Since her bot/newsletter/landing page aren't built yet, show what IS there: open the <b>imported reactivation workflow</b> and the <b>email shells</b> in her GHL so she can see the plumbing already landed.</li>
+    <li>Show the one-value trick early - it's the whole monthly job: Settings &rarr; Custom Values &rarr; <span class="cmd">booking_link</span>. Explain that once it's set, the bot and every email pull from it automatically.</li>
+    <li>Set the expectation: "The engine's installed. Next we pour your voice into it from your Business Brain, and it starts sounding like you."</li>
+  </ul>
+  <div class="say">"You change one link in one spot when your offer changes, and your whole system updates itself. That's it. That's the monthly job."</div>
+</div>
+
+<h2>3 - What we build next (not yet done - set the order)</h2>
+<div class="card todo">
+  <ul>
+    <li><b>Business Brain</b> - first, it unblocks everything (see above).</li>
+    <li><b>Newsletter content</b> - shells are already in from the snapshot; run <span class="cmd">/cc-newsletter-engine</span> once we have her brain + current offer.</li>
+    <li><b>Conversation AI bot</b> - her voice, AHPRA guardrails, hands out the booking link. Built in the GHL UI on her login (no public API for it - capture her login while you're in).</li>
+    <li><b>Landing page</b> - for her hero offer, CTA to her Timely booking link (<span class="cmd">/cc-landing-page</span>).</li>
+    <li><b>Voice AI (Aria)</b> - later. Needs the AU regulatory bundle + a phone number first.</li>
+    <li><b>Google mirror</b> - Timely &harr; Google &harr; GHL so calendars stay in sync. Needs a dedicated clinic Google account (recommend <span class="cmd">esha.bookings@gmail</span>).</li>
+  </ul>
+</div>
+
+<h2>4 - Reactivation: her homework</h2>
+<div class="card">
+  <ul>
+    <li>Send her the <b>Timely import guide</b> (link above - it replaces a video): export her past clients from Timely, Claude sections the list, import <b>50 at a time</b> with tag <span class="cmd">reactivation</span>, 2-3 days between batches.</li>
+    <li>The workflow fires per contact the moment each import lands - so batch size IS the send rate. Never bulk-import the whole list at once.</li>
+    <li>SMS steps stay OFF until her number exists (same regulatory bundle as Aria).</li>
+  </ul>
+</div>
+
+<h2>5 - Housekeeping while you're in her account</h2>
+<div class="card">
+  <ul>
+    <li><b>Capture her GHL login + location ID</b> into <span class="cmd">~/Clinic/Credentials/credentials-reference.txt</span> - we don't have Esha's on file yet.</li>
+    <li>Check for any pre-existing "Booked to Won" style workflow - can it also apply our <span class="cmd">booked</span> tag? (Matters for the booked-exit + the mirror.)</li>
+    <li>Set <span class="cmd">booking_link</span> custom value to her current Timely offer link so anything that hands out a link is already correct.</li>
+    <li>Confirm her clinic email + best contact number for the bundle later.</li>
+  </ul>
+</div>
+
+<h2>6 - Close</h2>
+<div class="card">
+  <ul>
+    <li>Her monthly rhythm: update <span class="cmd">booking_link</span> when the offer changes, <span class="cmd">/cc-content-engine</span> for posts, <span class="cmd">/cc-newsletter-engine</span> for the month's editions.</li>
+    <li>Anything stuck: the chat on her setup + help page comes straight to you.</li>
+    <li>End with <span class="cmd">/cc-shutdown</span> so her next session starts clean.</li>
+  </ul>
+  <div class="say">"You now have the same engine a clinic would pay an agency thousands a month for - and once your Brain's in, it sounds like you, not a template."</div>
+</div>
+
+<script>
+document.querySelectorAll(".linkrow button").forEach(b=>{b.onclick=()=>{navigator.clipboard.writeText(b.previousElementSibling.textContent);b.textContent="Copied";b.classList.add("ok");setTimeout(()=>{b.textContent="Copy";b.classList.remove("ok")},1500)}});
+</script>
+</body></html>
