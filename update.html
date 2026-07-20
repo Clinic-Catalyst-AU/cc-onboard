@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Update Your Claude - Clinic Catalyst</title>
+<style>
+  :root{--teal:#0E4D4A;--teal2:#13615C;--mint:#4FB3A6;--gold:#C9A86A;--ink:#13211F;--muted:#5E726E;--bg:#F4F8F6;--card:#FFFFFF;--line:#DCE8E4;--code:#0B2E2B;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.55}
+  .hero{background:linear-gradient(150deg,var(--teal),var(--teal2));color:#fff;padding:44px 24px 34px;text-align:center}
+  .hero .kicker{letter-spacing:3px;text-transform:uppercase;font-size:12px;color:var(--mint);font-weight:700}
+  .hero h1{margin:10px 0 6px;font-size:28px}
+  .hero p{margin:0;color:#CFE7E2;font-size:15px}
+  .wrap{max-width:640px;margin:0 auto;padding:26px 20px 70px}
+  .note{background:#E7F3F0;border:1px solid var(--mint);border-radius:12px;padding:14px 16px;margin:0 0 22px;font-size:14px;color:#0e4d4a}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:16px 0;box-shadow:0 2px 0 rgba(0,0,0,.03)}
+  .step h2{margin:0 0 6px;font-size:19px;display:flex;align-items:center;gap:12px}
+  .num{background:var(--teal);color:#fff;width:32px;height:32px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;flex:0 0 auto}
+  .body{margin-left:44px;font-size:15px}
+  .body b{color:var(--teal)}
+  .cmd{position:relative;background:var(--code);color:#CFF3EC;border-radius:12px;padding:18px 16px 18px 16px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13.5px;white-space:pre-wrap;word-break:break-word;margin:12px 0 6px}
+  .copy{display:block;width:100%;margin-top:10px;background:var(--gold);color:#3d2c0e;border:none;border-radius:12px;padding:15px;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 3px 0 #a8894f}
+  .copy:active{transform:translateY(2px);box-shadow:0 1px 0 #a8894f}
+  .copied{background:var(--mint)!important;color:#06302c!important}
+  .small{font-size:13px;color:var(--muted);margin-top:8px}
+  .win{font-size:12.5px;color:var(--muted);margin-top:16px;text-align:center}
+  .win code{background:#eef3f1;padding:2px 6px;border-radius:5px;font-size:12px;word-break:break-all}
+  .done{background:linear-gradient(150deg,#0E4D4A,#1c7a72);color:#fff;border-radius:16px;padding:24px;margin-top:22px;text-align:center}
+  .done h2{margin:0 0 6px;color:#fff;font-size:20px}.done p{color:#CFE7E2;margin:6px 0;font-size:14.5px}
+  .foot{text-align:center;color:var(--muted);font-size:12px;margin-top:26px}
+</style>
+</head>
+<body>
+  <div class="hero">
+    <div class="kicker">Clinic Catalyst</div>
+    <h1>Update Your Claude</h1>
+    <p>Two minutes. Copy, paste, done. Your Business Brain and your work are never touched - this only refreshes your skills.</p>
+  </div>
+  <div class="wrap">
+    <div class="note"><b>The rhythm:</b> click <b>Copy</b> &rarr; click into the black Terminal window &rarr; paste with <b>Command + V</b> &rarr; press <b>Enter</b>. That's it, every time. You never type the commands yourself.</div>
+
+    <div class="step">
+      <h2><span class="num">1</span> Open the Terminal</h2>
+      <div class="body">
+        Hold <b>Command</b> and tap <b>Spacebar</b>. Type <b>Terminal</b>. Press <b>Enter</b>.<br>
+        A black (or white) window opens - that's where everything goes.
+      </div>
+    </div>
+
+    <div class="step">
+      <h2><span class="num">2</span> Paste the update, press Enter</h2>
+      <div class="body">
+        Hit Copy below, click into the Terminal, paste with <b>Command + V</b>, press <b>Enter</b>.
+        <div class="cmd"><span class="t">curl -fsSL https://clinic-catalyst-au.github.io/cc-onboard/clinic-update.sh | bash</span></div>
+        <button class="copy" onclick="cp(this)">Copy the update command</button>
+        <div class="small">It runs for a moment and prints some text. When it says <b>DONE</b>, you're updated. If it ever says it couldn't download, check your wifi and paste it again.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <h2><span class="num">3</span> Open a fresh Claude</h2>
+      <div class="body">
+        <b>Fully quit Claude Code and open it again</b> - that's the important bit. New skills only show up in a brand-new Claude.<br>
+        In the Terminal you can just type <b>claude</b> and press Enter to start it fresh.
+      </div>
+    </div>
+
+    <div class="done">
+      <h2>That's you updated</h2>
+      <p>Your Claude now has the latest Clinic Catalyst skills. Nothing of yours was changed - just the toolkit.</p>
+    </div>
+
+    <div class="win">On a Windows PC instead? Use this in PowerShell:<br><code>irm https://clinic-catalyst-au.github.io/cc-onboard/clinic-update.ps1 | iex</code></div>
+    <div class="foot">Clinic Catalyst &middot; stuck on a step? Screenshot it and text Kelly.</div>
+  </div>
+<script>
+function cp(btn){
+  var t=btn.parentElement.querySelector('.t');var text=t?t.innerText:'';
+  navigator.clipboard.writeText(text).then(function(){
+    var old=btn.textContent;btn.textContent='Copied - now paste it in the Terminal';btn.classList.add('copied');
+    setTimeout(function(){btn.textContent=old;btn.classList.remove('copied');},2200);
+  });
+}
+</script>
+</body>
+</html>
