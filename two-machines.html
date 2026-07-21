@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Your system on two computers - Clinic Catalyst</title>
+<style>
+  :root{--ink:#1d2a28;--muted:#5d6b68;--paper:#f6f4ef;--card:#fff;--accent:#0f5a54;--accent-ink:#0a3d39;--line:#e2ddd3;--warn:#9a6a2f}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+  header{background:var(--accent-ink);color:#fff;padding:40px 22px;text-align:center}
+  .eyebrow{font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:#9dc4bf;font-weight:700}
+  header h1{margin:10px 0 8px;font-size:29px}
+  header p{margin:0 auto;max-width:600px;color:#cfe0dd;font-size:15.5px}
+  .wrap{max-width:840px;margin:0 auto;padding:26px 18px 90px}
+  h2{font-size:13.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent-ink);margin:40px 0 14px;display:flex;align-items:center;gap:10px}
+  h2::before{content:"";width:26px;height:2px;background:var(--accent);flex:0 0 26px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:14px 0}
+  .card h3{margin:0 0 6px;font-size:17px}
+  .card p{margin:0 0 12px;color:var(--muted);font-size:15px}
+  .card p:last-child{margin-bottom:0}
+  .step{display:flex;gap:15px;align-items:flex-start;margin:0 0 18px}
+  .step:last-child{margin-bottom:0}
+  .num{flex:0 0 auto;width:31px;height:31px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px;margin-top:2px}
+  .step h4{margin:3px 0 4px;font-size:16px}
+  .step p{margin:0 0 8px;color:var(--muted);font-size:14.8px}
+  .step p:last-child{margin-bottom:0}
+  code,.cmd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;background:#edf2f1;color:var(--accent-ink);border-radius:5px;padding:2px 7px;display:inline-block;word-break:break-all}
+  .cmdblock{background:#0f2b28;color:#d7ece8;border-radius:10px;padding:14px 16px;margin:10px 0;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;line-height:1.75;overflow-x:auto;white-space:pre;position:relative}
+  .cmdblock button{position:absolute;top:9px;right:9px;cursor:pointer;border:0;background:#2b5c56;color:#fff;font-size:11px;font-weight:700;padding:5px 11px;border-radius:5px}
+  .cmdblock button.done{background:#3f7d5b}
+  .note{background:#fff;border:1px solid var(--line);border-left:4px solid var(--warn);border-radius:9px;padding:15px 17px;margin:16px 0;font-size:14.5px}
+  .note b{color:var(--warn)}
+  .good{border-left-color:var(--accent)}
+  .good b{color:var(--accent-ink)}
+  .machine{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:#e2ecea;color:var(--accent-ink);border-radius:999px;padding:3px 11px;margin-bottom:10px}
+  table{width:100%;border-collapse:collapse;margin:8px 0;font-size:14.5px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .foot{text-align:center;color:var(--muted);font-size:13px;margin-top:40px;font-style:italic}
+  @media(max-width:560px){header h1{font-size:24px}}
+</style></head>
+<body>
+
+<header>
+  <div class="eyebrow">Clinic Catalyst</div>
+  <h1>Your system, on two computers</h1>
+  <p>Clinic: <b id="clinicName">your clinic</b>. One Business Brain, one set of skills, both machines always in step.</p>
+</header>
+
+<div class="wrap">
+
+  <div class="note good">
+    <b>The idea in one line.</b> Your skills get installed separately on each computer, and your Business Brain lives in
+    Dropbox so both computers read and write the same one. Change something on the laptop, it is already there on the desktop.
+  </div>
+
+  <h2>What lives where</h2>
+  <div class="card">
+    <table>
+      <tr><th>What</th><th>Where it lives</th><th>How it stays in step</th></tr>
+      <tr><td><b>Your skills</b><br><span style="color:var(--muted);font-size:13.5px">the /commands you type in Claude</span></td>
+          <td>On each computer, in <code>~/.claude/skills</code></td>
+          <td>Run the update command on each machine</td></tr>
+      <tr><td><b>Your Business Brain</b><br><span style="color:var(--muted);font-size:13.5px">your voice, offers, services, team</span></td>
+          <td>In Dropbox, linked to <code>~/Clinic</code></td>
+          <td>Dropbox syncs it automatically</td></tr>
+      <tr><td><b>Your GHL credentials</b></td>
+          <td><code>~/Clinic/Credentials/</code></td>
+          <td>Inside the Brain, so it syncs too</td></tr>
+      <tr><td><b>Claude Code itself</b></td>
+          <td>On each computer</td>
+          <td>Installed once per machine</td></tr>
+    </table>
+  </div>
+
+  <h2>Computer 1 - your main machine</h2>
+  <div class="card">
+    <span class="machine">Do this first, all the way through</span>
+    <div class="step"><div class="num">1</div><div>
+      <h4>Install the system</h4>
+      <p>Open Terminal and paste this. It takes 25 to 45 minutes, mostly downloading. You can keep working while it runs.</p>
+      <div class="cmdblock"><button onclick="cp(this)">Copy</button>curl -fsSL https://clinic-catalyst-au.github.io/cc-onboard/clinic-bootstrap.sh | bash</div>
+      <p>This installs Claude Code, the tools it needs, all your Clinic Catalyst skills, and creates your <code>~/Clinic</code> folder.</p>
+    </div></div>
+    <div class="step"><div class="num">2</div><div>
+      <h4>Sign in to Claude</h4>
+      <p>Close Terminal, open a fresh one, and type <code>claude</code>. Sign in with your own Claude account when it asks.</p>
+    </div></div>
+    <div class="step"><div class="num">3</div><div>
+      <h4>Move your Business Brain into Dropbox</h4>
+      <p>This is the step that makes two computers possible. Paste this in Terminal, one line at a time.</p>
+      <div class="cmdblock"><button onclick="cp(this)">Copy</button>mv ~/Clinic ~/Dropbox/Clinic
+ln -s ~/Dropbox/Clinic ~/Clinic</div>
+      <p>Your Brain now physically lives in Dropbox, but everything still finds it at <code>~/Clinic</code> exactly as before. Nothing you type changes.</p>
+    </div></div>
+    <div class="step"><div class="num">4</div><div>
+      <h4>Wait for Dropbox to finish syncing</h4>
+      <p>Check the Dropbox icon in your menu bar shows a green tick before you touch the second computer. This matters.</p>
+    </div></div>
+  </div>
+
+  <h2>Computer 2 - your other machine</h2>
+  <div class="card">
+    <span class="machine">Only after computer 1 has fully synced</span>
+    <div class="step"><div class="num">1</div><div>
+      <h4>Install Dropbox and let it sync</h4>
+      <p>Sign in to the same Dropbox account. Wait until you can see the <code>Clinic</code> folder with your files actually in it.</p>
+    </div></div>
+    <div class="step"><div class="num">2</div><div>
+      <h4>Install the system</h4>
+      <p>Same command as before. This machine needs its own copy of Claude Code and the skills.</p>
+      <div class="cmdblock"><button onclick="cp(this)">Copy</button>curl -fsSL https://clinic-catalyst-au.github.io/cc-onboard/clinic-bootstrap.sh | bash</div>
+    </div></div>
+    <div class="step"><div class="num">3</div><div>
+      <h4>Point this machine at the shared Brain</h4>
+      <p>The install made a fresh empty <code>~/Clinic</code> here. Replace it with a link to the Dropbox one.</p>
+      <div class="cmdblock"><button onclick="cp(this)">Copy</button>rm -rf ~/Clinic
+ln -s ~/Dropbox/Clinic ~/Clinic</div>
+      <div class="note"><b>Check before you run this.</b> Only delete <code>~/Clinic</code> on the second computer, and only if it is the empty one the installer just made. If you have real work in it, move that into Dropbox first instead.</div>
+    </div></div>
+    <div class="step"><div class="num">4</div><div>
+      <h4>Sign in to Claude and test it</h4>
+      <p>Open Terminal, type <code>claude</code>, sign in, then ask it something about your clinic. If it knows your offers and your voice, both machines are sharing one Brain and you are done.</p>
+    </div></div>
+  </div>
+
+  <h2>Keeping both machines current</h2>
+  <div class="card">
+    <h3>When new skills land</h3>
+    <p>Run this on <b>each</b> computer. It only refreshes the skills and never touches your Business Brain or your own work.</p>
+    <div class="cmdblock"><button onclick="cp(this)">Copy</button>curl -fsSL https://clinic-catalyst-au.github.io/cc-onboard/clinic-update.sh | bash</div>
+    <p>Then close and reopen Claude Code so the new skills register.</p>
+    <p style="margin-top:14px"><b>Windows machine?</b> Use these instead:</p>
+    <div class="cmdblock"><button onclick="cp(this)">Copy</button>irm https://clinic-catalyst-au.github.io/cc-onboard/clinic-bootstrap.ps1 | iex
+irm https://clinic-catalyst-au.github.io/cc-onboard/clinic-update.ps1 | iex</div>
+  </div>
+
+  <h2>Good habits with two computers</h2>
+  <div class="card">
+    <p><b>Do not run Claude on both machines at the same moment</b> on the same files. Dropbox is quick but it is not instant, and two Claudes writing at once is how you end up with a conflicted copy.</p>
+    <p><b>Let Dropbox settle before you switch machines.</b> Green tick, then move.</p>
+    <p><b>If you ever see a "conflicted copy" file,</b> open both, keep the newer one, delete the other. Nothing is lost, it just means both machines wrote at once.</p>
+    <p><b>Update the skills on both machines on the same day.</b> Otherwise one computer has commands the other does not.</p>
+  </div>
+
+  <div class="note">
+    <b>Stuck at any point?</b> Do not push through it. Use your help page - the chat on it comes straight to Kelly, and she can see exactly where you are up to.
+    <div style="margin-top:9px"><a id="helpLink" href="https://clinic-catalyst-au.github.io/cc-onboard/client-install.html" style="color:var(--accent-ink);font-weight:700">Open your help page</a></div>
+  </div>
+
+  <p class="foot">Built with Clinic Catalyst - your system, running for you.</p>
+</div>
+
+<script>
+const P = new URLSearchParams(location.search);
+const C = (P.get("c") || "").trim();
+const N = (P.get("name") || "").trim();
+if (N) document.getElementById("clinicName").textContent = N;
+if (C) {
+  document.getElementById("helpLink").href =
+    "https://clinic-catalyst-au.github.io/cc-onboard/client-install.html?c=" +
+    encodeURIComponent(C) + (N ? "&name=" + encodeURIComponent(N) : "");
+}
+function cp(btn){
+  var t = btn.parentElement.textContent.replace(/^Copy/, "").trim();
+  var done = function(){ btn.textContent = "Copied"; btn.classList.add("done");
+    setTimeout(function(){ btn.textContent = "Copy"; btn.classList.remove("done"); }, 1500); };
+  if (navigator.clipboard) { navigator.clipboard.writeText(t).then(done).catch(function(){}); }
+}
+</script>
+</body></html>
