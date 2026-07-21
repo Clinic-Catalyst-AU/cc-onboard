@@ -58,6 +58,15 @@ h2::before{content:"";width:26px;height:2px;background:var(--accent)}
       <span class="url" id="installUrl">clinic-catalyst-au.github.io/cc-onboard/client-install.html</span></div>
     <div class="skill" id="recCard" style="display:none"><b>Rewatch your session</b><span>Your whole walkthrough with Kelly, any time you want it.</span>
       <a id="recLink" href="#" target="_blank" rel="noopener">Watch the recording</a></div>
+    <div class="skill"><b>Your system on two computers</b><span>Install it on a second machine so both share one Business Brain.</span>
+      <a id="twoLink" href="https://clinic-catalyst-au.github.io/cc-onboard/two-machines.html">Open the two-computer guide</a>
+      <span class="url" id="twoUrl">clinic-catalyst-au.github.io/cc-onboard/two-machines.html</span></div>
+    <div class="skill" id="kbCard" style="display:none"><b>Your knowledge base</b><span>Download it and drop it into your Claude so it knows your clinic.</span>
+      <a id="kbLink" href="#" target="_blank" rel="noopener">Download your knowledge base</a></div>
+    <div class="skill" id="cfgCard" style="display:none"><b>What's inside your AI agents</b><span>Every block loaded into your GHL bot and voice agent, in one place.</span>
+      <a id="cfgLink" href="#" target="_blank" rel="noopener">See your agent setup</a></div>
+    <div class="skill" id="nlCard" style="display:none"><b>Your newsletter, to approve</b><span>The month's four emails - read them and tell Kelly what to change.</span>
+      <a id="nlLink" href="#" target="_blank" rel="noopener">Read your newsletter</a></div>
   </div>
 
   <h2>The heart of it</h2>
@@ -132,10 +141,19 @@ const C = (P.get("c") || "").trim();
 const N = (P.get("name") || "").trim();
 if (N) { const el = document.getElementById("clinicName"); el.textContent = N; el.style.borderBottom = "none"; el.style.fontWeight = "700"; }
 if (C) {
-  const u = "https://clinic-catalyst-au.github.io/cc-onboard/client-install.html?c=" + encodeURIComponent(C) + (N ? "&name=" + encodeURIComponent(N) : "");
+  const q = "?c=" + encodeURIComponent(C) + (N ? "&name=" + encodeURIComponent(N) : "");
+  const u = "https://clinic-catalyst-au.github.io/cc-onboard/client-install.html" + q;
   document.getElementById("installLink").href = u;
   document.getElementById("installUrl").textContent = u.replace("https://", "");
+  const t = "https://clinic-catalyst-au.github.io/cc-onboard/two-machines.html" + q;
+  document.getElementById("twoLink").href = t;
+  document.getElementById("twoUrl").textContent = t.replace("https://", "");
 }
+// optional per-client extras - each card only appears if its link is passed in
+[["kb","kbCard","kbLink"],["cfg","cfgCard","cfgLink"],["nl","nlCard","nlLink"]].forEach(function(x){
+  const v = (P.get(x[0]) || "").trim();
+  if (v) { document.getElementById(x[2]).href = v; document.getElementById(x[1]).style.display = ""; }
+});
 const R = (P.get("rec") || "").trim();   // optional session recording link (url-encoded)
 if (R) {
   document.getElementById("recLink").href = R;
