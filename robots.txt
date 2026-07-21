@@ -1,5 +1,6 @@
 User-agent: *
 Disallow: /ndi-newsletter-approval.html
+Disallow: /ndi-agent-config.html
 Disallow: /mandi-newsletter-review.html
 Disallow: /mandi-reactivation-approval.html
 Disallow: /esha-newsletter-preview.html
