@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /marie-agent-config.html
 Disallow: /ndi-newsletter-approval.html
 Disallow: /ndi-agent-config.html
 Disallow: /mandi-newsletter-review.html
