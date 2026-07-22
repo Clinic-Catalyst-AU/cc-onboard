@@ -3,6 +3,7 @@ Disallow: /marie-agent-config.html
 Disallow: /marie-knowledge-base.md
 Disallow: /marie-newsletter-review.html
 Disallow: /julia-agent-config.html
+Disallow: /simply-aesthetics-knowledge-base.md
 Disallow: /ndi-newsletter-approval.html
 Disallow: /ndi-agent-config.html
 Disallow: /mandi-newsletter-review.html
