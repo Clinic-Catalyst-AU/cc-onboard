@@ -39,8 +39,22 @@ const URL_ = "https://jiquevvzrdavgqonvvug.supabase.co/rest/v1/cc_client_helplin
 const KEY = "sb_publishable_siNrWACQh9utYNJ_g6Mt3Q_vWuxhkaJ";
 const H = {"apikey": KEY, "Authorization": "Bearer " + KEY, "Content-Type": "application/json"};
 const TEAM = ["kelly","claude","alicia","team"];
-const NAMES = {"esha":"Esha Medi Spa (Amanda)","skin-haven":"Skin Haven (Rachel)","you-beauty":"You Beauty (Liam + Amanda)","bonnie-lass":"Bonnie Lass (Tracey + Rhiannon)","amor-sui":"Amor Sui (Charm)","simply-aesthetics":"Simply Aesthetics (Julia)"};
-const ROSTER = ["esha","skin-haven","you-beauty","bonnie-lass"];
+// Every clinic gets a permanent panel whether they have messaged or not, so nobody
+// is invisible until they happen to type. Slug MUST match the ?c= value on the
+// client-install link that clinic was actually sent, or their messages land under
+// a slug with no name and no panel.
+const NAMES = {
+  "esha":"Esha Medi Spa (Amanda)",
+  "skin-haven":"Skin Haven (Rachel)",
+  "you-beauty":"You Beauty (Liam + Amanda)",
+  "bonnie-lass":"Bonnie Lass (Tracey + Rhiannan)",
+  "amor-sui":"Amor Sui (Charm)",
+  "simply-aesthetics":"Simply Aesthetics (Julia)",
+  "marie":"Facetology RN (Marie)",
+  "mandi":"Dr Mandi Cosmetics (Mandeep)",
+  "ndi":"NDI Cosmetic Nurse (Nikki)"
+};
+const ROSTER = ["esha","skin-haven","you-beauty","bonnie-lass","amor-sui","simply-aesthetics","marie","mandi","ndi"];
 const seenKey = c => "cc-cmd-lastseen-" + c;
 let rows = [], openClinic = (location.hash||"").replace("#","") || null;
 // Keep half-typed replies alive. render() wipes the board and rebuilds every
