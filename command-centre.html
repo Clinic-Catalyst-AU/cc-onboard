@@ -43,6 +43,10 @@ const NAMES = {"esha":"Esha Medi Spa (Amanda)","skin-haven":"Skin Haven (Rachel)
 const ROSTER = ["esha","skin-haven","you-beauty","bonnie-lass"];
 const seenKey = c => "cc-cmd-lastseen-" + c;
 let rows = [], openClinic = (location.hash||"").replace("#","") || null;
+// Keep half-typed replies alive. render() wipes the board and rebuilds every
+// textarea, so without this the 5s refresh deletes whatever you were mid-way
+// through writing and drops your cursor.
+const drafts = {};
 
 function pretty(c){ return NAMES[c] || (c||"unknown").replace(/-/g," ").replace(/\b\w/g, m=>m.toUpperCase()); }
 function isTeam(s){ return TEAM.includes((s||"").trim().toLowerCase()); }
@@ -102,12 +106,14 @@ function render(){
       if (openClinic === c){ const t = document.querySelector(".clinic.open .thread"); if(t) t.scrollTop = t.scrollHeight; }
     };
     const ta = div.querySelector("textarea"), btn = div.querySelector("button");
+    ta.value = drafts[c] || "";
+    ta.addEventListener("input", () => { drafts[c] = ta.value; });
     btn.onclick = async () => {
       const text = ta.value.trim(); if (!text) return;
       btn.disabled = true; btn.textContent = "...";
       try{
         await fetch(URL_, {method:"POST", headers:H, body: JSON.stringify({client:c, sender:"Kelly", message:text})});
-        ta.value = "";
+        ta.value = ""; drafts[c] = "";
         await load();
       } finally { btn.disabled = false; btn.textContent = "Send"; }
     };
@@ -122,6 +128,13 @@ function render(){
 }
 
 load();
-setInterval(load, 5000);
+// Never re-render while Kelly is actually typing. Restoring the draft text is not
+// enough on its own - rebuilding the node still steals focus and the caret mid-word.
+// Skip the cycle instead; the next one picks up any new messages a moment later.
+setInterval(() => {
+  const a = document.activeElement;
+  if (a && a.tagName === "TEXTAREA") return;
+  load();
+}, 5000);
 </script>
 </body></html>
