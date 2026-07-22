@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Amor Sui Aesthetic Clinic - Session Facilitator Guide</title>
+<style>
+body{margin:0;background:#f6f4ef;color:#1d2a28;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+.eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#0a3d39;font-weight:700;text-align:center}
+h1{font-size:25px;margin:6px 0 2px;text-align:center}
+.sub{color:#5d6b68;font-size:14px;margin:0 0 24px;text-align:center}
+h2{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#0a3d39;margin:26px 0 10px;display:flex;align-items:center;gap:10px}
+h2::before{content:"";width:26px;height:2px;background:#0f5a54}
+.card{background:#fff;border:1px solid #e2ddd3;border-radius:12px;padding:14px 17px;margin-bottom:10px;font-size:14.5px}
+.card ul{margin:6px 0 0;padding-left:20px}
+.card li{margin:5px 0}
+.card p{margin:0 0 6px}
+.done{background:#e5f2ec;border-color:#bcdccd}
+.todo{background:#fbf6ec;border-color:#e6d7b3}
+.linkrow{display:flex;align-items:center;gap:8px;background:#edf2f1;border-radius:8px;padding:7px 10px;margin:6px 0;font-size:12.5px}
+.linkrow .u{font-family:ui-monospace,Menlo,monospace;flex:1;word-break:break-all;color:#0a3d39}
+.linkrow .lbl{font-weight:700;flex:0 0 auto;font-size:12px}
+.linkrow button{flex:0 0 auto;background:#0a3d39;color:#fff;border:0;border-radius:6px;padding:4px 12px;font-size:12px;font-weight:700;cursor:pointer}
+.linkrow button.ok{background:#2e7d5b}
+.warn{background:#fdeeea;border-left:3px solid #a33d2a;padding:9px 12px;border-radius:0 8px 8px 0;font-size:13.5px;margin:8px 0}
+.say{background:#f3f7f6;border-left:3px solid #0f5a54;padding:8px 12px;border-radius:0 8px 8px 0;font-style:italic;font-size:13.5px;margin:8px 0}
+.cmd{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;background:#edf2f1;border-radius:6px;padding:1px 6px}
+.time{margin-left:auto;font-size:11px;color:#8a9793;font-weight:600;letter-spacing:.05em}
+</style></head>
+<body><div class="wrap">
+<div class="eyebrow">Clinic Catalyst - internal</div>
+<h1>Amor Sui Aesthetic Clinic - session facilitator guide</h1>
+<p class="sub">Charm Sarical, RN &middot; 18 Window Road, Tarneit VIC &middot; <b>GHL booking, not Timely</b> &middot; recorded walkthrough, filmed 22 Jul 2026</p>
+
+<div class="warn">Charm is the <b>least technical client in the batch</b> - you took over her setup and built it <i>for</i> her. Pitch everything at "here is what it does and the one button you press", never at how it works. <b>Deliberately leave out Skill Creator and the Meta-ads connection doc</b> - same call you made on Marie's session. Her revenue is currently $0 with a 29-new-patients-a-month target, so the whole session should feel like relief, not homework.</div>
+
+<h2>Already done - tell her, don't rebuild</h2>
+<div class="card done">
+  <ul>
+    <li><b>Business Brain built</b> and sitting in her Dropbox client folder.</li>
+    <li><b>Conversational bot + voice agent</b> - AHPRA-clean, booking-capable, CTAs run off <span class="cmd">{{custom_values.booking_link}}</span>.</li>
+    <li><b>Booking router across all 23 calendars</b> - global AI booking description plus per-calendar keywords.</li>
+    <li><b>August newsletter loaded and verified live</b> - 4/4 templates and 4/4 subject custom values, now carrying her own photos and two clips.</li>
+    <li><b>Her GHL key stored and tested live.</b></li>
+  </ul>
+</div>
+
+<h2>Not built yet - do not imply these are running</h2>
+<div class="card todo">
+  <ul>
+    <li><b>Reactivation campaign</b> - workflow is in her GHL, copy not written or loaded. Needs her offer first.</li>
+    <li><b>Follow-up ladder</b> - same, workflow present, content not loaded.</li>
+    <li>Frame both as "next, once you tell me the offer", not as live.</li>
+  </ul>
+</div>
+
+<h2>1 - Open: the links you are sending her <span class="time">~3 min</span></h2>
+<div class="card">
+  <div class="linkrow"><span class="lbl">Walkthrough hub</span><span class="u">https://clinic-catalyst-au.github.io/cc-onboard/walkthrough.html?c=amor-sui&amp;name=Amor+Sui</span><button>Copy</button></div>
+  <div class="linkrow"><span class="lbl">Kelly HELP!</span><span class="u">https://clinic-catalyst-au.github.io/cc-onboard/client-install.html?c=amor-sui&amp;name=Amor+Sui</span><button>Copy</button></div>
+  <div class="linkrow"><span class="lbl">Skill library</span><span class="u">https://clinic-catalyst-au.github.io/skill-library/</span><button>Copy</button></div>
+  <div class="linkrow"><span class="lbl">Newsletter review</span><span class="u">https://clinic-catalyst-au.github.io/cc-onboard/amor-sui-newsletter-review.html</span><button>Copy</button></div>
+  <p style="margin:8px 0 0;font-size:13px;color:#5d6b68">Operator console (do NOT send): add <span class="cmd">&amp;as=Kelly</span> to her Kelly HELP! link and you can type into her chat live.</p>
+  <div class="say">"Bookmark two things: this hub, and Kelly HELP! Everything else you can find from there."</div>
+</div>
+
+<h2>2 - Access + the Brain <span class="time">~6 min</span></h2>
+<div class="card">
+  <ul>
+    <li>You are in her GHL so you never need a login code again - and she can remove you whenever she likes.</li>
+    <li>API keys are generated, you will send them. Her job: paste into Claude when they arrive.</li>
+    <li>The Business Brain is the source of truth for offers, voice and content.</li>
+    <li>How to hand it a file: download, drag into the terminal, tell Claude to file it in the Brain.</li>
+  </ul>
+  <div class="say">"Every time Claude nails something, tell it to update your business brain. Every time. One client forgot and lost the quality two sessions later."</div>
+</div>
+
+<h2>3 - Her booking system (Charm-specific) <span class="time">~10 min</span></h2>
+<div class="card">
+  <ul>
+    <li>The 23 calendars and the router logic: <b>new client</b> goes to the offer or a consult, never straight into a treatment. <b>Existing client</b> books the named treatment.</li>
+    <li><b>Injectables, PRP and skin boosters</b> route to New Patient Consultation, no price shown.</li>
+    <li>Settings &gt; Custom Values - the booking link fields that auto-pull into generated copy.</li>
+  </ul>
+  <div class="warn">Say out loud: links wired <i>into the agents</i> need a manual update or a message to you. The custom-values ones update easily. This is the bit clients get wrong later.</div>
+</div>
+
+<h2>4 - Newsletter, the centrepiece <span class="time">~12 min</span></h2>
+<div class="card">
+  <ul>
+    <li>Open the review link above and walk her through all four, including her own video and photos.</li>
+    <li>Her <b>only</b> recurring job: <span class="cmd">/cc-newsletter-engine</span> on the 22nd of each month.</li>
+    <li>She reviews and approves before anything sends.</li>
+    <li>Media: upload to GHL media storage, hand Claude the link.</li>
+  </ul>
+  <div class="say">"You're not in here. You are never going to be in here. Do not touch this. Leave it alone."</div>
+  <div class="warn">Week 3 carries a patient before/after. <b>It must not send until Charm confirms in writing that the client agreed to marketing use.</b> Weekly cadence gives roughly a fortnight of buffer. Ask her on camera.</div>
+</div>
+
+<h2>5 - The agents <span class="time">~12 min</span></h2>
+<div class="card">
+  <ul>
+    <li>Knowledge base - 20 AHPRA-safe FAQ pairs plus the site crawl. When offers change, ask Claude "do I need to update my GHL knowledge base?", delete the old file, upload the new one.</li>
+    <li>Live demo: send a test DM, show the drafted reply land in Conversations.</li>
+    <li>Bot training sandbox - where she refines answers.</li>
+    <li>Voice agent - sample voice, points at the current offer, updatable seasonally. Phone diversion on back-to-back client days.</li>
+  </ul>
+  <div class="say">"She is in suggestive mode. She drafts, you approve. Nothing sends on its own until you tell me you are ready."</div>
+  <div class="warn">Say the gap out loud: <b>GHL does not read the Business Brain.</b> Changes flow Brain, then Claude, then regenerated file, then re-upload.</div>
+</div>
+
+<h2>6 - Skills in the terminal <span class="time">~15 min</span></h2>
+<div class="card">
+  <ul>
+    <li>Getting found: keyword research first, then <span class="cmd">/cc-geo-seo</span>, <span class="cmd">/cc-website-audit</span>, <span class="cmd">/cc-ad-spy</span>.</li>
+    <li><span class="cmd">/stoptheslop</span> - your most-used skill. Pair with <span class="cmd">/cc-marketing-genius</span> for any copy.</li>
+    <li><span class="cmd">/cc-content-engine</span> - raw footage in, brand-colour captions, finished folder out. She picks: publish direct, GHL draft for approval, or autopilot later.</li>
+    <li>Social planner - where drafts land. Instagram and Facebook connected.</li>
+    <li><span class="cmd">/cc-campaign-engine</span> - 15 Meta creatives plus the copy sheet. Replaces Canva. ~38 min to run, she does not need to sit there.</li>
+    <li><span class="cmd">Cmd+N</span> for multiple terminals at once.</li>
+    <li><span class="cmd">/cc-shutdown</span> at the end of every session so Claude learns.</li>
+  </ul>
+</div>
+
+<h2>7 - Support and updates <span class="time">~5 min</span></h2>
+<div class="card">
+  <ul>
+    <li>Updates: paste the command, press <span class="cmd">1</span> through the prompts, then <span class="cmd">/exit</span> and reopen.</li>
+    <li>Kelly HELP! - paste the conversation or a screenshot, hit send, it pings your Telegram.</li>
+    <li>Your surgery and recovery, and that you would rather she bugs you than suffers in silence.</li>
+    <li>Build with Kel sessions once you are back.</li>
+  </ul>
+  <div class="warn">The <span class="cmd">/exit</span> and reopen is the step everyone skips, and then the update has not applied. Say it twice.</div>
+  <div class="say">"It's going to ask you to trust the folder every time. It's annoying. It won't stop. Just say yes."</div>
+</div>
+
+<h2>8 - Ask her these on camera <span class="time">~3 min</span></h2>
+<div class="card todo">
+  <ul>
+    <li><b>Opening hours</b> - not in the Brain. The agent routes to the team until they are set.</li>
+    <li><b>Winter Skin Reset price</b> - $180 intro or $200? Week 4 currently says $180, usually $200.</li>
+    <li><b>Before/after consent</b> - written okay from that client before week 3 sends.</li>
+    <li><b>The two overlapping Skin Roadmap calendars</b> - keep both, or just the $49 one?</li>
+    <li><b>Her reactivation offer</b> - and whether it is the same as her ad offer (fine if it is). Steer to value stacking, not discounting.</li>
+    <li><b>Her skincare suppliers</b> - so we can ask for sample kits for a take-home pack in the reactivation stack.</li>
+  </ul>
+</div>
+
+<h2>9 - Close <span class="time">~2 min</span></h2>
+<div class="card">
+  <ul>
+    <li>Her monthly rhythm: <span class="cmd">/cc-newsletter-engine</span> on the 22nd, <span class="cmd">/cc-content-engine</span> for posts, update the booking link when the offer changes.</li>
+    <li>What you still owe her: reactivation copy, the follow-up ladder, and the answers to whatever she asks back.</li>
+    <li>What she owes you: the six answers above.</li>
+  </ul>
+  <div class="say">"You've got the whole engine running already. The only thing on your list is the 22nd of each month, and one button. Everything else is me."</div>
+</div>
+
+<script>
+document.querySelectorAll(".linkrow button").forEach(b=>{b.onclick=()=>{navigator.clipboard.writeText(b.previousElementSibling.textContent);b.textContent="Copied";b.classList.add("ok");setTimeout(()=>{b.textContent="Copy";b.classList.remove("ok")},1500)}});
+</script>
+</body></html>
