@@ -12,3 +12,4 @@ Disallow: /mandi-reactivation-approval.html
 Disallow: /esha-newsletter-preview.html
 Disallow: /esha-reactivation-draft.html
 Disallow: /amor-sui-newsletter-review.html
+Disallow: /simply-aesthetics-reactivation-approval.html
