@@ -4,17 +4,21 @@
 .page{max-width:680px;margin:0 auto;padding:24px 16px 70px}
 .head{background:#1d2a28;color:#fff;border-radius:12px;padding:24px;margin-bottom:18px}
 .head h1{margin:0 0 6px;font-size:20px}.head p{margin:0;color:#c9c8c6;font-size:14px;line-height:1.5}
-.wklabel{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#E6C2BF;font-weight:700;margin:0 2px 8px}
+.wklabel{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#E6C2BF;font-weight:700;margin:0 2px 8px;display:flex;align-items:center;gap:8px}
 .subj{background:#fff;border:1px solid #d9d6d2;border-radius:8px 8px 0 0;padding:11px 15px;font-size:13px}
 .subj .pv{color:#7a7772;display:block;margin-top:3px;font-size:12.5px}
 .email{background:#fff;border:1px solid #d9d6d2;border-top:0;border-radius:0 0 10px 10px}
-.smswrap{margin:0 0 22px}.smslabel{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#3f7d5b;font-weight:700;margin:0 2px 6px}
+.smswrap{margin:0 0 22px}.smslabel{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#3f7d5b;font-weight:700;margin:0 2px 6px;display:flex;align-items:center;gap:8px}
 .sms{background:#e7f3dd;border:1px solid #cfe6bd;border-radius:4px 16px 16px 16px;padding:12px 16px;font-size:14px;color:#233318;max-width:80%;line-height:1.5}
-.wk{margin:0 0 22px}</style></head><body><div class="page">
+.wk{margin:0 0 22px}
+.copybtn{cursor:pointer;border:1px solid #E6C2BF;background:#E6C2BF;color:#1A1A1A;font-size:10.5px;font-weight:700;letter-spacing:0;text-transform:none;padding:3px 10px;border-radius:5px}
+.copybtn.done{background:#3f7d5b;border-color:#3f7d5b;color:#fff}
+.subj .copybtn{float:right}</style></head><body><div class="page">
 <div class="head"><h1>Simply Aesthetics - reactivation campaign</h1>
-<p>Draft for approval. Ten touch points (5 texts + 5 emails, alternating) welcoming past clients back. Nothing sends until you say yes. Texts send once the clinic mobile number is added; emails work now.</p></div>
-<div class="smswrap"><div class="smslabel">Touch 1 &middot; Text</div><div class="sms">Hi [first name], it&#x27;s Julia from Simply Aesthetics. It&#x27;s been a while, no catching up needed, just wanted you to know there&#x27;s something for you when you&#x27;re ready to come back in: https://bookings.gettimely.com/simplyaesthetics4/bb/book x</div></div>
-<div class="wk"><div class="wklabel">Touch 2 &middot; Email 1 &middot; Reveal</div><div class="subj"><b>Subject:</b> It&#x27;s been a while, and that&#x27;s completely fine<span class="pv">Preview: No catching up needed, just an easy way back in whenever you&#x27;re ready.</span></div><div class="email"><div style="margin:0;padding:0;background:#F5EFED">
+<p>Draft for approval. Ten touch points (5 texts + 5 emails, alternating) welcoming past clients back. Nothing sends until you say yes. Texts send once the clinic mobile number is added; emails work now.</p>
+<p>Every Copy button copies the real GHL merge fields ({{contact.first_name}}, {{custom_values.reactivation_offer}}), ready to paste straight into a workflow step.</p></div>
+<div class="smswrap"><div class="smslabel">Touch 1 &middot; Text<button class="copybtn" onclick="cp(this)" data-copy="Hi {{contact.first_name}}, it&#x27;s Julia from Simply Aesthetics. It&#x27;s been a while, no catching up needed, just wanted you to know there&#x27;s something for you when you&#x27;re ready to come back in: {{custom_values.reactivation_offer}} x">Copy</button></div><div class="sms">Hi {{contact.first_name}}, it&#x27;s Julia from Simply Aesthetics. It&#x27;s been a while, no catching up needed, just wanted you to know there&#x27;s something for you when you&#x27;re ready to come back in: https://bookings.gettimely.com/simplyaesthetics4/bb/book x</div></div>
+<div class="wk"><div class="wklabel">Touch 2 &middot; Email 1 &middot; Reveal</div><div class="subj"><button class="copybtn" onclick="cp(this)" data-copy="It&#x27;s been a while, and that&#x27;s completely fine">Copy subject</button><b>Subject:</b> It&#x27;s been a while, and that&#x27;s completely fine<span class="pv">Preview: No catching up needed, just an easy way back in whenever you&#x27;re ready.</span></div><div class="email"><div style="margin:0;padding:0;background:#F5EFED">
 <div style="max-width:600px;margin:0 auto;background:#FFFFFF">
   <div style="height:6px;background:#E6C2BF"></div>
   <div style="padding:30px 34px 6px">
@@ -22,7 +26,7 @@
     <h1 style="margin:12px 0 0;font-family:Georgia,'Times New Roman',serif;font-size:26px;line-height:1.25;font-weight:400;color:#1A1A1A">It's been a while, and that's completely fine</h1>
   </div>
   <div style="padding:20px 34px 30px;font-family:Helvetica,Arial,sans-serif;font-size:15.5px;line-height:1.68;color:#33302F">
-    <p style="margin:0 0 16px">Hi [first name],</p>
+    <p style="margin:0 0 16px">Hi {{contact.first_name}},</p>
     <img src="https://clinic-catalyst-au.github.io/cc-onboard/media/simply-aesthetics/julia-reveal.jpg" alt="Julia Johnson, RN, Simply Aesthetics" width="240" style="display:block;width:100%;max-width:240px;height:auto;border-radius:8px;margin:0 auto 20px">
     <p style="margin:0 0 16px">It has been a little while since we've seen each other, and I wanted to reach out properly rather than let it just drift.</p>
     <p style="margin:0 0 16px">A few things have grown at Simply Aesthetics since your last visit, the menu now covers Injectables, Skin Needling, and Skincare and Sunscreen too. What hasn't changed is how I work, or the fact that I'm still right here on the Peninsula, one honest conversation first, always, and no pressure to book anything on the day.</p>
@@ -39,8 +43,8 @@
   </div>
 </div>
 </div></div></div>
-<div class="smswrap"><div class="smslabel">Touch 3 &middot; Text</div><div class="sms">Hi [first name], there&#x27;s a free full sized Airyday sunscreen waiting for you with any treatment over $250 at the moment, the one I actually use myself. Book whenever suits: https://bookings.gettimely.com/simplyaesthetics4/bb/book x</div></div>
-<div class="wk"><div class="wklabel">Touch 4 &middot; Email 2 &middot; Offer</div><div class="subj"><b>Subject:</b> The sunscreen I actually use myself<span class="pv">Preview: My own everyday sunscreen, on me, when you book any treatment over $250.</span></div><div class="email"><div style="margin:0;padding:0;background:#F5EFED">
+<div class="smswrap"><div class="smslabel">Touch 3 &middot; Text<button class="copybtn" onclick="cp(this)" data-copy="Hi {{contact.first_name}}, there&#x27;s a free full sized Airyday sunscreen waiting for you with any treatment over $250 at the moment, the one I actually use myself. Book whenever suits: {{custom_values.reactivation_offer}} x">Copy</button></div><div class="sms">Hi {{contact.first_name}}, there&#x27;s a free full sized Airyday sunscreen waiting for you with any treatment over $250 at the moment, the one I actually use myself. Book whenever suits: https://bookings.gettimely.com/simplyaesthetics4/bb/book x</div></div>
+<div class="wk"><div class="wklabel">Touch 4 &middot; Email 2 &middot; Offer</div><div class="subj"><button class="copybtn" onclick="cp(this)" data-copy="The sunscreen I actually use myself">Copy subject</button><b>Subject:</b> The sunscreen I actually use myself<span class="pv">Preview: My own everyday sunscreen, on me, when you book any treatment over $250.</span></div><div class="email"><div style="margin:0;padding:0;background:#F5EFED">
 <div style="max-width:600px;margin:0 auto;background:#FFFFFF">
   <div style="height:6px;background:#E6C2BF"></div>
   <div style="padding:30px 34px 6px">
@@ -48,7 +52,7 @@
     <h1 style="margin:12px 0 0;font-family:Georgia,'Times New Roman',serif;font-size:26px;line-height:1.25;font-weight:400;color:#1A1A1A">The sunscreen I actually use myself</h1>
   </div>
   <div style="padding:20px 34px 30px;font-family:Helvetica,Arial,sans-serif;font-size:15.5px;line-height:1.68;color:#33302F">
-    <p style="margin:0 0 16px">Hi [first name],</p>
+    <p style="margin:0 0 16px">Hi {{contact.first_name}},</p>
     <img src="https://clinic-catalyst-au.github.io/cc-onboard/media/simply-aesthetics/airyday-sunscreen.jpg" alt="Airyday Pretty in Zinc Dreamscreen SPF 50+" width="240" style="display:block;width:100%;max-width:240px;height:auto;border-radius:8px;margin:0 auto 20px">
     <p style="margin:0 0 16px">Airyday is the sunscreen I reach for myself, every day. Light, breathable, and it sits well under makeup, which after years of trying nearly everything on the market is not a small thing to say.</p>
     <div style="margin:0 0 18px;padding:18px 20px;background:#F5EFED;border-radius:8px;border-left:4px solid #E6C2BF"><strong style="font-weight:700;color:#1A1A1A">The offer</strong><br>A full sized Airyday sunscreen, on me, when you book any treatment over $250. No small print, no strings attached.</div>
@@ -65,8 +69,8 @@
   </div>
 </div>
 </div></div></div>
-<div class="smswrap"><div class="smslabel">Touch 5 &middot; Text</div><div class="sms">Hi [first name], no pressure at all, just wanted to say hello and let you know the door&#x27;s always open here: https://bookings.gettimely.com/simplyaesthetics4/bb/book x</div></div>
-<div class="wk"><div class="wklabel">Touch 6 &middot; Email 3 &middot; Connect</div><div class="subj"><b>Subject:</b> What I wish more people knew about coming here<span class="pv">Preview: The honest version, not the marketing version, of why I do this the way I do.</span></div><div class="email"><div style="margin:0;padding:0;background:#F5EFED">
+<div class="smswrap"><div class="smslabel">Touch 5 &middot; Text<button class="copybtn" onclick="cp(this)" data-copy="Hi {{contact.first_name}}, no pressure at all, just wanted to say hello and let you know the door&#x27;s always open here: {{custom_values.reactivation_offer}} x">Copy</button></div><div class="sms">Hi {{contact.first_name}}, no pressure at all, just wanted to say hello and let you know the door&#x27;s always open here: https://bookings.gettimely.com/simplyaesthetics4/bb/book x</div></div>
+<div class="wk"><div class="wklabel">Touch 6 &middot; Email 3 &middot; Connect</div><div class="subj"><button class="copybtn" onclick="cp(this)" data-copy="What I wish more people knew about coming here">Copy subject</button><b>Subject:</b> What I wish more people knew about coming here<span class="pv">Preview: The honest version, not the marketing version, of why I do this the way I do.</span></div><div class="email"><div style="margin:0;padding:0;background:#F5EFED">
 <div style="max-width:600px;margin:0 auto;background:#FFFFFF">
   <div style="height:6px;background:#E6C2BF"></div>
   <div style="padding:30px 34px 6px">
@@ -74,7 +78,7 @@
     <h1 style="margin:12px 0 0;font-family:Georgia,'Times New Roman',serif;font-size:26px;line-height:1.25;font-weight:400;color:#1A1A1A">What I wish more people knew about coming here</h1>
   </div>
   <div style="padding:20px 34px 30px;font-family:Helvetica,Arial,sans-serif;font-size:15.5px;line-height:1.68;color:#33302F">
-    <p style="margin:0 0 16px">Hi [first name],</p>
+    <p style="margin:0 0 16px">Hi {{contact.first_name}},</p>
     <img src="https://clinic-catalyst-au.github.io/cc-onboard/media/simply-aesthetics/julia-connect.jpg" alt="Julia Johnson sharing a laugh at Simply Aesthetics" width="240" style="display:block;width:100%;max-width:240px;height:auto;border-radius:8px;margin:0 auto 20px">
     <p style="margin:0 0 16px">I got into this work because I wanted women to feel like themselves, not like they had done something they needed to hide.</p>
     <p style="margin:0 0 16px">I have sat in those clinics myself, the ones that rush you into deciding on the day before you have had time to think. That is exactly what I did not want to build here.</p>
@@ -92,8 +96,8 @@
   </div>
 </div>
 </div></div></div>
-<div class="smswrap"><div class="smslabel">Touch 7 &middot; Text</div><div class="sms">Hi [first name], if it&#x27;s been a while and you&#x27;re wondering what coming back in looks like, happy to talk you through it first, no obligation: https://bookings.gettimely.com/simplyaesthetics4/bb/book x</div></div>
-<div class="wk"><div class="wklabel">Touch 8 &middot; Email 4 &middot; Coming Back</div><div class="subj"><b>Subject:</b> You won&#x27;t be the first person to come back after a while<span class="pv">Preview: It&#x27;s not awkward, and you&#x27;re not the only one who&#x27;s left it a while.</span></div><div class="email"><div style="margin:0;padding:0;background:#F5EFED">
+<div class="smswrap"><div class="smslabel">Touch 7 &middot; Text<button class="copybtn" onclick="cp(this)" data-copy="Hi {{contact.first_name}}, if it&#x27;s been a while and you&#x27;re wondering what coming back in looks like, happy to talk you through it first, no obligation: {{custom_values.reactivation_offer}} x">Copy</button></div><div class="sms">Hi {{contact.first_name}}, if it&#x27;s been a while and you&#x27;re wondering what coming back in looks like, happy to talk you through it first, no obligation: https://bookings.gettimely.com/simplyaesthetics4/bb/book x</div></div>
+<div class="wk"><div class="wklabel">Touch 8 &middot; Email 4 &middot; Coming Back</div><div class="subj"><button class="copybtn" onclick="cp(this)" data-copy="You won&#x27;t be the first person to come back after a while">Copy subject</button><b>Subject:</b> You won&#x27;t be the first person to come back after a while<span class="pv">Preview: It&#x27;s not awkward, and you&#x27;re not the only one who&#x27;s left it a while.</span></div><div class="email"><div style="margin:0;padding:0;background:#F5EFED">
 <div style="max-width:600px;margin:0 auto;background:#FFFFFF">
   <div style="height:6px;background:#E6C2BF"></div>
   <div style="padding:30px 34px 6px">
@@ -101,7 +105,7 @@
     <h1 style="margin:12px 0 0;font-family:Georgia,'Times New Roman',serif;font-size:26px;line-height:1.25;font-weight:400;color:#1A1A1A">You won't be the first person to come back after a while</h1>
   </div>
   <div style="padding:20px 34px 30px;font-family:Helvetica,Arial,sans-serif;font-size:15.5px;line-height:1.68;color:#33302F">
-    <p style="margin:0 0 16px">Hi [first name],</p>
+    <p style="margin:0 0 16px">Hi {{contact.first_name}},</p>
     <img src="https://clinic-catalyst-au.github.io/cc-onboard/media/simply-aesthetics/skinneedling-pen.jpg" alt="A skin needling treatment in progress at Simply Aesthetics" width="240" style="display:block;width:100%;max-width:240px;height:auto;border-radius:8px;margin:0 auto 20px">
     <p style="margin:0 0 16px">If it has been a while, you might be wondering whether it is a bit awkward to come back in. It isn't, and you won't be the first person to walk back in after some time away.</p>
     <p style="margin:0 0 16px">We will start exactly the same way we always do, an honest conversation about what you have noticed and what you would like to feel, before anything else happens. You will leave with a plan tailored to you, not a hard sell, and there is never any pressure to book on the day.</p>
@@ -118,8 +122,8 @@
   </div>
 </div>
 </div></div></div>
-<div class="smswrap"><div class="smslabel">Touch 9 &middot; Text</div><div class="sms">Hi [first name], last note from me for now. The free Airyday sunscreen offer is still there whenever you&#x27;re ready: https://bookings.gettimely.com/simplyaesthetics4/bb/book x</div></div>
-<div class="wk"><div class="wklabel">Touch 10 &middot; Email 5 &middot; Last Note</div><div class="subj"><b>Subject:</b> One last note, then I&#x27;ll leave it there<span class="pv">Preview: No rush at all. The offer, and the door, stay open.</span></div><div class="email"><div style="margin:0;padding:0;background:#F5EFED">
+<div class="smswrap"><div class="smslabel">Touch 9 &middot; Text<button class="copybtn" onclick="cp(this)" data-copy="Hi {{contact.first_name}}, last note from me for now. The free Airyday sunscreen offer is still there whenever you&#x27;re ready: {{custom_values.reactivation_offer}} x">Copy</button></div><div class="sms">Hi {{contact.first_name}}, last note from me for now. The free Airyday sunscreen offer is still there whenever you&#x27;re ready: https://bookings.gettimely.com/simplyaesthetics4/bb/book x</div></div>
+<div class="wk"><div class="wklabel">Touch 10 &middot; Email 5 &middot; Last Note</div><div class="subj"><button class="copybtn" onclick="cp(this)" data-copy="One last note, then I&#x27;ll leave it there">Copy subject</button><b>Subject:</b> One last note, then I&#x27;ll leave it there<span class="pv">Preview: No rush at all. The offer, and the door, stay open.</span></div><div class="email"><div style="margin:0;padding:0;background:#F5EFED">
 <div style="max-width:600px;margin:0 auto;background:#FFFFFF">
   <div style="height:6px;background:#E6C2BF"></div>
   <div style="padding:30px 34px 6px">
@@ -127,7 +131,7 @@
     <h1 style="margin:12px 0 0;font-family:Georgia,'Times New Roman',serif;font-size:26px;line-height:1.25;font-weight:400;color:#1A1A1A">One last note, then I'll leave it there</h1>
   </div>
   <div style="padding:20px 34px 30px;font-family:Helvetica,Arial,sans-serif;font-size:15.5px;line-height:1.68;color:#33302F">
-    <p style="margin:0 0 16px">Hi [first name],</p>
+    <p style="margin:0 0 16px">Hi {{contact.first_name}},</p>
     <p style="margin:0 0 16px">This is the last note I will send for now, just so you know I am not going to keep filling your inbox.</p>
     <p style="margin:0 0 16px">The offer still stands whenever you are ready, a full sized Airyday sunscreen with any treatment over $250, and the full menu is here too if something else has been on your mind: Injectables, Skin Needling, Skincare and Sunscreen.</p>
     <p style="margin:0 0 16px">No rush, no pressure, and no expiry on this from my side. I will just be here when you are.</p>
@@ -143,4 +147,7 @@
   </div>
 </div>
 </div></div></div>
-</div></body></html>
+</div>
+<script>function cp(b){var t=b.getAttribute('data-copy');var d=function(){var o=b.textContent;b.textContent='Copied';b.classList.add('done');setTimeout(function(){b.textContent=o;b.classList.remove('done')},1300)};if(navigator.clipboard){navigator.clipboard.writeText(t).then(d).catch(function(){fb(t,d)})}else fb(t,d)}
+function fb(t,d){var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');d()}catch(e){}document.body.removeChild(a)}</script>
+</body></html>
