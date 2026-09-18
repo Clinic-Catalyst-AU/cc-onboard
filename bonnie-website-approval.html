@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Bonnie Lass Beauty - website sign-off</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1B2540;--ink-soft:#3A4560;--muted:#77809A;--gold:#BF9B45;--gold-deep:#8F6B2E;--ivory:#FAF8F5;--warm:#F2EEE7;--line:rgba(27,37,64,.14);--white:#fff;--green:#2F6B4F;--amber:#9A6414;
+--display:'Cormorant Garamond',Georgia,serif;--body:'Montserrat',-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--warm);font-family:var(--body);color:var(--ink);-webkit-font-smoothing:antialiased}
+.page{max-width:780px;margin:0 auto;padding:0 16px 120px}
+.head{background:var(--ink);color:var(--ivory);padding:38px 30px 34px;margin:0 -16px 26px;border-radius:0 0 14px 14px}
+.head .eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.head h1{font-family:var(--display);font-weight:400;font-size:clamp(27px,5.4vw,38px);line-height:1.15;margin-bottom:14px}
+.head h1 em{font-style:italic;color:var(--gold)}
+.head p{font-size:14.5px;line-height:1.72;color:#C8CEDC;max-width:56ch}
+.head p+p{margin-top:12px}
+.bar{position:sticky;top:0;z-index:20;background:rgba(242,238,231,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin:0 -16px 24px;padding:13px 20px;display:flex;align-items:center;gap:14px}
+.track{flex:1;height:6px;background:var(--line);border-radius:99px;overflow:hidden}
+.fill{height:100%;width:0;background:var(--gold);border-radius:99px;transition:width .3s ease}
+.count{font-size:12.5px;font-weight:500;color:var(--ink-soft);white-space:nowrap}
+h2.sec{font-family:var(--display);font-weight:400;font-size:26px;margin:34px 0 4px;color:var(--ink)}
+h2.sec::after{content:"";display:block;width:44px;height:2px;background:var(--gold);margin-top:9px}
+p.secnote{font-size:13.5px;line-height:1.7;color:var(--muted);margin:10px 0 18px;max-width:62ch}
+.card{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:20px 20px 18px;margin-bottom:13px;transition:border-color .2s,box-shadow .2s}
+.card.done-yes{border-color:rgba(47,107,79,.45);box-shadow:inset 3px 0 0 var(--green)}
+.card.done-no{border-color:rgba(154,100,20,.45);box-shadow:inset 3px 0 0 var(--amber)}
+.cardtop{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap}
+.cardname{flex:1;min-width:190px}
+.num{display:inline-block;font-size:11px;font-weight:600;color:var(--gold-deep);background:var(--warm);border-radius:4px;padding:2px 7px;margin-bottom:7px}
+.cardname h3{font-family:var(--display);font-weight:400;font-size:20px;line-height:1.25;color:var(--ink);margin-bottom:3px}
+.path{font-size:11.5px;color:var(--muted);word-break:break-all}
+.view{flex-shrink:0;display:inline-block;background:var(--ink);color:var(--ivory);text-decoration:none;font-size:12.5px;font-weight:500;padding:10px 17px;border-radius:7px;transition:background .2s}
+.view:hover{background:var(--gold-deep)}
+.purpose{font-size:13.5px;line-height:1.68;color:var(--ink-soft);margin:13px 0 15px}
+.choices{display:flex;gap:9px;flex-wrap:wrap}
+.ch{font-family:var(--body);font-size:13px;font-weight:500;padding:10px 16px;border-radius:7px;border:1px solid var(--line);background:var(--white);color:var(--ink-soft);cursor:pointer;transition:all .18s}
+.ch:hover{border-color:var(--gold)}
+.ch.yes.on{background:var(--green);border-color:var(--green);color:#fff}
+.ch.no.on{background:var(--amber);border-color:var(--amber);color:#fff}
+.note{display:none;width:100%;margin-top:12px;font-family:var(--body);font-size:13.5px;line-height:1.6;color:var(--ink);padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--ivory);resize:vertical}
+.note:focus{outline:none;border-color:var(--gold)}
+.card.done-no .note{display:block}
+.qbox{background:var(--ink);color:var(--ivory);border-radius:12px;padding:26px 24px;margin:38px 0 8px}
+.qbox h2{font-family:var(--display);font-weight:400;font-size:25px;color:var(--ivory);margin-bottom:8px}
+.qbox h2 em{font-style:italic;color:var(--gold)}
+.qbox .lede{font-size:13.5px;line-height:1.7;color:#C8CEDC;margin-bottom:22px;max-width:58ch}
+.q{border-top:1px solid rgba(255,255,255,.14);padding:18px 0 4px}
+.q h4{font-size:13.5px;font-weight:600;color:var(--gold);margin-bottom:7px}
+.q p{font-size:13.5px;line-height:1.68;color:#C8CEDC;margin-bottom:11px}
+.q textarea{width:100%;font-family:var(--body);font-size:13.5px;line-height:1.6;padding:11px 13px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(255,255,255,.07);color:var(--ivory);resize:vertical}
+.q textarea::placeholder{color:#7C88A4}
+.q textarea:focus{outline:none;border-color:var(--gold)}
+.send{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:26px 24px;margin-top:30px}
+.send h2{font-family:var(--display);font-weight:400;font-size:25px;margin-bottom:10px}
+.send p{font-size:13.5px;line-height:1.7;color:var(--ink-soft);margin-bottom:8px}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.btn{font-family:var(--body);font-size:14px;font-weight:500;padding:14px 24px;border-radius:8px;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s}
+.btn.primary{background:var(--gold);color:#241B06}
+.btn.primary:hover{background:var(--gold-deep);color:#fff}
+.btn.ghost{background:var(--white);color:var(--ink);border:1px solid var(--line)}
+.btn.ghost:hover{border-color:var(--gold)}
+.out{display:none;width:100%;margin-top:18px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;line-height:1.6;padding:14px;border:1px solid var(--line);border-radius:8px;background:var(--ivory);color:var(--ink-soft);resize:vertical;white-space:pre}
+.hint{font-size:12.5px;color:var(--muted);margin-top:12px;line-height:1.6}
+.foot{text-align:center;font-size:12px;color:var(--muted);margin-top:34px;line-height:1.7}
+@media(max-width:600px){.head{padding:30px 22px 28px}.view{width:100%;text-align:center}.ch{flex:1;text-align:center}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="head">
+  <div class="eyebrow">Bonnie Lass Beauty</div>
+  <h1>Your new website, <em>page by page</em></h1>
+  <p>Tracey and Rhiannan, this is the finished site. Twenty two pages, all built and ready. Before it goes on your domain we need your yes on each one.</p>
+  <p>Open a page, have a read, then tell us it is right or tell us what to change. Your answers save as you go, so you can stop and come back to it. Nothing goes live until you send this back.</p>
+</div>
+
+<div class="bar">
+  <div class="track"><div class="fill" id="fill"></div></div>
+  <div class="count" id="count">0 of 22</div>
+</div>
+
+<h2 class="sec">Home</h2><p class="secnote">Start here. This is the page most people will land on.</p>
+
+<div class="card" data-k="index.html">
+  <div class="cardtop">
+    <div class="cardname"><span class="num">1</span><h3>Skin recovery, at your own pace.</h3><span class="path">/</span></div>
+    <a class="view" href="https://clinic-catalyst-au.github.io/bonnie-lass-website/" target="_blank" rel="noopener">Open page</a>
+  </div>
+  <p class="purpose">Your front page. The hero photo, your story, the five concerns, the clinic photos, the skin assessment and the full question and answer section.</p>
+  <div class="choices">
+    <button type="button" class="ch yes" data-v="yes">Happy with this page</button>
+    <button type="button" class="ch no" data-v="no">Something needs changing</button>
+  </div>
+  <textarea class="note" rows="3" placeholder="What would you like changed on this page?"></textarea>
+</div>
+<h2 class="sec">Concerns</h2><p class="secnote">These five pages are how people find you on Google. Somebody types in the problem, not the treatment name, and lands here.</p>
+
+<div class="card" data-k="concerns/acne-scarring-and-texture/index.html">
+  <div class="cardtop">
+    <div class="cardname"><span class="num">2</span><h3>The acne cleared. The skin it left did not.</h3><span class="path">/concerns/acne-scarring-and-texture/</span></div>
+    <a class="view" href="https://clinic-catalyst-au.github.io/bonnie-lass-website/concerns/acne-scarring-and-texture/" target="_blank" rel="noopener">Open page</a>
+  </div>
+  <p class="purpose">For the client whose acne has settled but whose skin texture has not.</p>
+  <div class="choices">
+    <button type="button" class="ch yes" data-v="yes">Happy with this page</button>
+    <button type="button" class="ch no" data-v="no">Something needs changing</button>
+  </div>
+  <textarea class="note" rows="3" placeholder="What would you like changed on this page?"></textarea>
+</div>
+
+<div class="card" data-k="concerns/perimenopausal-skin/index.html">
+  <div class="cardtop">
+    <div class="cardname"><span class="num">3</span><h3>Your skin changed and nobody warned you</h3><span class="path">/concerns/perimenopausal-skin/</span></div>
+    <a class="view" href="https://clinic-catalyst-au.github.io/bonnie-lass-website/concerns/perimenopausal-skin/" target="_blank" rel="noopener">Open page</a>
+  </div>
+  <p class="purpose">For the woman whose skin changed with hormones and who has not been able to name why.</p>
+  <div class="choices">
+    <button type="button" class="ch yes" data-v="yes">Happy with this page</button>
+    <button type="button" class="ch no" data-v="no">Something needs changing</button>
+  </div>
+  <textarea class="note" rows="3" placeholder="What would you like changed on this page?"></textarea>
+</div>
+
+<div class="card" data-k="concerns/pigmentation-and-sun-damage/index.html">
+  <div class="cardtop">
+    <div class="cardname"><span class="num">4</span><h3>Thirty Australian summers, all showing at once</h3><span class="path">/concerns/pigmentation-and-sun-damage/</span></div>
+    <a class="view" href="https://clinic-catalyst-au.github.io/bonnie-lass-website/concerns/pigmentation-and-sun-damage/" target="_blank" rel="noopener">Open page</a>
+  </div>
+  <p class="purpose">For sun damage, uneven tone and the pigment that comes with Australian summers.</p>
+  <div class="choices">
+    <button type="button" class="ch yes" data-v="yes">Happy with this page</button>
+    <button type="button" class="ch no" data-v="no">Something needs changing</button>
+  </div>
+  <textarea class="note" rows="3" placeholder="What would you like changed on this page?"></textarea>
+</div>
+
+<div class="card" data-k="concerns/skin-laxity-after-weight-loss/index.html">
+  <div class="cardtop">
+    <div class="cardname"><span class="num">5</span><h3>You did the hard thing. Now your face looks tired.</h3><span class="path">/concerns/skin-laxity-after-weight-loss/</span></div>
+    <a class="view" href="https://clinic-catalyst-au.github.io/bonnie-lass-website/concerns/skin-laxity-after-weight-loss/" target="_blank" rel="noopener">Open page</a>
+  </div>
+  <p class="purpose">For the client who lost significant weight and whose face now reads as tired or hollow.</p>
+  <div class="choices">
+    <button type="button" class="ch yes" data-v="yes">Happy with this page</button>
+    <button type="button" class="ch no" data-v="no">Something needs changing</button>
+  </div>
+  <textarea class="note" rows="3" placeholder="What would you like changed on this page?"></textarea>
+</div>
+
+<div class="card" data-k="concerns/volume-loss-and-hollowing/index.html">
+  <div class="cardtop">
+    <div class="cardname"><span class="num">6</span><h3>Not lined. Just empty.</h3><span class="path">/concerns/volume-loss-and-hollowing/</span></div>
+    <a class="view" href="https://clinic-catalyst-au.github.io/bonnie-lass-website/concerns/volume-loss-and-hollowing/" target="_blank" rel="noopener">Open page</a>
+  </div>
+  <p class="purpose">For hollow cheeks, tear troughs and a jawline that has started to soften.</p>
+  <div class="choices">
+    <button type="button" class="ch yes" data-v="yes">Happy with this page</button>
+    <button type="button" class="ch no" data-v="no">Something needs changing</button>
+  </div>
+  <textarea class="note" rows="3" placeholder="What would you like changed on this page?"></textarea>
+</div>
+<h2 class="sec">Treatments</h2><p class="secnote">One page per treatment, plus the price menu. Check the prices and session counts against what you actually charge.</p>
+
+<div class="card" data-k="treatments/bio-remodelling/index.html">
+  <div class="cardtop">
+    <div class="cardname"><span class="num">7</span><h3>Bio-Remodelling</h3><span class="path">/treatments/bio-remodelling/</span></div>
+    <a class="view" href="https://clinic-catalyst-au.github.io/bonnie-lass-website/treatments/bio-remodelling/" target="_blank" rel="noopener">Open page</a>
+  </div>
+  <p class="purpose">A single treatment page. Check the description, the pricing and the number of sessions are how you would say it.</p>
+  <div class="choices">
+    <button type="button" class="ch yes" data-v="yes">Happy with this page</button>
+    <button type="button" class="ch no" data-v="no">Something needs changing</button>
+  </div>
+  <textarea class="note" rows="3" placeholder="What would you like changed on this page?"></textarea>
+</div>
+
+<div class="card" data-k="treatments/bio-stimulation/index.html">
+  <div class="cardtop">
+    <div class="cardname"><span class="num">8</span><h3>Bio-Stimulation</h3><span class="path">/treatments/bio-stimulation/</span></div>
+    <a class="view" href="https://clinic-catalyst-au.github.io/bonnie-lass-website/treatments/bio-stimulation/" target="_blank" rel="noopener">Open page</a>
+  </div>
+  <p class="purpose">A single treatment page. Check the description, the pricing and the number of sessions are how you would say it.</p>
+  <div class="choices">
+    <button type="button" class="ch yes" data-v="yes">Happy with this page</button>
+    <button type="button" class="ch no" data-v="no">Something needs changing</button>
+  </div>
+  <textarea class="note" rows="3" placeholder="What would you like changed on this page?"></textarea>
+</div>
+
+<div class="card" data-k="treatments/byryzn-opuluxe-v/index.html">
+  <div class="cardtop">
+    <div class="cardname"><span class="num">9</span><h3>BYRYZN Opuluxe V Skin Booster</h3><span class="path">/treatments/byryzn-opuluxe-v/</span></div>
+    <a class="view" href="https://clinic-catalyst-au.github.io/bonnie-lass-website/treatments/byryzn-opuluxe-v/" target="_blank" rel="noopener">Open page</a>
+  </div>
+  <p class="purpose">A single treatment page. Check the description, the pricing and the number of sessions are how you would say it.</p>
+  <div class="choices">
+    <button type="button" class="ch yes" data-v="yes">Happy with this page</button>
+    <button type="button" class="ch no" data-v="no">Something needs changing</button>
+  </div>
+  <textarea class="note" rows="3" placeholder="What would you like changed on this page?"></textarea>
+</div>
+
+<div class="card" data-k="treatments/fat-dissolving/index.html">
+  <div class="cardtop">
+    <div class="cardname"><span class="num">10</span><h3>Fat Dissolving</h3><span class="path">/treatments/fat-dissolving/</span></div>
+    <a class="view" href="https://clinic-catalyst-au.github.io/bonnie-lass-website/treatments/fat-dissolving/" target="_blank" rel="noopener">Open page</a>
+  </div>
+  <p class="purpose">A single treatment page. Check the description, the pricing and the number of sessions are how you would say it.</p>
+  <div class="choices">
+    <button type="button" class="ch yes" data-v="yes">Happy with this page</button>
+    <button type="button" class="ch no" data-v="no">Something needs changing</button>
+  </div>
+  <textarea class="note" rows="3" placeholder="What would you like changed on this page?"></textarea>
+</div>
+
+<div class="card" data-k="treatments/fine-lines-and-wrinkles/index.html">
+  <div class="cardtop">
+    <div class="cardname"><span class="num">11</span><h3>Fine Line &amp; Wrinkle Treatments</h3><span class="path">/treatments/fine-lines-and-wrinkles/</span></div>
+    <a class="view" href="https://clinic-catalyst-au.github.io/bonnie-lass-website/treatments/fine-lines-and-wrinkles/" target="_blank" rel="noopener">Open page</a>
+  </div>
+  <p class="purpose">A single treatment page. Check the description, the pricing and the number of sessions are how you would say it.</p>
+  <div class="choices">
+    <button type="button" class="ch yes" data-v="yes">Happy with this page</button>
+    <button type="button" class="ch no" data-v="no">Something needs changing</button>
+  </div>
+  <textarea class="note" rows="3" placeholder="What would you like changed on this page?"></textarea>
+</div>
+
+<div class="card" data-k="treatments/hair-rejuvenation/index.html">
+  <div class="cardtop">
+    <div class="cardname"><span class="num">12</span><h3>Hair Rejuvenation with Exosomes</h3><span class="path">/treatments/hair-rejuvenation/</span></div>
+    <a class="view" href="https://clinic-catalyst-au.github.io/bonnie-lass-website/treatments/hair-rejuvenation/" target="_blank" rel="noopener">Open page</a>
+  </div>
+  <p class="purpose">A single treatment page. Check the description, the pricing and the number of sessions are how you would say it.</p>
+  <div class="choices">
+    <button type="button" class="ch yes" data-v="yes">Happy with this page</button>
+    <button type="button" class="ch no" data-v="no">Something needs changing</button>
+  </div>
+  <textarea class="note" rows="3" placeholder="What would you like changed on this page?"></textarea>
+</div>
+
+<div class="card" data-k="treatments/hyperhidrosis/index.html">
+  <div class="cardtop">
+    <div class="cardname"><span class="num">13</span><h3>Hyperhidrosis (Excessive Sweating)</h3><span class="path">/treatments/hyperhidrosis/</span></div>
+    <a class="view" href="https://clinic-catalyst-au.github.io/bonnie-lass-website/treatments/hyperhidrosis/" target="_blank" rel="noopener">Open page</a>
+  </div>
+  <p class="purpose">A single treatment page. Check the description, the pricing and the number of sessions are how you would say it.</p>
+  <div class="choices">
+    <button type="button" class="ch yes" data-v="yes">Happy with this page</button>
+    <button type="button" class="ch no" data-v="no">Something needs changing</button>
+  </div>
+  <textarea class="note" rows="3" placeholder="What would you like changed on this page?"></textarea>
+</div>
+
+<div class="card" data-k="treatments/index.html">
+  <div class="cardtop">
+    <div class="cardname"><span class="num">14</span><h3>Treatments and what they honestly cost</h3><span class="path">/treatments/</span></div>
+    <a class="view" href="https://clinic-catalyst-au.github.io/bonnie-lass-website/treatments/" target="_blank" rel="noopener">Open page</a>
+  </div>
+  <p class="purpose">The full treatment and price menu, plus the pricing questions section explaining why some treatments show a price and others do not.</p>
+  <div class="choices">
+    <button type="button" class="ch yes" data-v="yes">Happy with this page</button>
+    <button type="button" class="ch no" data-v="no">Something needs changing</button>
+  </div>
+  <textarea class="note" rows="3" placeholder="What would you like changed on this page?"></textarea>
+</div>
+
+<div class="card" data-k="treatments/lifting-threads/index.html">
+  <div class="cardtop">
+    <div class="cardname"><span class="num">15</span><h3>Lifting Threads (iThreads)</h3><span class="path">/treatments/lifting-threads/</span></div>
+    <a class="view" href="https://clinic-catalyst-au.github.io/bonnie-lass-website/treatments/lifting-threads/" target="_blank" rel="noopener">Open page</a>
+  </div>
+  <p class="purpose">A single treatment page. Check the description, the pricing and the number of sessions are how you would say it.</p>
+  <div class="choices">
+    <button type="button" class="ch yes" data-v="yes">Happy with this page</button>
+    <button type="button" class="ch no" data-v="no">Something needs changing</button>
+  </div>
+  <textarea class="note" rows="3" placeholder="What would you like changed on this page?"></textarea>
+</div>
+
+<div class="card" data-k="treatments/microneedling/index.html">
+  <div class="cardtop">
+    <div class="cardname"><span class="num">16</span><h3>Microneedling</h3><span class="path">/treatments/microneedling/</span></div>
+    <a class="view" href="https://clinic-catalyst-au.github.io/bonnie-lass-website/treatments/microneedling/" target="_blank" rel="noopener">Open page</a>
+  </div>
+  <p class="purpose">A single treatment page. Check the description, the pricing and the number of sessions are how you would say it.</p>
+  <div class="choices">
+    <button type="button" class="ch yes" data-v="yes">Happy with this page</button>
+    <button type="button" class="ch no" data-v="no">Something needs changing</button>
+  </div>
+  <textarea class="note" rows="3" placeholder="What would you like changed on this page?"></textarea>
+</div>
+
+<div class="card" data-k="treatments/prp-facial/index.html">
+  <div class="cardtop">
+    <div class="cardname"><span class="num">17</span><h3>Platelet Rich Plasma (PRP)</h3><span class="path">/treatments/prp-facial/</span></div>
+    <a class="view" href="https://clinic-catalyst-au.github.io/bonnie-lass-website/treatments/prp-facial/" target="_blank" rel="noopener">Open page</a>
+  </div>
+  <p class="purpose">A single treatment page. Check the description, the pricing and the number of sessions are how you would say it.</p>
+  <div class="choices">
+    <button type="button" class="ch yes" data-v="yes">Happy with this page</button>
+    <button type="button" class="ch no" data-v="no">Something needs changing</button>
+  </div>
+  <textarea class="note" rows="3" placeholder="What would you like changed on this page?"></textarea>
+</div>
+
+<div class="card" data-k="treatments/prx-plus-bio-stimulator/index.html">
+  <div class="cardtop">
+    <div class="cardname"><span class="num">18</span><h3>PRX-Plus Bio-Stimulator</h3><span class="path">/treatments/prx-plus-bio-stimulator/</span></div>
+    <a class="view" href="https://clinic-catalyst-au.github.io/bonnie-lass-website/treatments/prx-plus-bio-stimulator/" target="_blank" rel="noopener">Open page</a>
+  </div>
+  <p class="purpose">A single treatment page. Check the description, the pricing and the number of sessions are how you would say it.</p>
+  <div class="choices">
+    <button type="button" class="ch yes" data-v="yes">Happy with this page</button>
+    <button type="button" class="ch no" data-v="no">Something needs changing</button>
+  </div>
+  <textarea class="note" rows="3" placeholder="What would you like changed on this page?"></textarea>
+</div>
+
+<div class="card" data-k="treatments/rejuran/index.html">
+  <div class="cardtop">
+    <div class="cardname"><span class="num">19</span><h3>Rejuran</h3><span class="path">/treatments/rejuran/</span></div>
+    <a class="view" href="https://clinic-catalyst-au.github.io/bonnie-lass-website/treatments/rejuran/" target="_blank" rel="noopener">Open page</a>
+  </div>
+  <p class="purpose">A single treatment page. Check the description, the pricing and the number of sessions are how you would say it.</p>
+  <div class="choices">
+    <button type="button" class="ch yes" data-v="yes">Happy with this page</button>
+    <button type="button" class="ch no" data-v="no">Something needs changing</button>
+  </div>
+  <textarea class="note" rows="3" placeholder="What would you like changed on this page?"></textarea>
+</div>
+
+<div class="card" data-k="treatments/tmj-and-teeth-grinding/index.html">
+  <div class="cardtop">
+    <div class="cardname"><span class="num">20</span><h3>Teeth Grinding, TMJ &amp; Jaw Tension</h3><span class="path">/treatments/tmj-and-teeth-grinding/</span></div>
+    <a class="view" href="https://clinic-catalyst-au.github.io/bonnie-lass-website/treatments/tmj-and-teeth-grinding/" target="_blank" rel="noopener">Open page</a>
+  </div>
+  <p class="purpose">A single treatment page. Check the description, the pricing and the number of sessions are how you would say it.</p>
+  <div class="choices">
+    <button type="button" class="ch yes" data-v="yes">Happy with this page</button>
+    <button type="button" class="ch no" data-v="no">Something needs changing</button>
+  </div>
+  <textarea class="note" rows="3" placeholder="What would you like changed on this page?"></textarea>
+</div>
+
+<div class="card" data-k="treatments/volume-restoring/index.html">
+  <div class="cardtop">
+    <div class="cardname"><span class="num">21</span><h3>Volume Restoring</h3><span class="path">/treatments/volume-restoring/</span></div>
+    <a class="view" href="https://clinic-catalyst-au.github.io/bonnie-lass-website/treatments/volume-restoring/" target="_blank" rel="noopener">Open page</a>
+  </div>
+  <p class="purpose">A single treatment page. Check the description, the pricing and the number of sessions are how you would say it.</p>
+  <div class="choices">
+    <button type="button" class="ch yes" data-v="yes">Happy with this page</button>
+    <button type="button" class="ch no" data-v="no">Something needs changing</button>
+  </div>
+  <textarea class="note" rows="3" placeholder="What would you like changed on this page?"></textarea>
+</div>
+<h2 class="sec">Gallery</h2><p class="secnote">Private and code locked, exactly as AHPRA requires.</p>
+
+<div class="card" data-k="gallery/index.html">
+  <div class="cardtop">
+    <div class="cardname"><span class="num">22</span><h3>Injectable results</h3><span class="path">/gallery/</span></div>
+    <a class="view" href="https://clinic-catalyst-au.github.io/bonnie-lass-website/gallery/" target="_blank" rel="noopener">Open page</a>
+  </div>
+  <p class="purpose">The private client results gallery, locked behind the access code you give clients after their consultation. It currently holds clearly marked placeholder images until your consented photos arrive.</p>
+  <div class="choices">
+    <button type="button" class="ch yes" data-v="yes">Happy with this page</button>
+    <button type="button" class="ch no" data-v="no">Something needs changing</button>
+  </div>
+  <textarea class="note" rows="3" placeholder="What would you like changed on this page?"></textarea>
+</div>
+
+<div class="qbox">
+  <h2>Five things <em>only you can answer</em></h2>
+  <p class="lede">These are the last open decisions. They are quick, and each one is holding something up.</p>
+
+  <div class="q">
+    <h4>1. What should the site be called in Google?</h4>
+    <p>Your current site is titled "Cosmetic Injections Melbourne | Cosmetic Injectables Treatment". That is the wording you flagged as a worry, and you are right to. The new site says "Bonnie Lass Beauty | Cosmetic Nurse and Skin Clinic, Melton". If you would rather it read "Skin and Wellness Clinic", or something else, say so here.</p>
+    <textarea data-q="title" rows="2" placeholder="Leave blank to keep Cosmetic Nurse and Skin Clinic"></textarea>
+  </div>
+
+  <div class="q">
+    <h4>2. Your before and after photos</h4>
+    <p>The private gallery is built and locked, but it is holding placeholder images until your real ones arrive. We need pairs shot at the same angle in the same light, and written consent from each client. Tell us roughly how many you have and when you can send them.</p>
+    <textarea data-q="photos" rows="2" placeholder="How many pairs, and when can you send them?"></textarea>
+  </div>
+
+  <div class="q">
+    <h4>3. Gift vouchers</h4>
+    <p>The site currently says to ask in clinic or call. If you would like a buy-online link instead, send us the link and we will put it on the site.</p>
+    <textarea data-q="vouchers" rows="2" placeholder="Voucher link, or leave blank to keep it as call the clinic"></textarea>
+  </div>
+
+  <div class="q">
+    <h4>4. The Seasons font</h4>
+    <p>Your brand document names The Seasons for headings. It is a licensed font, so we cannot buy or download it for you. If you have it in your Canva account, send us the file and we will swap it in. Until then the site uses Cormorant Garamond, which is very close.</p>
+    <textarea data-q="font" rows="2" placeholder="Can you send the font file, or are you happy as is?"></textarea>
+  </div>
+
+  <div class="q">
+    <h4>5. Navy and gold, or the softer green?</h4>
+    <p>The site is built in the navy and gold from your logo. Your brand document lists a softer sage green and blue instead. We went with the logo because that is what your clients already recognise. Tell us if you would rather the green.</p>
+    <textarea data-q="colour" rows="2" placeholder="Leave blank to keep navy and gold"></textarea>
+  </div>
+</div>
+
+<div class="send">
+  <h2>Send it back to us</h2>
+  <p>When you have been through the pages, press the button. It copies everything you have written into one message for you to send.</p>
+  <div class="btnrow">
+    <button type="button" class="btn primary" id="copy">Copy my answers</button>
+    <a class="btn ghost" id="mail" href="#">Open email to Clinic Catalyst</a>
+  </div>
+  <textarea class="out" id="out" rows="14" readonly></textarea>
+  <p class="hint" id="hint">If the copy button does not work on your device, your answers appear in a box you can select and copy by hand.</p>
+</div>
+
+<p class="foot">Bonnie Lass Beauty, 44 Smith Street, Melton VIC 3337<br>Built by Clinic Catalyst. Questions: info@cliniccatalyst.com.au</p>
+
+</div>
+<script>
+(function(){
+  var KEY='blb_signoff_v1';
+  var cards=[].slice.call(document.querySelectorAll('.card'));
+  var qs=[].slice.call(document.querySelectorAll('[data-q]'));
+  var state={};
+  try{ state=JSON.parse(localStorage.getItem(KEY)||'{}')||{}; }catch(e){ state={}; }
+
+  function save(){ try{ localStorage.setItem(KEY,JSON.stringify(state)); }catch(e){} }
+
+  function progress(){
+    var n=cards.filter(function(c){ return state[c.dataset.k] && state[c.dataset.k].v; }).length;
+    document.getElementById('count').textContent=n+' of '+cards.length;
+    document.getElementById('fill').style.width=(n/cards.length*100)+'%';
+  }
+
+  cards.forEach(function(card){
+    var k=card.dataset.k, note=card.querySelector('.note');
+    var st=state[k]||{};
+    function paint(){
+      card.classList.remove('done-yes','done-no');
+      card.querySelectorAll('.ch').forEach(function(b){ b.classList.remove('on'); });
+      if(st.v){ card.classList.add('done-'+st.v); card.querySelector('.ch.'+st.v).classList.add('on'); }
+      if(st.n) note.value=st.n;
+    }
+    card.querySelectorAll('.ch').forEach(function(b){
+      b.addEventListener('click',function(){
+        st.v = (st.v===b.dataset.v) ? '' : b.dataset.v;
+        state[k]=st; save(); paint(); progress();
+      });
+    });
+    note.addEventListener('input',function(){ st.n=note.value; state[k]=st; save(); });
+    paint();
+  });
+
+  qs.forEach(function(t){
+    var k='q_'+t.dataset.q;
+    if(state[k]) t.value=state[k];
+    t.addEventListener('input',function(){ state[k]=t.value; save(); });
+  });
+
+  function build(){
+    var L=['BONNIE LASS BEAUTY - WEBSITE SIGN-OFF','Sent '+new Date().toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'}),''];
+    var ok=[],ch=[],todo=[];
+    cards.forEach(function(c){
+      var s=state[c.dataset.k]||{}, name=c.querySelector('h3').textContent.trim();
+      if(s.v==='yes') ok.push(name);
+      else if(s.v==='no') ch.push(name+(s.n?' -- '+s.n.trim():' -- (no detail given)'));
+      else todo.push(name);
+    });
+    L.push('HAPPY WITH ('+ok.length+' of '+cards.length+'):');
+    L.push(ok.length?ok.map(function(x){return '  - '+x;}).join('\n'):'  none yet');
+    L.push('');
+    L.push('CHANGES WANTED ('+ch.length+'):');
+    L.push(ch.length?ch.map(function(x){return '  - '+x;}).join('\n'):'  none');
+    L.push('');
+    if(todo.length){ L.push('NOT YET REVIEWED ('+todo.length+'):'); L.push(todo.map(function(x){return '  - '+x;}).join('\n')); L.push(''); }
+    var LB={title:'Site title wording',photos:'Before and after photos',vouchers:'Gift voucher link',font:'The Seasons font',colour:'Navy and gold, or green'};
+    L.push('THE FIVE QUESTIONS:');
+    qs.forEach(function(t){
+      var v=(state['q_'+t.dataset.q]||'').trim();
+      L.push('  '+LB[t.dataset.q]+': '+(v||'(left blank - happy as is)'));
+    });
+    return L.join('\n');
+  }
+
+  function refresh(){
+    var txt=build();
+    document.getElementById('out').value=txt;
+    var sub='Bonnie Lass website sign-off';
+    document.getElementById('mail').href='mailto:info@cliniccatalyst.com.au?subject='+encodeURIComponent(sub)+'&body='+encodeURIComponent(txt.slice(0,1400)+(txt.length>1400?'\n\n(Full answers copied to clipboard - please paste below this line.)':''));
+    return txt;
+  }
+
+  document.getElementById('copy').addEventListener('click',function(){
+    var txt=refresh(), out=document.getElementById('out'), hint=document.getElementById('hint'), btn=this;
+    out.style.display='block';
+    var done=function(){ btn.textContent='Copied. Now press the email button.'; hint.textContent='Your answers are on the clipboard and shown above. Press the email button, then paste into the message.'; setTimeout(function(){ btn.textContent='Copy my answers'; },4000); };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(done).catch(function(){ out.select(); hint.textContent='Select the text above and copy it by hand, then press the email button.'; });
+    } else { out.select(); try{ document.execCommand('copy'); done(); }catch(e){ hint.textContent='Select the text above and copy it by hand, then press the email button.'; } }
+  });
+
+  document.getElementById('mail').addEventListener('click',refresh);
+  progress(); refresh();
+})();
+</script>
+</body>
+</html>
