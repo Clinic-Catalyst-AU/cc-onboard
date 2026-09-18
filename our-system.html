@@ -1,0 +1,794 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Clinic Catalyst System Tour</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=DM+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  /* page: Clinic Catalyst */
+  --ground:#072220; --surface:#0D3D38; --surface-2:#0A302C; --line:rgba(234,244,241,.12); --line-strong:rgba(234,244,241,.22);
+  --ink:#EAF4F1; --muted:#9DB9B3; --faint:#6F8F89;
+  --teal:#00D4BC; --teal-deep:#00B4A0; --peach:#E8A87C; --peach-soft:rgba(232,168,124,.14); --teal-soft:rgba(0,212,188,.12);
+  /* app: the CRM screens */
+  --app-bg:#F4F6F9; --app-panel:#FFFFFF; --app-line:#E3E7ED; --app-ink:#152033; --app-muted:#65718A; --app-faint:#98A2B3;
+  --app-blue:#1C6FEA; --app-blue-soft:#E8F0FD; --app-green:#12A150; --app-green-soft:#E6F6EC; --app-amber:#DB8A0B; --app-amber-soft:#FDF3E1;
+  --display:"Montserrat",system-ui,sans-serif; --body:"Open Sans",system-ui,sans-serif; --mono:"DM Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{color-scheme:dark}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1200px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.08}
+p{margin:0}
+.eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
+.note{font-family:var(--mono);font-size:.7rem;letter-spacing:.03em;color:var(--faint)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--peach);outline-offset:3px;border-radius:6px}
+
+.mockbar{border-bottom:1px solid var(--line);background:var(--surface-2)}
+.mockbar .wrap{display:flex;gap:12px;align-items:center;justify-content:space-between;padding-block:10px;flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:800;letter-spacing:.02em;font-size:.95rem}
+.brand span{color:var(--teal)}
+
+/* HERO */
+.hero{padding-block:clamp(40px,7vw,84px) clamp(32px,5vw,60px)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,5vw,64px);align-items:center}
+.clock{font-family:var(--display);font-weight:900;font-size:clamp(4.2rem,13vw,10.5rem);letter-spacing:-.045em;line-height:.86;font-variant-numeric:tabular-nums;display:flex;align-items:baseline;gap:.08em;margin-top:14px}
+.clock .colon{color:var(--teal);animation:blink 1.2s steps(2,start) infinite}
+.clock small{font-size:.26em;letter-spacing:.02em;color:var(--muted);font-weight:700}
+@keyframes blink{to{opacity:.25}}
+.hero h1{font-size:clamp(1.7rem,3.6vw,2.9rem);font-weight:800;margin-top:22px;max-width:18ch}
+.hero h1 em{font-style:normal;color:var(--teal)}
+.hero .lede{color:var(--muted);max-width:54ch;margin-top:16px;font-size:1.05rem}
+.status-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.chip{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.72rem;padding:6px 11px;border-radius:999px;border:1px solid var(--line-strong);color:var(--muted)}
+.chip .dot{width:7px;height:7px;border-radius:50%;background:var(--faint)}
+.chip.live .dot{background:var(--teal);animation:pulse 1.8s infinite}
+.chip.closed .dot{background:var(--peach)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,212,188,.6)}70%{box-shadow:0 0 0 8px rgba(0,212,188,0)}100%{box-shadow:0 0 0 0 rgba(0,212,188,0)}}
+
+.phone{width:min(340px,100%);margin-inline:auto;background:#041816;border:1px solid var(--line-strong);border-radius:38px;padding:14px;box-shadow:0 30px 80px -30px rgba(0,0,0,.7)}
+.phone-top{display:flex;justify-content:space-between;padding:4px 12px 10px;font-family:var(--mono);font-size:.68rem;color:var(--muted)}
+.phone-head{display:flex;gap:10px;align-items:center;padding:10px 12px;border-block:1px solid var(--line)}
+.avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--teal-deep),#0f5d55);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:.78rem;color:#032;flex-shrink:0}
+.phone-head strong{font-family:var(--display);font-size:.85rem;display:block;line-height:1.2}
+.phone-head span{font-size:.7rem;color:var(--muted)}
+.thread{height:360px;overflow:hidden;padding:14px 8px 6px;display:flex;flex-direction:column;gap:8px;justify-content:flex-end;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 22%);mask-image:linear-gradient(to bottom,transparent 0,#000 22%)}
+.msg{max-width:84%;padding:9px 12px;border-radius:16px;font-size:.82rem;line-height:1.45;animation:rise .35s ease both}
+.msg.in{align-self:flex-start;background:var(--surface);border-bottom-left-radius:5px}
+.msg.out{align-self:flex-end;background:var(--teal);color:#03211e;border-bottom-right-radius:5px}
+.msg.sys{align-self:center;max-width:100%;background:transparent;font-family:var(--mono);font-size:.66rem;color:var(--faint);padding:2px}
+.msg .t{display:block;font-family:var(--mono);font-size:.6rem;opacity:.65;margin-top:3px}
+.typing{align-self:flex-end;background:var(--teal-soft);padding:10px 14px;border-radius:16px;display:flex;gap:4px}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:bob 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes bob{50%{transform:translateY(-4px);opacity:.5}}
+@keyframes rise{from{opacity:.001;transform:translateY(8px)}}
+.phone-foot{display:flex;justify-content:space-between;align-items:center;padding:8px 12px 2px}
+.ghost-btn{background:none;border:1px solid var(--line-strong);border-radius:999px;padding:5px 12px;font-family:var(--mono);font-size:.68rem;color:var(--muted)}
+.ghost-btn:hover{border-color:var(--teal);color:var(--teal)}
+
+section.band{padding-block:clamp(48px,8vw,96px);border-top:1px solid var(--line)}
+.sec-head{display:grid;gap:12px;max-width:64ch;margin-bottom:clamp(22px,4vw,36px)}
+.sec-head h2{font-size:clamp(1.6rem,3.4vw,2.5rem);font-weight:800}
+.sec-head p{color:var(--muted)}
+
+/* ============ THE APP WINDOW ============ */
+.runbar{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+.fire{display:inline-flex;align-items:center;gap:10px;background:var(--teal);color:#03211e;border:0;border-radius:999px;padding:12px 22px;font-family:var(--display);font-weight:800;font-size:.9rem}
+.fire:hover{background:var(--ink)}
+.fire[disabled]{opacity:.6;cursor:progress}
+.fire .bolt{width:10px;height:10px;border-radius:50%;background:#03211e;box-shadow:0 0 0 3px rgba(3,33,30,.2)}
+.follow{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;color:var(--muted)}
+.follow input{accent-color:var(--teal);width:16px;height:16px}
+.runstate{font-family:var(--mono);font-size:.72rem;color:var(--teal);min-height:1.2em}
+
+.app{background:var(--app-bg);color:var(--app-ink);border-radius:16px;overflow:hidden;box-shadow:0 50px 100px -40px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.08);font-size:13px;line-height:1.45}
+.app-top{display:flex;align-items:center;gap:10px;padding:9px 14px;background:#FFFFFF;border-bottom:1px solid var(--app-line)}
+.app-top .dots{display:flex;gap:6px}.app-top .dots i{width:10px;height:10px;border-radius:50%;background:#D9DEE5}
+.app-top .acct{display:flex;align-items:center;gap:8px;margin-left:8px;padding:4px 10px;border:1px solid var(--app-line);border-radius:8px;font-weight:600}
+.app-top .acct b{width:20px;height:20px;border-radius:5px;background:var(--app-blue);color:#fff;display:grid;place-items:center;font-size:10px;font-family:var(--display)}
+.app-top .search{margin-left:auto;padding:5px 12px;border:1px solid var(--app-line);border-radius:8px;color:var(--app-faint);min-width:180px}
+.app-body{display:grid;grid-template-columns:168px 1fr;min-height:540px}
+.side{background:#FFFFFF;border-right:1px solid var(--app-line);padding:10px 8px;display:flex;flex-direction:column;gap:2px}
+.nav{display:flex;align-items:center;gap:10px;width:100%;padding:8px 10px;border:0;background:none;border-radius:8px;text-align:left;color:var(--app-muted);font-weight:600;font-size:13px;position:relative}
+.nav .ico{width:16px;height:16px;border-radius:4px;border:1.5px solid currentColor;flex-shrink:0}
+.nav:hover{background:var(--app-bg);color:var(--app-ink)}
+.nav[aria-selected="true"]{background:var(--app-blue-soft);color:var(--app-blue)}
+.nav .badge{margin-left:auto;background:var(--app-blue);color:#fff;border-radius:999px;font-size:10px;padding:0 6px;font-weight:700;min-width:18px;text-align:center;transform:scale(0);transition:transform .2s}
+.nav .badge.on{transform:scale(1)}
+.nav.ping::after{content:"";position:absolute;inset:0;border-radius:8px;box-shadow:0 0 0 2px var(--app-blue);animation:ping .9s ease-out}
+@keyframes ping{from{opacity:1}to{opacity:0;transform:scale(1.04)}}
+.side .sep{height:1px;background:var(--app-line);margin:8px 4px}
+.view{display:none;min-width:0}
+.view.on{display:block;animation:fadein .25s ease}
+@keyframes fadein{from{opacity:.3}}
+
+/* conversations */
+.conv{display:grid;grid-template-columns:250px minmax(0,1fr) 220px;height:540px}
+.clist{border-right:1px solid var(--app-line);background:#FFFFFF;display:flex;flex-direction:column;min-height:0}
+.clist-head{padding:10px 12px;border-bottom:1px solid var(--app-line);display:flex;gap:6px;flex-wrap:wrap}
+.fchip{font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid var(--app-line);color:var(--app-muted);font-weight:600}
+.fchip.on{background:var(--app-ink);color:#fff;border-color:var(--app-ink)}
+.citems{overflow:hidden;flex:1}
+.citem{display:grid;grid-template-columns:34px 1fr auto;gap:9px;padding:10px 12px;border-bottom:1px solid var(--app-line);align-items:start;transition:background .3s}
+.citem.sel{background:var(--app-blue-soft)}
+.citem.fresh{animation:slidein .45s ease both}
+@keyframes slidein{from{transform:translateY(-100%);opacity:.001}}
+.cav{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:12px;color:#fff;position:relative}
+.cav .src{position:absolute;right:-3px;bottom:-3px;width:16px;height:16px;border-radius:50%;border:2px solid #fff;font-size:7px;font-weight:800;display:grid;place-items:center;color:#fff}
+.src.ig{background:#D62976}.src.fb{background:#1877F2}.src.sms{background:#12A150}.src.web{background:#6B4EFF}.src.call{background:#DB8A0B}.src.em{background:#65718A}
+.citem strong{display:block;font-size:13px;line-height:1.25}
+.citem .pv{display:block;color:var(--app-muted);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.citem time{font-size:11px;color:var(--app-faint)}
+.citem .unread{display:block;width:8px;height:8px;border-radius:50%;background:var(--app-blue);margin:6px 0 0 auto}
+
+.cthread{display:flex;flex-direction:column;min-width:0;min-height:0;background:var(--app-bg)}
+.cth-head{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#FFFFFF;border-bottom:1px solid var(--app-line)}
+.cth-head strong{font-size:14px}
+.cth-head .chan{margin-left:auto;font-size:11px;padding:3px 8px;border:1px solid var(--app-line);border-radius:6px;color:var(--app-muted)}
+.cmsgs{flex:1;overflow:hidden;padding:14px;display:flex;flex-direction:column;gap:8px;justify-content:flex-end}
+.bub{max-width:78%;padding:8px 11px;border-radius:12px;font-size:12.5px;animation:rise .3s ease both}
+.bub.in{align-self:flex-start;background:#FFFFFF;border:1px solid var(--app-line);border-bottom-left-radius:4px}
+.bub.out{align-self:flex-end;background:var(--app-blue);color:#fff;border-bottom-right-radius:4px}
+.bub .meta{display:block;font-size:10px;opacity:.7;margin-top:3px}
+.evt{align-self:center;font-size:11px;color:var(--app-muted);background:#FFFFFF;border:1px dashed var(--app-line);border-radius:999px;padding:3px 10px;animation:rise .3s ease both}
+.evt b{color:var(--app-ink);font-weight:600}
+.composer{display:flex;flex-direction:column;gap:6px;padding:10px 12px;background:#FFFFFF;border-top:1px solid var(--app-line)}
+.suggest{display:none;align-items:center;gap:8px;font-size:12px;padding:6px 9px;border-radius:8px;background:var(--app-amber-soft);color:#7A4B00}
+.suggest.on{display:flex;animation:rise .3s ease both}
+.suggest b{font-weight:700}
+.comp-row{display:flex;gap:8px;align-items:center}
+.comp-row .box{flex:1;border:1px solid var(--app-line);border-radius:8px;padding:7px 10px;color:var(--app-faint);font-size:12px;min-height:32px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.comp-row .box.typing-in{color:var(--app-ink)}
+.send{background:var(--app-blue);color:#fff;border:0;border-radius:8px;padding:7px 14px;font-weight:700;font-size:12px}
+
+.cprofile{border-left:1px solid var(--app-line);background:#FFFFFF;padding:12px;display:flex;flex-direction:column;gap:12px;min-height:0;overflow:hidden}
+.cprofile h6{margin:0 0 5px;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--app-faint);font-weight:700}
+.kv{display:grid;gap:3px;font-size:12px}
+.kv span{color:var(--app-muted)}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tg{font-size:11px;padding:2px 8px;border-radius:999px;background:var(--app-bg);border:1px solid var(--app-line);animation:rise .3s ease both}
+.tg.new{background:var(--app-blue-soft);border-color:#BBD3FA;color:var(--app-blue)}
+.stagepill{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px;background:var(--app-amber-soft);color:#7A4B00;transition:all .3s}
+.stagepill.booked{background:var(--app-green-soft);color:var(--app-green)}
+.wfrow{display:flex;align-items:center;gap:6px;font-size:12px}
+.wfrow i{width:8px;height:8px;border-radius:50%;background:var(--app-green);animation:pulseg 1.6s infinite}
+@keyframes pulseg{0%{box-shadow:0 0 0 0 rgba(18,161,80,.5)}70%{box-shadow:0 0 0 6px rgba(18,161,80,0)}100%{box-shadow:0 0 0 0 rgba(18,161,80,0)}}
+
+/* workflows */
+.wf{display:grid;grid-template-columns:minmax(0,1fr) 280px;height:540px}
+.canvas{position:relative;overflow:hidden;background-color:var(--app-bg);background-image:radial-gradient(#D5DBE3 1px,transparent 1px);background-size:18px 18px;padding:14px}
+.wf-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.wf-head strong{font-size:14px}
+.pub{font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--app-green-soft);color:var(--app-green)}
+.wf-head .stats{margin-left:auto;font-size:11px;color:var(--app-muted)}
+.wf-head .stats b{color:var(--app-ink);font-variant-numeric:tabular-nums}
+.flow{display:flex;flex-direction:column;align-items:center;gap:0;transform-origin:top center}
+.node{width:min(300px,100%);background:#FFFFFF;border:1px solid var(--app-line);border-radius:10px;padding:8px 10px;display:grid;grid-template-columns:28px 1fr auto;gap:9px;align-items:center;position:relative;transition:border-color .25s,box-shadow .25s}
+.node .ni{width:28px;height:28px;border-radius:7px;display:grid;place-items:center;font-size:10px;font-weight:800;color:#fff}
+.ni.trig{background:#6B4EFF}.ni.act{background:var(--app-blue)}.ni.wait{background:#98A2B3}.ni.cond{background:var(--app-amber)}.ni.end{background:var(--app-green)}
+.node strong{display:block;font-size:12px;line-height:1.25}
+.node span{display:block;font-size:11px;color:var(--app-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.node .ck{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--app-line);display:grid;place-items:center}
+.node.run{border-color:var(--app-blue);box-shadow:0 0 0 4px var(--app-blue-soft)}
+.node.run .ck{border-color:var(--app-blue);border-top-color:transparent;animation:spin .7s linear infinite}
+.node.done .ck{background:var(--app-green);border-color:var(--app-green)}
+.node.done .ck::after{content:"";width:6px;height:3px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg) translate(1px,-1px)}
+.node.skip{opacity:.45}
+@keyframes spin{to{transform:rotate(360deg)}}
+.edge{width:2px;height:16px;background:#C9D1DB;position:relative;overflow:hidden}
+.edge.lit::after{content:"";position:absolute;left:0;top:-16px;width:2px;height:16px;background:var(--app-blue);animation:flowdown .35s ease forwards}
+@keyframes flowdown{to{top:0}}
+.branches{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:min(420px,100%);position:relative;padding-top:18px}
+.branches::before{content:"";position:absolute;top:0;left:25%;right:25%;height:2px;background:#C9D1DB}
+.branches .lane{display:flex;flex-direction:column;align-items:center;position:relative}
+.branches .lane::before{content:"";position:absolute;top:-18px;left:50%;width:2px;height:18px;background:#C9D1DB}
+.lane-label{font-size:10px;font-weight:700;padding:1px 7px;border-radius:999px;margin-bottom:6px;background:#FFFFFF;border:1px solid var(--app-line);color:var(--app-muted)}
+.lane .node{width:100%;grid-template-columns:24px 1fr auto}
+.lane .node .ni{width:24px;height:24px}
+.logs{border-left:1px solid var(--app-line);background:#FFFFFF;display:flex;flex-direction:column;min-height:0}
+.logs-head{padding:10px 12px;border-bottom:1px solid var(--app-line);display:flex;justify-content:space-between;align-items:center}
+.logs-head strong{font-size:13px}
+.loglist{list-style:none;margin:0;padding:6px 0;overflow:hidden;flex:1;display:flex;flex-direction:column}
+.loglist li{display:grid;grid-template-columns:auto 1fr;gap:8px;padding:6px 12px;font-size:11.5px;border-bottom:1px solid #F0F2F5;animation:rise .25s ease both}
+.loglist time{font-family:var(--mono);font-size:10.5px;color:var(--app-faint);padding-top:1px}
+.loglist .ok{color:var(--app-green);font-weight:700}
+.loglist .muted{color:var(--app-muted)}
+.logs-empty{padding:14px 12px;color:var(--app-faint);font-size:12px}
+
+/* pipeline */
+.pl{padding:14px;height:540px;display:flex;flex-direction:column;gap:10px}
+.pl-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.pl-head strong{font-size:14px}
+.pl-head span{font-size:12px;color:var(--app-muted)}
+.cols{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;flex:1;min-height:0}
+.col{background:#EBEEF3;border-radius:10px;padding:8px;display:flex;flex-direction:column;gap:7px;min-height:0;overflow:hidden}
+.col h5{margin:0;font-size:11px;font-weight:700;color:var(--app-muted);display:flex;justify-content:space-between;padding:2px 2px 4px}
+.col h5 b{color:var(--app-ink);font-variant-numeric:tabular-nums}
+.opp{background:#FFFFFF;border:1px solid var(--app-line);border-radius:8px;padding:8px;font-size:12px;box-shadow:0 1px 1px rgba(16,24,40,.04)}
+.opp strong{display:block;font-size:12px}
+.opp span{color:var(--app-muted);font-size:11px}
+.opp .val{float:right;font-weight:700;color:var(--app-ink);font-size:11px}
+.opp.me{border-color:var(--app-blue);box-shadow:0 0 0 3px var(--app-blue-soft)}
+
+/* reporting */
+.rp{padding:14px;height:540px;display:grid;grid-template-rows:auto auto 1fr;gap:12px}
+.rp-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.rp-head strong{font-size:14px}
+.ex{font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--app-amber-soft);color:#7A4B00}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.kpi{background:#FFFFFF;border:1px solid var(--app-line);border-radius:10px;padding:10px 12px}
+.kpi span{font-size:11px;color:var(--app-muted);font-weight:600}
+.kpi b{display:block;font-family:var(--display);font-size:24px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.2}
+.kpi small{font-size:11px;color:var(--app-green);font-weight:700}
+.kpi.bump{animation:bump .5s ease}
+@keyframes bump{40%{background:var(--app-blue-soft)}}
+.chartcard{background:#FFFFFF;border:1px solid var(--app-line);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;min-height:0}
+.chartcard h6{margin:0 0 6px;font-size:12px}
+.chartcard svg{flex:1;width:100%;min-height:160px}
+.bar{fill:#BBD3FA}.bar.hi{fill:var(--app-blue)}
+.axis{fill:var(--app-muted);font-size:10px;font-family:var(--body)}
+.gridl{stroke:#EEF1F5;stroke-width:1}
+
+/* recording slot */
+.slot{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px;padding:8px 12px;border:1px dashed var(--peach);border-radius:10px;font-family:var(--mono);font-size:.68rem;color:var(--peach);background:var(--peach-soft)}
+
+/* TWO LAYERS */
+.layers{display:grid;grid-template-columns:1fr 120px 1fr;gap:0;align-items:stretch}
+.layer{border:1px solid var(--line-strong);border-radius:18px;padding:clamp(18px,3vw,28px);background:var(--surface-2);display:grid;gap:14px;align-content:start}
+.layer .k{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
+.layer.brain .k{color:var(--peach)}
+.layer.engine .k{color:var(--teal)}
+.layer h3{font-size:1.4rem;font-weight:800}
+.layer > p{color:var(--muted);font-size:.93rem}
+.pills{display:flex;flex-wrap:wrap;gap:6px}
+.pill{font-family:var(--mono);font-size:.7rem;padding:5px 10px;border-radius:8px;border:1px solid var(--line-strong);color:var(--ink)}
+.brain .pill{border-color:rgba(232,168,124,.35)}
+.engine .pill{border-color:rgba(0,212,188,.35)}
+.wire{position:relative}
+.wire svg{position:absolute;inset:0;width:100%;height:100%}
+.wire path{stroke:var(--line-strong);stroke-width:1.5;fill:none}
+.wire .pulse{stroke:var(--teal);stroke-width:2.5;stroke-dasharray:10 150;animation:dash 2.4s linear infinite}
+.wire .pulse.b{stroke:var(--peach);animation-delay:1.2s;animation-direction:reverse}
+@keyframes dash{to{stroke-dashoffset:-160}}
+
+/* INVENTORY */
+.inv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.grp{background:var(--ground);padding:22px 20px;display:grid;gap:12px;align-content:start}
+.grp .k{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal)}
+.grp h3{font-size:1.08rem;font-weight:800}
+.grp ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.grp li{display:grid;grid-template-columns:16px 1fr;gap:10px;font-size:.9rem;color:var(--ink)}
+.grp li::before{content:"";width:10px;height:10px;margin-top:7px;border-radius:3px;background:var(--teal)}
+.grp li small{display:block;color:var(--muted);font-size:.8rem}
+
+/* TIMELINE */
+.tl{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;position:relative}
+.tl::before{content:"";position:absolute;top:21px;left:4%;right:4%;height:2px;background:var(--line-strong)}
+.tlstep{position:relative;display:grid;gap:10px;align-content:start}
+.tlstep .mark{width:44px;height:44px;border-radius:50%;background:var(--ground);border:2px solid var(--teal);display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:.8rem;color:var(--teal);position:relative;z-index:1}
+.tlstep.bookend .mark{border-color:var(--peach);color:var(--peach)}
+.tlstep .when{font-family:var(--mono);font-size:.7rem;color:var(--muted);letter-spacing:.04em}
+.tlstep h3{font-size:1rem;font-weight:800}
+.tlstep p{font-size:.86rem;color:var(--muted)}
+
+/* OWN + PROOF + CTA */
+.own{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,3vw,32px)}
+.own div{border-top:2px solid var(--teal);padding-top:14px}
+.own h3{font-size:1.02rem;font-weight:800}
+.own p{color:var(--muted);font-size:.9rem;margin-top:6px}
+.proof{margin-top:clamp(28px,5vw,48px);display:grid;grid-template-columns:auto 1fr;gap:clamp(16px,3vw,32px);align-items:center;padding:clamp(18px,3vw,28px);border:1px solid var(--line-strong);border-radius:18px;background:var(--surface-2)}
+.proof .big{font-family:var(--display);font-weight:900;font-size:clamp(2.6rem,7vw,4.6rem);color:var(--teal);line-height:1;letter-spacing:-.03em}
+.proof p{color:var(--muted);max-width:52ch}
+.seat{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(20px,4vw,48px);align-items:end}
+.seat h2{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;max-width:18ch}
+.seat .facts{display:grid;gap:10px;border-left:2px solid var(--teal);padding-left:18px}
+.seat .facts div{display:flex;justify-content:space-between;gap:12px;font-size:.95rem;border-bottom:1px solid var(--line);padding-bottom:8px}
+.seat .facts span{color:var(--muted)}
+.seat .facts b{font-family:var(--display);font-weight:800;font-variant-numeric:tabular-nums;text-align:right}
+.seat a{display:inline-block;margin-top:8px;background:var(--teal);color:#03211e;text-decoration:none;font-family:var(--display);font-weight:800;padding:14px 24px;border-radius:999px;text-align:center}
+.seat a:hover{background:var(--ink)}
+footer{border-top:1px solid var(--line);padding-block:24px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+@media (max-width:1020px){
+  .conv{grid-template-columns:220px minmax(0,1fr)}
+  .cprofile{display:none}
+  .wf{grid-template-columns:minmax(0,1fr) 230px}
+  .tl{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tl::before{display:none}
+}
+@media (max-width:860px){
+  .hero-grid,.seat{grid-template-columns:1fr}
+  .layers{grid-template-columns:1fr}
+  .wire{height:56px}
+  .inv{grid-template-columns:1fr 1fr}
+  .own{grid-template-columns:1fr}
+  .app-body{grid-template-columns:1fr}
+  .side{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--app-line)}
+  .side .sep{display:none}
+  .nav{width:auto;white-space:nowrap}
+  .wf{grid-template-columns:1fr;height:auto}
+  .canvas{height:470px}
+  .logs{border-left:0;border-top:1px solid var(--app-line);height:200px}
+  .cols{grid-template-columns:repeat(5,minmax(150px,1fr));overflow-x:auto}
+  .kpis{grid-template-columns:1fr 1fr}
+  .rp{height:auto}
+  .app-top .search{display:none}
+}
+@media (max-width:600px){
+  .conv{grid-template-columns:1fr}
+  .clist{display:none}
+  .inv{grid-template-columns:1fr}
+  .tl{grid-template-columns:1fr}
+  .proof{grid-template-columns:1fr}
+  .canvas{height:500px}
+  .flow{transform:scale(.92)}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+
+<div class="mockbar">
+  <div class="wrap">
+    <span class="brand">Clinic <span>Catalyst</span></span>
+    <span class="note">MOCKUP &middot; example clinic, contacts and figures throughout</span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Our System</span>
+      <div class="clock" aria-label="9:14 pm"><span>9</span><span class="colon">:</span><span>14</span><small>PM</small></div>
+      <h1>Your front desk closed at six. <em>Your enquiries didn't.</em></h1>
+      <p class="lede">This is the system every clinic walks out of the 3-Day Workshop owning. It answers every enquiry, follows up until they book, fills the calendar and shows you what worked. It lives in your own account, and it's yours for good.</p>
+      <div class="status-row">
+        <span class="chip closed"><span class="dot"></span>Reception closed</span>
+        <span class="chip live"><span class="dot"></span>System answering</span>
+      </div>
+    </div>
+    <div class="phone" aria-label="Example Instagram conversation">
+      <div class="phone-top"><span id="ptime">9:14</span><span>Instagram</span></div>
+      <div class="phone-head"><div class="avatar">HS</div><div><strong>Harbour Skin Studio</strong><span>Example clinic</span></div></div>
+      <div class="thread" id="thread" aria-live="polite">
+        <div class="msg sys">Tuesday 9:14 pm</div>
+        <div class="msg in">Hi! Do you do anything for redness on my cheeks? It's been getting worse<span class="t">9:14 pm</span></div>
+        <div class="msg out">Hi Mia, thanks for reaching out. Redness is one of the things our nurses look at most. The first step is a skin consultation so we can see what's going on and talk through options.<span class="t">9:14 pm</span></div>
+      </div>
+      <div class="phone-foot"><span class="note">What the client sees</span><button class="ghost-btn" id="replay" type="button">Replay</button></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ WATCH IT FIRE ============ -->
+<section class="band" id="fire">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">What your team sees</span>
+      <h2>Send a test enquiry and watch the system fire</h2>
+      <p>In the room, you send yourself a test lead and watch the follow-up go out while you sit there. Press the button to see that moment: the message lands, the workflow runs step by step, the pipeline moves and the report counts it.</p>
+    </div>
+
+    <div class="runbar">
+      <button class="fire" id="fireBtn" type="button"><span class="bolt"></span>Send a test enquiry</button>
+      <label class="follow" for="follow"><input type="checkbox" id="follow" checked> Follow along between screens</label>
+      <span class="runstate" id="runstate" aria-live="polite"></span>
+    </div>
+
+    <div class="app" id="app">
+      <div class="app-top">
+        <span class="dots"><i></i><i></i><i></i></span>
+        <span class="acct"><b>HS</b>Harbour Skin Studio</span>
+        <span class="search">Search contacts</span>
+      </div>
+      <div class="app-body">
+        <nav class="side" role="tablist" aria-label="Screens">
+          <button class="nav" role="tab" aria-selected="true" data-v="conv" type="button"><span class="ico"></span>Conversations<span class="badge" id="convBadge">1</span></button>
+          <button class="nav" role="tab" aria-selected="false" data-v="wf" type="button"><span class="ico"></span>Workflows<span class="badge" id="wfBadge">1</span></button>
+          <button class="nav" role="tab" aria-selected="false" data-v="pl" type="button"><span class="ico"></span>Opportunities</button>
+          <button class="nav" role="tab" aria-selected="false" data-v="rp" type="button"><span class="ico"></span>Reporting</button>
+          <span class="sep"></span>
+          <button class="nav" type="button" tabindex="-1" aria-disabled="true"><span class="ico"></span>Calendars</button>
+          <button class="nav" type="button" tabindex="-1" aria-disabled="true"><span class="ico"></span>Contacts</button>
+        </nav>
+
+        <div>
+          <!-- CONVERSATIONS -->
+          <div class="view on" data-view="conv">
+            <div class="conv">
+              <div class="clist">
+                <div class="clist-head"><span class="fchip on">Unread</span><span class="fchip">All</span><span class="fchip">Starred</span></div>
+                <div class="citems" id="citems">
+                  <div class="citem sel" data-id="priya"><div class="cav" style="background:#7A5AF8">PK<span class="src fb">f</span></div><div><strong>Priya K.</strong><span class="pv">Great, see you Thursday!</span></div><time>6:58 pm</time></div>
+                  <div class="citem"><div class="cav" style="background:#0E9384">JT<span class="src web">W</span></div><div><strong>Jess T.</strong><span class="pv">Do you have anything Saturday morning?</span></div><time>6:12 pm</time></div>
+                  <div class="citem"><div class="cav" style="background:#DB8A0B">04<span class="src call">C</span></div><div><strong>0412 xxx 381</strong><span class="pv">Missed call, texted back automatically</span></div><time>5:40 pm</time></div>
+                  <div class="citem"><div class="cav" style="background:#C11574">LM<span class="src sms">S</span></div><div><strong>Laura M.</strong><span class="pv">C</span></div><time>4:02 pm</time></div>
+                  <div class="citem"><div class="cav" style="background:#475467">NS<span class="src em">@</span></div><div><strong>Nadia S.</strong><span class="pv">Thanks for the aftercare notes</span></div><time>2:15 pm</time></div>
+                </div>
+              </div>
+              <div class="cthread">
+                <div class="cth-head"><strong id="cName">Priya K.</strong><span class="note" style="color:var(--app-faint)" id="cSub">Facebook</span><span class="chan" id="cChan">Reply via Facebook</span></div>
+                <div class="cmsgs" id="cmsgs">
+                  <div class="bub in">How long does a skin consult take?<span class="meta">Facebook &middot; 6:51 pm</span></div>
+                  <div class="bub out">About 45 minutes, Priya. We look at your skin properly, talk through what's bothering you, and you leave with a written plan. Thursday 11am is free if that suits?<span class="meta">Facebook &middot; 6:52 pm &middot; approved by Sam</span></div>
+                  <div class="bub in">Great, see you Thursday!<span class="meta">Facebook &middot; 6:58 pm</span></div>
+                  <div class="evt"><b>Appointment booked</b> &middot; Thu 11:00 am</div>
+                </div>
+                <div class="composer">
+                  <div class="suggest" id="suggest"><b>Suggested reply</b><span id="suggestTxt"></span></div>
+                  <div class="comp-row"><div class="box" id="compBox">Type a message</div><button class="send" type="button" tabindex="-1">Send</button></div>
+                </div>
+              </div>
+              <aside class="cprofile" id="cprofile">
+                <div><h6>Contact</h6><div class="kv"><strong id="pName">Priya K.</strong><span id="pSrc">Source: Facebook</span></div></div>
+                <div><h6>Tags</h6><div class="tags" id="pTags"><span class="tg">skin-consult</span><span class="tg">facebook</span></div></div>
+                <div><h6>Opportunity</h6><span class="stagepill booked" id="pStage">Consult booked</span></div>
+                <div><h6>Active workflows</h6><div class="wfrow" id="pWf"><span class="muted" style="color:var(--app-muted)">None running</span></div></div>
+              </aside>
+            </div>
+          </div>
+
+          <!-- WORKFLOWS -->
+          <div class="view" data-view="wf">
+            <div class="wf">
+              <div class="canvas">
+                <div class="wf-head"><strong>New enquiry follow-up</strong><span class="pub">Published</span><span class="stats">Enrolled <b id="enrolled">128</b> &middot; Booked <b id="bookedCt">81</b></span></div>
+                <div class="flow" id="flow">
+                  <div class="node" data-n="0"><span class="ni trig">T</span><div><strong>Trigger: new message</strong><span>Instagram, Facebook, website chat, SMS</span></div><span class="ck"></span></div>
+                  <div class="edge" data-e="0"></div>
+                  <div class="node" data-n="1"><span class="ni act">A</span><div><strong>Create opportunity</strong><span>Pipeline: New clients &middot; Stage: Enquiry</span></div><span class="ck"></span></div>
+                  <div class="edge" data-e="1"></div>
+                  <div class="node" data-n="2"><span class="ni act">A</span><div><strong>Add tag</strong><span>concern-redness &middot; instagram</span></div><span class="ck"></span></div>
+                  <div class="edge" data-e="2"></div>
+                  <div class="node" data-n="3"><span class="ni act">A</span><div><strong>Reply in the clinic's voice</strong><span>From your Business Brain &middot; team approves</span></div><span class="ck"></span></div>
+                  <div class="edge" data-e="3"></div>
+                  <div class="node" data-n="4"><span class="ni cond">?</span><div><strong>If / else: appointment booked?</strong><span>Checks the calendar</span></div><span class="ck"></span></div>
+                  <div class="branches">
+                    <div class="lane"><span class="lane-label">Yes</span>
+                      <div class="node" data-n="5"><span class="ni act">A</span><div><strong>Move to Consult booked</strong><span>Send confirmation + deposit link</span></div><span class="ck"></span></div>
+                      <div class="edge" data-e="5"></div>
+                      <div class="node" data-n="6"><span class="ni end">R</span><div><strong>Reminder day before</strong><span>SMS &middot; reply C to confirm</span></div><span class="ck"></span></div>
+                    </div>
+                    <div class="lane"><span class="lane-label">No</span>
+                      <div class="node" data-n="7"><span class="ni wait">W</span><div><strong>Wait 1 day</strong><span>Then email: your first consult</span></div><span class="ck"></span></div>
+                      <div class="edge" data-e="7"></div>
+                      <div class="node" data-n="8"><span class="ni act">A</span><div><strong>SMS day 3, email day 7</strong><span>Stops the moment they book</span></div><span class="ck"></span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="logs">
+                <div class="logs-head"><strong>Execution log</strong><span class="note" style="color:var(--app-faint)">live</span></div>
+                <ul class="loglist" id="loglist"><li class="logs-empty" style="display:block;grid-template-columns:none">Waiting for the next enquiry. Press "Send a test enquiry" above.</li></ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- OPPORTUNITIES -->
+          <div class="view" data-view="pl">
+            <div class="pl">
+              <div class="pl-head"><strong>New clients</strong><span>Pipeline value this month <b style="color:var(--app-ink)" id="plValue">$14,650</b></span></div>
+              <div class="cols">
+                <div class="col" data-c="enquiry"><h5>Enquiry <b id="c-enquiry">3</b></h5><div class="opp"><strong>Jess T.</strong><span>Website chat</span></div><div class="opp"><strong>Amelia W.</strong><span>Instagram</span></div><div class="opp"><strong>0412 xxx 381</strong><span>Missed call</span></div></div>
+                <div class="col" data-c="booked"><h5>Consult booked <b id="c-booked">2</b></h5><div class="opp"><strong>Priya K.</strong><span>Thu 11:00 am</span></div><div class="opp"><strong>Hannah B.</strong><span>Fri 2:30 pm</span></div></div>
+                <div class="col" data-c="deposit"><h5>Deposit paid <b id="c-deposit">2</b></h5><div class="opp"><strong>Laura M.</strong><span>$50 paid</span></div><div class="opp"><strong>Grace L.</strong><span>$50 paid</span></div></div>
+                <div class="col" data-c="attended"><h5>Attended <b>4</b></h5><div class="opp"><span class="val">$1,200</span><strong>Nadia S.</strong><span>Plan accepted</span></div><div class="opp"><span class="val">$850</span><strong>Chloe D.</strong><span>Plan accepted</span></div></div>
+                <div class="col" data-c="nurture"><h5>Not yet <b>6</b></h5><div class="opp"><strong>Emma R.</strong><span>Day 7 email sent</span></div><div class="opp"><strong>Sofia P.</strong><span>Newsletter</span></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- REPORTING -->
+          <div class="view" data-view="rp">
+            <div class="rp">
+              <div class="rp-head"><strong>This week</strong><span class="ex">Example figures, not real results</span></div>
+              <div class="kpis">
+                <div class="kpi" id="k-leads"><span>New enquiries</span><b id="kv-leads">45</b><small>from ads and organic</small></div>
+                <div class="kpi" id="k-booked"><span>Consults booked</span><b id="kv-booked">19</b><small>42% of enquiries</small></div>
+                <div class="kpi"><span>Showed up</span><b>89%</b><small>reminders on</small></div>
+                <div class="kpi"><span>Cost per booking</span><b>$31</b><small>Meta + Google</small></div>
+              </div>
+              <div class="chartcard">
+                <h6>Enquiries by day</h6>
+                <svg viewBox="0 0 420 170" preserveAspectRatio="none" role="img" aria-label="Enquiries by day, example week">
+                  <line class="gridl" x1="30" x2="410" y1="20" y2="20"/><line class="gridl" x1="30" x2="410" y1="70" y2="70"/><line class="gridl" x1="30" x2="410" y1="120" y2="120"/>
+                  <text class="axis" x="22" y="24" text-anchor="end">10</text><text class="axis" x="22" y="74" text-anchor="end">5</text><text class="axis" x="22" y="147" text-anchor="end">0</text>
+                  <rect class="bar" x="42" y="80" width="36" height="63" rx="3"/>
+                  <rect class="bar" x="96" y="60" width="36" height="83" rx="3"/>
+                  <rect class="bar" x="150" y="90" width="36" height="53" rx="3"/>
+                  <rect class="bar" x="204" y="50" width="36" height="93" rx="3"/>
+                  <rect class="bar" x="258" y="70" width="36" height="73" rx="3"/>
+                  <rect class="bar" x="312" y="100" width="36" height="43" rx="3"/>
+                  <rect class="bar hi" id="todayBar" x="366" y="40" width="36" height="103" rx="3"/>
+                  <line x1="30" x2="410" y1="143" y2="143" stroke="#C9D1DB"/>
+                  <text class="axis" x="60" y="160" text-anchor="middle">Wed</text><text class="axis" x="114" y="160" text-anchor="middle">Thu</text><text class="axis" x="168" y="160" text-anchor="middle">Fri</text><text class="axis" x="222" y="160" text-anchor="middle">Sat</text><text class="axis" x="276" y="160" text-anchor="middle">Sun</text><text class="axis" x="330" y="160" text-anchor="middle">Mon</text><text class="axis" x="384" y="160" text-anchor="middle">Tue</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</section>
+
+<!-- ============ TWO LAYERS ============ -->
+<section class="band" id="layers">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">How it's built</span>
+      <h2>A brain that knows your clinic, and an engine that never stops</h2>
+      <p>Two layers work together. Claude holds everything about your clinic and writes like you. Your CRM runs the messages, the follow-up, the calendar and the numbers.</p>
+    </div>
+    <div class="layers">
+      <div class="layer brain">
+        <span class="k">The brain &middot; Claude</span>
+        <h3>Knows your clinic</h3>
+        <p>Your treatments, prices, policies, tone and the concerns your clients come in with, in one Business Brain. Every reply, ad, page and post starts from it, so it sounds like your clinic.</p>
+        <div class="pills"><span class="pill">Business Brain</span><span class="pill">brand guide</span><span class="pill">content engine</span><span class="pill">Meta campaign engine</span><span class="pill">Google ad builder</span><span class="pill">landing pages</span><span class="pill">Google and AI search</span><span class="pill">30-skill library</span></div>
+      </div>
+      <div class="wire" aria-hidden="true">
+        <svg viewBox="0 0 120 300" preserveAspectRatio="none"><path d="M0,90 C60,90 60,150 120,150"/><path d="M0,210 C60,210 60,150 120,150"/><path class="pulse" d="M0,90 C60,90 60,150 120,150"/><path class="pulse b" d="M0,210 C60,210 60,150 120,150"/></svg>
+      </div>
+      <div class="layer engine">
+        <span class="k">The engine &middot; your CRM</span>
+        <h3>Runs every day</h3>
+        <p>Every message in one inbox, workflows that follow up on their own, a pipeline you can see, a calendar with deposits and reminders, and a weekly report.</p>
+        <div class="pills"><span class="pill">conversations</span><span class="pill">clinic assistant</span><span class="pill">voice agent</span><span class="pill">SMS number</span><span class="pill">workflows</span><span class="pill">pipelines</span><span class="pill">newsletter</span><span class="pill">reporting</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INVENTORY ============ -->
+<section class="band" id="own-list">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Yours to keep</span>
+      <h2>Everything you walk out of the workshop owning</h2>
+    </div>
+    <div class="inv">
+      <div class="grp"><span class="k">Answer</span><h3>No enquiry left waiting</h3><ul><li><span>Clinic assistant and voice agent<small>answers messages and calls in your clinic's voice</small></span></li><li><span>Your own dedicated SMS number</span></li></ul></div>
+      <div class="grp"><span class="k">Attract</span><h3>New clients finding you</h3><ul><li><span>Meta campaign, launched</span></li><li><span>Google campaign, launched</span></li><li><span>Landing and thank-you pages</span></li><li><span>30 days of content</span></li></ul></div>
+      <div class="grp"><span class="k">Convert</span><h3>Enquiries into bookings</h3><ul><li><span>CRM and pipelines</span></li><li><span>Follow-up ladder<small>stops the moment they book</small></span></li></ul></div>
+      <div class="grp"><span class="k">Bring back</span><h3>Past clients returning</h3><ul><li><span>Newsletter engine</span></li><li><span>Reactivation campaign<small>fired live to your database</small></span></li></ul></div>
+      <div class="grp"><span class="k">Know</span><h3>Numbers you can read</h3><ul><li><span>Weekly reporting</span></li></ul></div>
+      <div class="grp"><span class="k">Keep improving</span><h3>The brain behind it</h3><ul><li><span>Your Business Brain</span></li><li><span>The 30-skill Claude library<small>with a video for every skill</small></span></li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TIMELINE ============ -->
+<section class="band" id="days">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">How you get it</span>
+      <h2>Installed before you arrive. Launched in the room.</h2>
+      <p>Nothing waits on you to set up. Your system is deployed before day one, so the three days go on decisions and launching.</p>
+    </div>
+    <div class="tl">
+      <div class="tlstep bookend"><span class="mark">Pre</span><span class="when">Before the workshop</span><h3>Your system goes in</h3><p>SMS number, CRM, follow-up ladder, clinic assistant, knowledge base and skill pack installed, ad accounts checked.</p></div>
+      <div class="tlstep"><span class="mark">D1</span><span class="when">Day 1</span><h3>Systems install</h3><p>The assistant, follow-up and reporting set up around your clinic and tested by you.</p></div>
+      <div class="tlstep"><span class="mark">D2</span><span class="when">Day 2</span><h3>Meta ads campaign</h3><p>Your offer, your video and still ads, the copy, launched and connected to your booking flow.</p></div>
+      <div class="tlstep"><span class="mark">D3</span><span class="when">Day 3</span><h3>Google ads</h3><p>Search campaigns for the people already looking for your treatments near you.</p></div>
+      <div class="tlstep bookend"><span class="mark">+30</span><span class="when">After</span><h3>30 days of support</h3><p>Prompts through the month so you keep using it, and the skill library keeps growing.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OWN IT ============ -->
+<section class="band">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Fire your marketing agency</span>
+      <h2>One investment. No retainer.</h2>
+    </div>
+    <div class="own">
+      <div><h3>Your accounts, your data</h3><p>Built in your own account. Your clients, your ads, your pages and your audiences stay with you.</p></div>
+      <div><h3>Sounds like your clinic</h3><p>Replies and content come from your Business Brain, and your team approves replies until you're happy.</p></div>
+      <div><h3>You understand it</h3><p>You know which numbers matter and what to change when they move, so no report is a mystery again.</p></div>
+    </div>
+    <div class="proof">
+      <div class="big">8x</div>
+      <p>One clinic put $1,002 into ads and got $8,560 back, with nearly one in five enquiries booking in. <span class="note">A real result from one clinic, not a guarantee.</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap seat">
+    <div>
+      <span class="eyebrow">3-Day Workshop &middot; Brisbane</span>
+      <h2 style="margin-top:12px">Walk out with it running in your clinic.</h2>
+    </div>
+    <div class="facts">
+      <div><span>Dates</span><b>26 to 28 October 2026</b></div>
+      <div><span>Seats</span><b>10 clinics</b></div>
+      <div><span>Per clinic</span><b>$3,500</b></div>
+      <div><span>Deposit to hold your seat</span><b>$550</b></div>
+      <div><span>Extra team member</span><b>$300</b></div>
+      <a href="#fire">Reserve your seat</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="note">Clinic Catalyst &middot; Our System page mockup &middot; 14 Sep 2026</span>
+    <span class="note">Harbour Skin Studio, its contacts and all figures are examples</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = s => document.querySelector(s);
+  const $$ = s => Array.from(document.querySelectorAll(s));
+  const sleep = ms => new Promise(r => setTimeout(r, reduce ? 0 : ms));
+
+  /* ---------- hero phone ---------- */
+  const thread = $('#thread');
+  const chat = [
+    {c:'sys', t:'Tuesday 9:14 pm'},
+    {c:'in', t:"Hi! Do you do anything for redness on my cheeks? It's been getting worse", time:'9:14 pm', d:900},
+    {c:'out', t:"Hi Mia, thanks for reaching out. Redness is one of the things our nurses look at most. The first step is a skin consultation so we can see what's going on and talk through options.", time:'9:14 pm', d:1500, typing:true},
+    {c:'out', t:'Thursday 4:15 or 5:30 pm are free. Would you like one held for you?', time:'9:15 pm', d:1200, typing:true},
+    {c:'in', t:'5:30 please!', time:'9:15 pm', d:1400},
+    {c:'out', t:"Done. Here's the link for your details and the $50 deposit, which comes off your treatment.", time:'9:16 pm', d:1200, typing:true},
+    {c:'sys', t:'Consult booked Thu 5:30 pm · deposit paid'}
+  ];
+  let chatRun = 0;
+  function addMsg(m){
+    const el = document.createElement('div'); el.className = 'msg ' + m.c; el.textContent = m.t;
+    if (m.time){ const t = document.createElement('span'); t.className = 't'; t.textContent = m.time; el.appendChild(t); }
+    thread.appendChild(el); while (thread.children.length > 7) thread.removeChild(thread.firstChild);
+  }
+  async function playChat(from){
+    const id = ++chatRun; if (from === 0) thread.innerHTML = '';
+    for (let i = from; i < chat.length; i++){
+      const m = chat[i]; await sleep(m.d || 400); if (id !== chatRun) return;
+      if (m.typing){ const ty = document.createElement('div'); ty.className = 'typing'; ty.innerHTML = '<i></i><i></i><i></i>'; thread.appendChild(ty); await sleep(850); ty.remove(); if (id !== chatRun) return; }
+      addMsg(m); if (m.time) $('#ptime').textContent = m.time.replace(' pm','');
+    }
+  }
+  playChat(3);
+  $('#replay').addEventListener('click', () => { $('#ptime').textContent = '9:14'; playChat(0); });
+
+  /* ---------- app tabs ---------- */
+  function view(v, fromUser){
+    $$('.nav[data-v]').forEach(n => n.setAttribute('aria-selected', String(n.dataset.v === v)));
+    $$('.view').forEach(x => x.classList.toggle('on', x.dataset.view === v));
+    if (fromUser) followBox.checked = false;
+  }
+  const followBox = $('#follow');
+  $$('.nav[data-v]').forEach(n => n.addEventListener('click', () => view(n.dataset.v, running)));
+  const go = v => { if (followBox.checked) view(v); else { const n = document.querySelector('.nav[data-v="' + v + '"]'); n.classList.remove('ping'); void n.offsetWidth; n.classList.add('ping'); } };
+
+  /* ---------- the run ---------- */
+  let running = false, runId = 0, clockMin = 14;
+  const stamp = () => { const s = '9:' + String(clockMin).padStart(2,'0') + ' pm'; return s; };
+  function log(html){
+    const ul = $('#loglist'); const empty = ul.querySelector('.logs-empty'); if (empty) empty.remove();
+    const li = document.createElement('li'); li.innerHTML = '<time>' + stamp() + '</time><span>' + html + '</span>';
+    ul.appendChild(li); while (ul.children.length > 11) ul.removeChild(ul.firstChild);
+  }
+  function node(n, state){ const el = document.querySelector('.node[data-n="' + n + '"]'); if (!el) return; el.classList.remove('run','done','skip'); if (state) el.classList.add(state); }
+  function edge(e){ const el = document.querySelector('.edge[data-e="' + e + '"]'); if (el){ el.classList.remove('lit'); void el.offsetWidth; el.classList.add('lit'); } }
+  function state(t){ $('#runstate').textContent = t; }
+
+  function resetRun(){
+    $$('.node').forEach(n => n.classList.remove('run','done','skip'));
+    $$('.edge').forEach(e => e.classList.remove('lit'));
+    $('#suggest').classList.remove('on');
+    $('#compBox').textContent = 'Type a message'; $('#compBox').classList.remove('typing-in');
+    const old = document.querySelector('.citem[data-id="mia"]'); if (old) old.remove();
+    const oldOpp = document.getElementById('miaOpp'); if (oldOpp) oldOpp.remove();
+    document.getElementById('c-enquiry').textContent = '3'; document.getElementById('c-booked').textContent = '2'; document.getElementById('c-deposit').textContent = '2';
+    $('#kv-leads').textContent = '45'; $('#kv-booked').textContent = '19';
+    $('#todayBar').setAttribute('y','40'); $('#todayBar').setAttribute('height','103');
+    $('#enrolled').textContent = '128'; $('#bookedCt').textContent = '81';
+    $('#convBadge').classList.remove('on'); $('#wfBadge').classList.remove('on');
+    clockMin = 14;
+  }
+
+  function openMia(){
+    $$('.citem').forEach(c => c.classList.remove('sel'));
+    document.querySelector('.citem[data-id="mia"]').classList.add('sel');
+    $('#cName').textContent = 'Mia R.'; $('#cSub').textContent = 'Instagram'; $('#cChan').textContent = 'Reply via Instagram';
+    $('#cmsgs').innerHTML = '';
+    $('#pName').textContent = 'Mia R.'; $('#pSrc').textContent = 'Source: Instagram DM';
+    $('#pTags').innerHTML = ''; $('#pStage').textContent = 'No opportunity yet'; $('#pStage').classList.remove('booked');
+    $('#pWf').innerHTML = '<span style="color:var(--app-muted)">None running</span>';
+  }
+  function bub(dir, text, meta){ const b = document.createElement('div'); b.className = 'bub ' + dir; b.textContent = text; const m = document.createElement('span'); m.className = 'meta'; m.textContent = meta; b.appendChild(m); $('#cmsgs').appendChild(b); trim(); }
+  function evt(html){ const e = document.createElement('div'); e.className = 'evt'; e.innerHTML = html; $('#cmsgs').appendChild(e); trim(); }
+  function trim(){ const c = $('#cmsgs'); while (c.children.length > 8) c.removeChild(c.firstChild); }
+  function tag(t){ const s = document.createElement('span'); s.className = 'tg new'; s.textContent = t; $('#pTags').appendChild(s); }
+  async function typeInto(el, text){ el.classList.add('typing-in'); el.textContent = ''; if (reduce){ el.textContent = text; return; } for (let i = 0; i < text.length; i += 3){ el.textContent = text.slice(0, i + 3); await sleep(14); } }
+
+  async function run(){
+    if (running) return; running = true; const id = ++runId;
+    const btn = $('#fireBtn'); btn.disabled = true; btn.lastChild.textContent = 'Running...';
+    resetRun(); view('conv');
+    const alive = () => id === runId;
+
+    state('A new message just landed');
+    await sleep(500);
+    const item = document.createElement('div'); item.className = 'citem fresh'; item.dataset.id = 'mia';
+    item.innerHTML = '<div class="cav" style="background:#E04F8B">MR<span class="src ig">IG</span></div><div><strong>Mia R.</strong><span class="pv">Do you do anything for redness on my cheeks?</span></div><div><time>9:14 pm</time><span class="unread"></span></div>';
+    $('#citems').prepend(item); $('#convBadge').classList.add('on');
+    await sleep(700); if (!alive()) return;
+    openMia();
+    bub('in', "Hi! Do you do anything for redness on my cheeks? It's been getting worse", 'Instagram · 9:14 pm');
+    await sleep(900); if (!alive()) return;
+
+    /* workflow fires */
+    go('wf'); $('#wfBadge').classList.add('on'); state('The follow-up workflow is firing');
+    $('#enrolled').textContent = '129';
+    node(0,'run'); await sleep(650); node(0,'done'); log('<b>Mia R.</b> entered <span class="muted">New enquiry follow-up</span>'); edge(0);
+    node(1,'run'); await sleep(650); node(1,'done'); log('Opportunity created <span class="muted">Enquiry</span>'); edge(1);
+    document.querySelector('.col[data-c="enquiry"]').insertAdjacentHTML('afterbegin','<div class="opp me" id="miaOpp"><strong>Mia R.</strong><span>Instagram &middot; redness</span></div>');
+    document.getElementById('c-enquiry').textContent = '4';
+    node(2,'run'); await sleep(650); node(2,'done'); log('Tags added <span class="muted">concern-redness, instagram</span>'); edge(2);
+    node(3,'run'); await sleep(750); node(3,'done'); log('Reply drafted from the Business Brain <span class="muted">waiting for approval</span>'); edge(3);
+    if (!alive()) return;
+
+    /* back to conversations: suggested reply, approved */
+    go('conv'); state('Reply drafted in your clinic\'s voice');
+    evt('<b>Workflow</b> &middot; New enquiry follow-up started'); evt('<b>Tags added</b> &middot; concern-redness'); tag('concern-redness'); tag('instagram');
+    $('#pStage').textContent = 'Enquiry'; $('#pWf').innerHTML = '<i></i><span>New enquiry follow-up</span>';
+    const reply = "Hi Mia, thanks for reaching out. Redness is one of the things our nurses look at most. The first step is a skin consultation. Thursday 4:15 or 5:30 pm are free. Want one held?";
+    $('#suggestTxt').textContent = 'ready, approve to send'; $('#suggest').classList.add('on');
+    await typeInto($('#compBox'), reply); await sleep(700); if (!alive()) return;
+    $('#suggest').classList.remove('on'); $('#compBox').textContent = 'Type a message'; $('#compBox').classList.remove('typing-in');
+    clockMin = 15; bub('out', reply, 'Instagram · 9:15 pm · approved by Sam');
+    await sleep(1000); if (!alive()) return;
+    bub('in', '5:30 please!', 'Instagram · 9:15 pm');
+    await sleep(700); clockMin = 16;
+    evt('<b>Appointment booked</b> &middot; Thu 5:30 pm'); evt('<b>Payment received</b> &middot; $50 deposit');
+    $('#pStage').textContent = 'Consult booked'; $('#pStage').classList.add('booked');
+    await sleep(900); if (!alive()) return;
+
+    /* workflow branch */
+    go('wf'); state('Booked, so the chase stops');
+    log('Reply sent <span class="muted">approved by Sam</span>');
+    node(4,'run'); await sleep(700); node(4,'done'); log('Condition met <span class="ok">appointment booked</span>');
+    node(7,'skip'); node(8,'skip');
+    node(5,'run'); await sleep(650); node(5,'done'); log('Moved to <span class="muted">Consult booked</span>, confirmation sent'); edge(5);
+    node(6,'run'); await sleep(650); node(6,'done'); log('Reminder scheduled <span class="muted">Wed 5:30 pm</span>');
+    log('<span class="ok">Follow-up stopped</span> <span class="muted">no chasing after booking</span>');
+    $('#bookedCt').textContent = '82';
+    await sleep(900); if (!alive()) return;
+
+    /* pipeline */
+    go('pl'); state('The pipeline moves on its own');
+    const opp = document.getElementById('miaOpp');
+    await sleep(500);
+    opp.style.transition = 'opacity .25s'; opp.style.opacity = '0'; await sleep(260);
+    document.querySelector('.col[data-c="booked"]').insertBefore(opp, document.querySelector('.col[data-c="booked"] .opp'));
+    opp.querySelector('span').textContent = 'Thu 5:30 pm'; opp.style.opacity = '1';
+    document.getElementById('c-enquiry').textContent = '3'; document.getElementById('c-booked').textContent = '3';
+    await sleep(900);
+    opp.style.opacity = '0'; await sleep(260);
+    document.querySelector('.col[data-c="deposit"]').insertBefore(opp, document.querySelector('.col[data-c="deposit"] .opp'));
+    opp.querySelector('span').textContent = '$50 deposit paid'; opp.style.opacity = '1';
+    document.getElementById('c-booked').textContent = '2'; document.getElementById('c-deposit').textContent = '3';
+    await sleep(1000); if (!alive()) return;
+
+    /* reporting */
+    go('rp'); state('And Monday\'s report already counts it');
+    $('#kv-leads').textContent = '46'; $('#k-leads').classList.remove('bump'); void $('#k-leads').offsetWidth; $('#k-leads').classList.add('bump');
+    await sleep(500);
+    $('#kv-booked').textContent = '20'; $('#k-booked').classList.remove('bump'); void $('#k-booked').offsetWidth; $('#k-booked').classList.add('bump');
+    $('#todayBar').setAttribute('y','30'); $('#todayBar').setAttribute('height','113');
+    await sleep(600);
+    state('Done: enquiry at 9:14 pm, booked and paid by 9:16 pm. Nobody at the desk.');
+    running = false; btn.disabled = false; btn.lastChild.textContent = 'Send another test enquiry';
+  }
+  $('#fireBtn').addEventListener('click', run);
+})();
+</script>
+
+</body></html>
