@@ -288,6 +288,23 @@ section.band{padding-block:clamp(48px,8vw,96px);border-top:1px solid var(--line)
 .seat .facts b{font-family:var(--display);font-weight:800;font-variant-numeric:tabular-nums;text-align:right}
 .seat a{display:inline-block;margin-top:8px;background:var(--teal);color:#03211e;text-decoration:none;font-family:var(--display);font-weight:800;padding:14px 24px;border-radius:999px;text-align:center}
 .seat a:hover{background:var(--ink)}
+
+.ways{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,3vw,28px)}
+.way{border:1px solid var(--line-strong);border-radius:18px;padding:clamp(20px,3vw,30px);background:var(--surface-2);display:flex;flex-direction:column;gap:14px}
+.way.alt{background:transparent}
+.way .wk{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal)}
+.way.alt .wk{color:var(--peach)}
+.way h3{font-size:1.5rem;font-weight:800}
+.way > p{color:var(--muted);font-size:.95rem}
+.way .facts{display:grid;gap:8px;margin-top:auto}
+.way .facts div{display:flex;justify-content:space-between;gap:12px;font-size:.92rem;border-bottom:1px solid var(--line);padding-bottom:7px}
+.way .facts span{color:var(--muted)}
+.way .facts b{font-family:var(--display);font-weight:800;font-variant-numeric:tabular-nums;text-align:right}
+.wbtn{display:inline-block;margin-top:6px;background:var(--teal);color:#03211e;text-decoration:none;font-family:var(--display);font-weight:800;padding:14px 24px;border-radius:999px;text-align:center}
+.wbtn:hover{background:var(--ink)}
+.wbtn.ghost{background:transparent;color:var(--ink);border:2px solid var(--peach)}
+.wbtn.ghost:hover{background:var(--peach);color:#03211e}
+@media (max-width:860px){.ways{grid-template-columns:1fr}}
 footer{border-top:1px solid var(--line);padding-block:24px}
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
@@ -597,26 +614,46 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   </div>
 </section>
 
-<section class="band">
-  <div class="wrap seat">
-    <div>
-      <span class="eyebrow">3-Day Workshop &middot; Brisbane</span>
-      <h2 style="margin-top:12px">Walk out with it running in your clinic.</h2>
+<section class="band" id="ways">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Two ways to get it</span>
+      <h2>Build it with us, or have us run it for you.</h2>
+      <p>Same system either way. The difference is who does the work after it goes in.</p>
     </div>
-    <div class="facts">
-      <div><span>Dates</span><b>26 to 28 October 2026</b></div>
-      <div><span>Seats</span><b>10 clinics</b></div>
-      <div><span>Per clinic</span><b>$3,500</b></div>
-      <div><span>Deposit to hold your seat</span><b>$550</b></div>
-      <div><span>Extra team member</span><b>$300</b></div>
-      <a href="#fire">Reserve your seat</a>
+    <div class="ways">
+      <div class="way">
+        <span class="wk">Done with you</span>
+        <h3>The 3-Day Workshop</h3>
+        <p>Your system is installed before you arrive. Over three days you set it up around your clinic, launch your Meta and Google campaigns, and learn to run the lot. You own every account, pixel and audience.</p>
+        <div class="facts">
+          <div><span>Dates</span><b>26 to 28 October 2026</b></div>
+          <div><span>Seats</span><b>10 clinics</b></div>
+          <div><span>Per clinic</span><b>$3,500</b></div>
+          <div><span>Deposit to hold your seat</span><b>$550</b></div>
+          <div><span>Extra team member</span><b>$300</b></div>
+        </div>
+        <a class="wbtn" href="https://cliniccatalyst.com.au/" target="_blank" rel="noopener">Reserve your seat</a>
+      </div>
+      <div class="way alt">
+        <span class="wk">Done for you</span>
+        <h3>Bespoke build and management</h3>
+        <p>For the clinic that would rather not run it. We build the system around your clinic and our team runs your website, your Google and Meta ads, and your socials as one machine. You still own every account and asset.</p>
+        <div class="facts">
+          <div><span>Built around</span><b>Your clinic</b></div>
+          <div><span>Who runs it</span><b>Our team</b></div>
+          <div><span>Who owns it</span><b>You</b></div>
+          <div><span>Scope and price</span><b>On the call</b></div>
+        </div>
+        <a class="wbtn ghost" href="https://api.leadconnectorhq.com/widget/bookings/bespokeenquiry" target="_blank" rel="noopener">Book a bespoke call</a>
+      </div>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <span class="note">Clinic Catalyst &middot; Our System page mockup &middot; 14 Sep 2026</span>
+    <span class="note">Clinic Catalyst &middot; Our System</span>
     <span class="note">Harbour Skin Studio, its contacts and all figures are examples</span>
   </div>
 </footer>
