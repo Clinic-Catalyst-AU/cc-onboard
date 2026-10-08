@@ -16,37 +16,47 @@
   .hero .kicker{letter-spacing:3px;text-transform:uppercase;font-size:12px;color:var(--mint);font-weight:800}
   .hero h1{margin:10px 0 6px;font-size:30px;font-weight:800}
   .hero h1 span{color:var(--red);background:#fff;padding:0 8px;border-radius:6px}
-  .hero p{margin:0 auto;color:#CFE7E2;font-size:16px;max-width:520px}
-  .wrap{max-width:660px;margin:0 auto;padding:24px 16px 70px}
-  .tabs{display:flex;gap:10px;margin:0 0 18px}
+  .hero p{margin:0 auto;color:#CFE7E2;font-size:16px;max-width:540px}
+  .wrap{max-width:700px;margin:0 auto;padding:24px 16px 70px}
+  .tabs{display:flex;gap:10px;margin:0 0 18px;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:5}
   .tab{flex:1;border:2px solid var(--teal);background:#fff;color:var(--teal);border-radius:12px;padding:13px 8px;font:800 16px Karla,sans-serif;cursor:pointer}
   .tab.on{background:var(--teal);color:#fff;box-shadow:inset 0 -4px 0 var(--red)}
-  .note{background:#FDECEC;border:1px solid var(--red);border-radius:12px;padding:14px 16px;margin:0 0 18px;font-size:15px}
+  .note{background:#FDECEC;border:1px solid var(--red);border-radius:12px;padding:14px 16px;margin:0 0 16px;font-size:15px}
   .note b{color:#B82E2E}
   .note ul{margin:8px 0 0;padding-left:20px}
-  .step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 18px;margin:14px 0;box-shadow:0 2px 0 rgba(0,0,0,.03)}
-  .step h2{margin:0 0 8px;font-size:19px;display:flex;align-items:center;gap:12px;font-weight:800}
-  .num{background:var(--red);color:#fff;width:32px;height:32px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;flex:0 0 auto}
-  .body{margin-left:44px;font-size:15.5px}
+  .fast{background:var(--teal);color:#fff;border-radius:16px;padding:18px;margin:0 0 22px}
+  .fast h2{margin:0 0 4px;font-size:19px}.fast p{margin:4px 0;color:#CFE7E2;font-size:15px}.fast b{color:#fff}
+  .sect{margin:28px 0 6px;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--red);font-weight:800}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 16px;margin:12px 0;box-shadow:0 2px 0 rgba(0,0,0,.03)}
+  .step h2{margin:0 0 2px;font-size:18px;display:flex;align-items:center;gap:12px;font-weight:800}
+  .num{background:var(--red);color:#fff;min-width:32px;height:32px;padding:0 6px;border-radius:16px;display:inline-flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;flex:0 0 auto}
+  .what{margin:0 0 6px 44px;color:var(--muted);font-size:14.5px}
+  .body{margin-left:44px;font-size:15px}
   .body b{color:var(--teal)}
-  .cmd{background:var(--code);color:#CFF3EC;border-radius:12px;padding:16px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13.5px;white-space:pre-wrap;word-break:break-all;margin:12px 0 6px}
-  .copy{display:block;width:100%;margin-top:10px;background:var(--red);color:#fff;border:none;border-radius:12px;padding:15px;font:800 16px Karla,sans-serif;cursor:pointer;box-shadow:0 3px 0 #a92b2b}
-  .copy:active{transform:translateY(2px);box-shadow:0 1px 0 #a92b2b}
-  .copied{background:var(--mint)!important;color:#06302c!important;box-shadow:0 3px 0 #2f7d73!important}
+  .cmd{position:relative;background:var(--code);color:#CFF3EC;border-radius:12px;padding:18px 12px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;margin:14px 0 6px}
+  .cmd .t{display:block;white-space:pre-wrap;word-break:break-all}
+  .cmd .lbl{position:absolute;left:12px;top:-9px;font:800 10.5px Karla,sans-serif;letter-spacing:.12em;text-transform:uppercase;background:var(--red);color:#fff;padding:2px 8px;border-radius:999px}
+  .cmd.check .lbl{background:var(--mint);color:#06302c}
+  .cmd.fix .lbl{background:#C9A86A;color:#3d2c0e}
+  .copy{display:block;width:100%;margin-top:10px;background:var(--red);color:#fff;border:none;border-radius:10px;padding:11px;font:800 15px Karla,sans-serif;cursor:pointer;box-shadow:0 3px 0 #a92b2b}
+  .cmd.check .copy{background:var(--mint);color:#06302c;box-shadow:0 3px 0 #2f7d73}
+  .cmd.fix .copy{background:#C9A86A;color:#3d2c0e;box-shadow:0 3px 0 #a8894f}
+  .copy:active{transform:translateY(2px)}
+  .copied{background:#fff!important;color:var(--teal)!important}
   .small{font-size:14px;color:var(--muted);margin-top:8px}
   .tip{background:#E7F3F0;border-left:4px solid var(--mint);border-radius:8px;padding:10px 12px;margin-top:10px;font-size:14.5px}
   .done{background:linear-gradient(150deg,#0E4D4A,#1c7a72);color:#fff;border-radius:16px;padding:24px 18px;margin-top:22px;text-align:center;border-top:6px solid var(--red)}
   .done h2{margin:0 0 6px;color:#fff;font-size:21px}.done p{color:#CFE7E2;margin:6px 0;font-size:15px}
   .foot{text-align:center;color:var(--muted);font-size:13px;margin-top:26px}
   .os{display:none}.os.on{display:block}li.os.on{display:list-item}
-  @media (max-width:480px){.body{margin-left:0}.hero h1{font-size:26px}}
+  @media (max-width:480px){.body,.what{margin-left:0}.hero h1{font-size:26px}}
 </style>
 </head>
 <body>
   <div class="hero">
     <div class="kicker">Clinic Catalyst</div>
     <h1>Install Your <span>Claude</span></h1>
-    <p>One command sets up Claude and every Clinic Catalyst skill on your computer. Copy, paste, and let it run.</p>
+    <p>Claude, the tools it needs, and the full Clinic Catalyst system, installed piece by piece. Copy, paste, check, next.</p>
   </div>
   <div class="wrap">
     <div class="tabs">
@@ -56,103 +66,235 @@
 
     <div class="note"><b>Before you start</b>
       <ul>
-        <li>Laptop <b>plugged in</b> and on good wifi. It takes about <b>25 to 45 minutes</b>.</li>
+        <li>Laptop <b>plugged in</b> and on good wifi. Allow about <b>45 minutes</b>.</li>
         <li>A <b>paid Claude plan</b> (Pro or Max). Make sure you can log in at claude.ai.</li>
         <li class="os mac on">Your <b>Mac login password</b> handy (the one you use to unlock your laptop).</li>
       </ul>
-      <div style="margin-top:8px">The rhythm every time: hit <b>Copy</b>, click into the window, paste, press <b>Enter</b>. You never type the commands yourself.</div>
+      <div style="margin-top:8px">The rhythm: hit <b>Copy</b>, click into the window, paste, press <b>Enter</b>, and wait until the cursor comes back before the next one. <b>Check</b> lines prove each piece went in.</div>
     </div>
 
-    <!-- MAC -->
+    <!-- ===================== MAC ===================== -->
     <div class="os mac on">
-      <div class="step">
-        <h2><span class="num">1</span> Open the Terminal</h2>
-        <div class="body">Hold <b>Command</b> and tap <b>Spacebar</b>. Type <b>Terminal</b>. Press <b>Enter</b>.<br>A plain window opens. That's where everything goes.</div>
+      <div class="fast">
+        <h2>Shortcut: one line does steps 1 to 6</h2>
+        <p>Open Terminal (hold <b>Command</b>, tap <b>Spacebar</b>, type <b>Terminal</b>, press Enter) and paste this. It installs everything below in order and checks it at the end. If it finishes with <b>DONE - everything installed and verified</b>, jump to step 7. If anything says <b>MISSING</b>, do just that piece below.</p>
+        <div class="cmd"><span class="lbl">Run</span><span class="t">curl -fsSL https://clinic-catalyst-au.github.io/cc-onboard/clinic-bootstrap.sh | bash</span><button class="copy" onclick="cp(this)">Copy</button></div>
       </div>
+
+      <div class="sect">Piece by piece</div>
       <div class="step">
-        <h2><span class="num">2</span> Paste the install, press Enter</h2>
+        <h2><span class="num">1</span> Claude Code</h2>
+        <div class="what">The main app. Puts Claude on your laptop.</div>
         <div class="body">
-          <div class="cmd"><span class="t">curl -fsSL https://clinic-catalyst-au.github.io/cc-onboard/clinic-bootstrap.sh | bash</span></div>
-          <button class="copy" onclick="cp(this)">Copy the install command</button>
-          <div class="small">Paste with <b>Command + V</b>, then press <b>Enter</b>.</div>
-          <div class="tip"><b>Asked for a password?</b> Type your Mac login password and press Enter. Nothing shows while you type. That's normal.<br><b>Says "Press RETURN"?</b> Just press Enter.</div>
+          <div class="cmd"><span class="lbl">Run</span><span class="t">curl -fsSL https://claude.ai/install.sh | bash</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="cmd check"><span class="lbl">Check</span><span class="t">claude --version</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="small">"command not found: claude"? Run this, then check again:</div>
+          <div class="cmd fix"><span class="lbl">Fix</span><span class="t">echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zprofile && source ~/.zprofile</span><button class="copy" onclick="cp(this)">Copy</button></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <h2><span class="num">2</span> Homebrew</h2>
+        <div class="what">The Mac's app installer. The tools below all come through it.</div>
+        <div class="body">
+          <div class="cmd"><span class="lbl">Run</span><span class="t">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="tip"><b>Asked for a password?</b> Type your Mac login password and press Enter. Nothing shows while you type. That's normal.<br><b>"Press RETURN to continue"?</b> Press Enter. It may also install Apple's command line tools first, which takes a few minutes.</div>
+          <div class="small">Then make the Mac remember where Homebrew lives (Apple chip Macs, M1 to M4):</div>
+          <div class="cmd"><span class="lbl">Run</span><span class="t">echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile && eval "$(/opt/homebrew/bin/brew shellenv)"</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="cmd check"><span class="lbl">Check</span><span class="t">brew --version</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="small">Older Intel Mac? Use this instead of the line above. (Not sure? <b>uname -m</b> says arm64 for Apple chip, x86_64 for Intel.)</div>
+          <div class="cmd fix"><span class="lbl">Intel</span><span class="t">echo 'eval "$(/usr/local/bin/brew shellenv)"' >> ~/.zprofile && eval "$(/usr/local/bin/brew shellenv)"</span><button class="copy" onclick="cp(this)">Copy</button></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <h2><span class="num">3a</span> Node</h2>
+        <div class="what">Runs the video editing engine.</div>
+        <div class="body">
+          <div class="cmd"><span class="lbl">Run</span><span class="t">brew install node</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="cmd check"><span class="lbl">Check</span><span class="t">node -v</span><button class="copy" onclick="cp(this)">Copy</button></div>
         </div>
       </div>
       <div class="step">
-        <h2><span class="num">3</span> Let it run</h2>
-        <div class="body">Leave the window open and go make a cuppa. Lots of text scrolls past. That's it working.<br>
-          You're finished when it says <b>DONE - everything installed and verified</b>.
-          <div class="small">If it says <b>DONE WITH PROBLEMS</b>, take a screenshot of the window and send it to us.</div></div>
-      </div>
-      <div class="step">
-        <h2><span class="num">4</span> Close and reopen the Terminal</h2>
-        <div class="body">Press <b>Command + Q</b> to fully quit the Terminal, then open it again (step 1). This switches everything on.</div>
-      </div>
-      <div class="step">
-        <h2><span class="num">5</span> Start Claude in your Clinic folder</h2>
+        <h2><span class="num">3b</span> Python</h2>
+        <div class="what">Runs the covers, captions and website-scanning tools.</div>
         <div class="body">
-          <div class="cmd"><span class="t">cd ~/Clinic &amp;&amp; claude</span></div>
-          <button class="copy" onclick="cp(this)">Copy the start command</button>
-          <div class="small">Paste, press Enter. The first time, Claude asks you to sign in: choose your Claude account, a browser opens, click <b>Authorize</b>, then come back to the Terminal.</div>
+          <div class="cmd"><span class="lbl">Run</span><span class="t">brew install python</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="cmd check"><span class="lbl">Check</span><span class="t">python3 --version</span><button class="copy" onclick="cp(this)">Copy</button></div>
+        </div>
+      </div>
+      <div class="step">
+        <h2><span class="num">3c</span> Git</h2>
+        <div class="what">Lets Claude keep versions of your files.</div>
+        <div class="body">
+          <div class="cmd"><span class="lbl">Run</span><span class="t">brew install git</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="cmd check"><span class="lbl">Check</span><span class="t">git --version</span><button class="copy" onclick="cp(this)">Copy</button></div>
+        </div>
+      </div>
+      <div class="step">
+        <h2><span class="num">3d</span> FFmpeg</h2>
+        <div class="what">Cuts, joins and captions your videos and reels.</div>
+        <div class="body">
+          <div class="cmd"><span class="lbl">Run</span><span class="t">brew install ffmpeg</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="cmd check"><span class="lbl">Check</span><span class="t">ffmpeg -version</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="small">Takes a while. 5 to 10 minutes is normal.</div>
+        </div>
+      </div>
+      <div class="step">
+        <h2><span class="num">3e</span> ImageMagick</h2>
+        <div class="what">Makes and resizes images and covers.</div>
+        <div class="body">
+          <div class="cmd"><span class="lbl">Run</span><span class="t">brew install imagemagick</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="cmd check"><span class="lbl">Check</span><span class="t">magick -version</span><button class="copy" onclick="cp(this)">Copy</button></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <h2><span class="num">4</span> Python helpers</h2>
+        <div class="what">Image making, web requests, spreadsheets and video trimming.</div>
+        <div class="body">
+          <div class="cmd"><span class="lbl">Run</span><span class="t">python3 -m pip install --break-system-packages Pillow requests playwright openpyxl auto-editor</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="cmd check"><span class="lbl">Check</span><span class="t">python3 -c "import PIL, requests; print('all good')"</span><button class="copy" onclick="cp(this)">Copy</button></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <h2><span class="num">5</span> Whisper (free captions on your laptop)</h2>
+        <div class="what">Turns speech in your videos into captions without sending them anywhere.</div>
+        <div class="body">
+          <div class="cmd"><span class="lbl">Apple chip</span><span class="t">python3 -m pip install --break-system-packages mlx-whisper</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="cmd fix"><span class="lbl">Intel</span><span class="t">python3 -m pip install --break-system-packages faster-whisper</span><button class="copy" onclick="cp(this)">Copy</button></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <h2><span class="num">6</span> The Clinic Catalyst system</h2>
+        <div class="what">Every Clinic Catalyst skill, your ~/Clinic workspace with its Business Brain folder, and the reel engine. Safe to run again: it never touches your own work.</div>
+        <div class="body">
+          <div class="cmd"><span class="lbl">Run</span><span class="t">cd "$(mktemp -d)" && curl -fsSL https://clinic-catalyst-au.github.io/cc-onboard/cc-clinic-pack.zip -o pack.zip && unzip -q pack.zip && bash cc-clinic-pack/INSTALL.sh</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="cmd check"><span class="lbl">Check</span><span class="t">ls ~/.claude/skills | grep cc- && ls ~/Clinic</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="small">You should see a list of cc- skill names and your Clinic folders (Business-Brain, Content, Emails, Ads).</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <h2><span class="num">7</span> Start Claude in your Clinic folder</h2>
+        <div class="body">Press <b>Command + Q</b> to fully quit the Terminal and open a fresh one. Then:
+          <div class="cmd"><span class="lbl">Start</span><span class="t">cd ~/Clinic && claude</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="small">The first time, Claude asks you to sign in: choose your Claude account, a browser opens, click <b>Authorize</b>, then come back to the Terminal.</div>
         </div>
       </div>
     </div>
 
-    <!-- WINDOWS -->
+    <!-- ===================== WINDOWS ===================== -->
     <div class="os win">
-      <div class="step">
-        <h2><span class="num">1</span> Open PowerShell</h2>
-        <div class="body">Click <b>Start</b>, type <b>PowerShell</b>, and click <b>Windows PowerShell</b> to open it.<br>Open it the normal way. <b>Don't</b> choose "Run as administrator".</div>
+      <div class="fast">
+        <h2>Shortcut: one line does steps 1 to 8</h2>
+        <p>Click <b>Start</b>, type <b>PowerShell</b>, open <b>Windows PowerShell</b> the normal way (not "Run as administrator") and paste this. It installs everything below and checks it at the end. If every line shows <b>ok</b>, jump to step 9. If anything says <b>MISSING</b>, do just that piece below.</p>
+        <div class="cmd"><span class="lbl">Run</span><span class="t">irm https://clinic-catalyst-au.github.io/cc-onboard/clinic-bootstrap.ps1 | iex</span><button class="copy" onclick="cp(this)">Copy</button></div>
       </div>
+
+      <div class="sect">Piece by piece</div>
+      <div class="note" style="background:#E7F3F0;border-color:var(--mint)">After each install, <b>close PowerShell and open a new one</b> before the Check line, so Windows sees the new program. If Windows asks "Do you want to allow this app to make changes?", click <b>Yes</b>.</div>
+
       <div class="step">
-        <h2><span class="num">2</span> Paste the install, press Enter</h2>
+        <h2><span class="num">1</span> Git for Windows</h2>
+        <div class="what">Claude Code on Windows needs this first.</div>
         <div class="body">
-          <div class="cmd"><span class="t">irm https://clinic-catalyst-au.github.io/cc-onboard/clinic-bootstrap.ps1 | iex</span></div>
-          <button class="copy" onclick="cp(this)">Copy the install command</button>
-          <div class="small">Paste with <b>Ctrl + V</b> (or right-click), then press <b>Enter</b>.</div>
-          <div class="tip"><b>Windows asks "Do you want to allow this app to make changes?"</b> Click <b>Yes</b>. It may ask a few times.</div>
+          <div class="cmd"><span class="lbl">Run</span><span class="t">winget install --id Git.Git -e --source winget</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="cmd check"><span class="lbl">Check</span><span class="t">git --version</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="small">"winget is not recognised"? Open the Microsoft Store, search <b>App Installer</b>, update it, then reopen PowerShell.</div>
         </div>
       </div>
       <div class="step">
-        <h2><span class="num">3</span> Let it run</h2>
-        <div class="body">Leave the window open and go make a cuppa. Lots of text scrolls past. That's it working.<br>
-          You're finished when the list at the end shows <b>ok</b> next to each item.
-          <div class="small">If you see <b>MISSING</b>, take a screenshot of the window and send it to us.</div></div>
-      </div>
-      <div class="step">
-        <h2><span class="num">4</span> Close and reopen PowerShell</h2>
-        <div class="body">Close the PowerShell window completely, then open it again (step 1). This switches everything on.</div>
-      </div>
-      <div class="step">
-        <h2><span class="num">5</span> Start Claude in your Clinic folder</h2>
+        <h2><span class="num">2</span> Claude Code</h2>
+        <div class="what">The main app. Puts Claude on your computer.</div>
         <div class="body">
-          <div class="cmd"><span class="t">cd ~\Clinic; claude</span></div>
-          <button class="copy" onclick="cp(this)">Copy the start command</button>
-          <div class="small">Paste, press Enter. The first time, Claude asks you to sign in: choose your Claude account, a browser opens, click <b>Authorize</b>, then come back to PowerShell.</div>
+          <div class="cmd"><span class="lbl">Run</span><span class="t">irm https://claude.ai/install.ps1 | iex</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="cmd check"><span class="lbl">Check</span><span class="t">claude --version</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="small">"claude is not recognised"? Run this, close and reopen PowerShell, check again:</div>
+          <div class="cmd fix"><span class="lbl">Fix</span><span class="t">[Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path","User") + ";$env:USERPROFILE\.local\bin", "User")</span><button class="copy" onclick="cp(this)">Copy</button></div>
+        </div>
+      </div>
+      <div class="step">
+        <h2><span class="num">3</span> Node</h2>
+        <div class="what">Runs the video editing engine.</div>
+        <div class="body">
+          <div class="cmd"><span class="lbl">Run</span><span class="t">winget install --id OpenJS.NodeJS.LTS -e</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="cmd check"><span class="lbl">Check</span><span class="t">node -v</span><button class="copy" onclick="cp(this)">Copy</button></div>
+        </div>
+      </div>
+      <div class="step">
+        <h2><span class="num">4</span> Python</h2>
+        <div class="what">Runs the covers, captions and website-scanning tools.</div>
+        <div class="body">
+          <div class="cmd"><span class="lbl">Run</span><span class="t">winget install --id Python.Python.3.12 -e</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="cmd check"><span class="lbl">Check</span><span class="t">python --version</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="small">Typing python opens the Microsoft Store? Go to Settings &gt; Apps &gt; Advanced app settings &gt; App execution aliases, turn OFF both "python" and "python3", then reopen PowerShell.</div>
+        </div>
+      </div>
+      <div class="step">
+        <h2><span class="num">5</span> FFmpeg</h2>
+        <div class="what">Cuts, joins and captions your videos and reels.</div>
+        <div class="body">
+          <div class="cmd"><span class="lbl">Run</span><span class="t">winget install --id Gyan.FFmpeg -e</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="cmd check"><span class="lbl">Check</span><span class="t">ffmpeg -version</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="small">Still "not recognised" after reopening? Run the shortcut line at the top. It puts FFmpeg somewhere Windows can always find it.</div>
+        </div>
+      </div>
+      <div class="step">
+        <h2><span class="num">6</span> ImageMagick</h2>
+        <div class="what">Makes and resizes images and covers.</div>
+        <div class="body">
+          <div class="cmd"><span class="lbl">Run</span><span class="t">winget install --id ImageMagick.ImageMagick -e</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="cmd check"><span class="lbl">Check</span><span class="t">magick -version</span><button class="copy" onclick="cp(this)">Copy</button></div>
+        </div>
+      </div>
+      <div class="step">
+        <h2><span class="num">7</span> Python helpers + Whisper</h2>
+        <div class="what">Image making, web requests, and free captions on your computer.</div>
+        <div class="body">
+          <div class="cmd"><span class="lbl">Run</span><span class="t">python -m pip install --user Pillow requests playwright faster-whisper</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="cmd check"><span class="lbl">Check</span><span class="t">python -c "import PIL, requests; print('all good')"</span><button class="copy" onclick="cp(this)">Copy</button></div>
+        </div>
+      </div>
+      <div class="step">
+        <h2><span class="num">8</span> The Clinic Catalyst system</h2>
+        <div class="what">Every Clinic Catalyst skill, your Clinic workspace with its Business Brain folder, and the reel engine. On Windows this comes through the shortcut line. It skips anything you've already installed above. Safe to run again: it never touches your own work.</div>
+        <div class="body">
+          <div class="cmd"><span class="lbl">Run</span><span class="t">irm https://clinic-catalyst-au.github.io/cc-onboard/clinic-bootstrap.ps1 | iex</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="cmd check"><span class="lbl">Check</span><span class="t">ls ~\.claude\skills; ls ~\Clinic</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="small">You should see a list of cc- skill names and your Clinic folders.</div>
+        </div>
+      </div>
+      <div class="step">
+        <h2><span class="num">9</span> Start Claude in your Clinic folder</h2>
+        <div class="body">Close PowerShell and open a fresh one. Then:
+          <div class="cmd"><span class="lbl">Start</span><span class="t">cd ~\Clinic; claude</span><button class="copy" onclick="cp(this)">Copy</button></div>
+          <div class="small">The first time, Claude asks you to sign in: choose your Claude account, a browser opens, click <b>Authorize</b>, then come back to PowerShell.</div>
         </div>
       </div>
     </div>
 
-    <!-- BOTH -->
+    <!-- ===================== BOTH ===================== -->
+    <div class="sect">Inside Claude</div>
     <div class="step">
-      <h2><span class="num">6</span> Teach Claude your clinic</h2>
+      <h2><span class="num">&#10003;</span> Teach Claude your clinic</h2>
       <div class="body">Inside Claude, type this and press Enter. It asks you questions about your clinic, your clients and how you talk.
-        <div class="cmd"><span class="t">/cc-resonance</span></div>
-        <button class="copy" onclick="cp(this)">Copy</button>
+        <div class="cmd"><span class="lbl">Type</span><span class="t">/cc-resonance</span><button class="copy" onclick="cp(this)">Copy</button></div>
       </div>
     </div>
     <div class="step">
-      <h2><span class="num">7</span> Set up your brand</h2>
+      <h2><span class="num">&#10003;</span> Set up your brand</h2>
       <div class="body">When that's finished, run this one. It captures your colours, fonts and look so everything Claude makes looks like you.
-        <div class="cmd"><span class="t">/cc-brand-guide</span></div>
-        <button class="copy" onclick="cp(this)">Copy</button>
+        <div class="cmd"><span class="lbl">Type</span><span class="t">/cc-brand-guide</span><button class="copy" onclick="cp(this)">Copy</button></div>
       </div>
     </div>
 
     <div class="done">
       <h2>You're in &#127881;</h2>
-      <p>Claude now knows your clinic and has every Clinic Catalyst skill ready to go.</p>
-      <p>Next time, just open the Terminal (or PowerShell) and run the step 5 command.</p>
+      <p>Claude now knows your clinic and has the full Clinic Catalyst system ready to go.</p>
+      <p>Next time, just open the Terminal (or PowerShell) and run your Start line.</p>
     </div>
 
     <div class="foot">Clinic Catalyst &middot; stuck on a step? Screenshot it and text Kelly.</div>
