@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Install Your Claude - Clinic Catalyst</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--teal:#0E4D4A;--teal2:#13615C;--mint:#4FB3A6;--red:#E84040;--ink:#13211F;--muted:#5E726E;--bg:#F4F8F6;--card:#FFFFFF;--line:#DCE8E4;--code:#0B2E2B;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Karla,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.55}
+  .hero{background:linear-gradient(150deg,var(--teal),var(--teal2));color:#fff;padding:44px 20px 34px;text-align:center;border-bottom:6px solid var(--red)}
+  .hero .kicker{letter-spacing:3px;text-transform:uppercase;font-size:12px;color:var(--mint);font-weight:800}
+  .hero h1{margin:10px 0 6px;font-size:30px;font-weight:800}
+  .hero h1 span{color:var(--red);background:#fff;padding:0 8px;border-radius:6px}
+  .hero p{margin:0 auto;color:#CFE7E2;font-size:16px;max-width:520px}
+  .wrap{max-width:660px;margin:0 auto;padding:24px 16px 70px}
+  .tabs{display:flex;gap:10px;margin:0 0 18px}
+  .tab{flex:1;border:2px solid var(--teal);background:#fff;color:var(--teal);border-radius:12px;padding:13px 8px;font:800 16px Karla,sans-serif;cursor:pointer}
+  .tab.on{background:var(--teal);color:#fff;box-shadow:inset 0 -4px 0 var(--red)}
+  .note{background:#FDECEC;border:1px solid var(--red);border-radius:12px;padding:14px 16px;margin:0 0 18px;font-size:15px}
+  .note b{color:#B82E2E}
+  .note ul{margin:8px 0 0;padding-left:20px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 18px;margin:14px 0;box-shadow:0 2px 0 rgba(0,0,0,.03)}
+  .step h2{margin:0 0 8px;font-size:19px;display:flex;align-items:center;gap:12px;font-weight:800}
+  .num{background:var(--red);color:#fff;width:32px;height:32px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;flex:0 0 auto}
+  .body{margin-left:44px;font-size:15.5px}
+  .body b{color:var(--teal)}
+  .cmd{background:var(--code);color:#CFF3EC;border-radius:12px;padding:16px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13.5px;white-space:pre-wrap;word-break:break-all;margin:12px 0 6px}
+  .copy{display:block;width:100%;margin-top:10px;background:var(--red);color:#fff;border:none;border-radius:12px;padding:15px;font:800 16px Karla,sans-serif;cursor:pointer;box-shadow:0 3px 0 #a92b2b}
+  .copy:active{transform:translateY(2px);box-shadow:0 1px 0 #a92b2b}
+  .copied{background:var(--mint)!important;color:#06302c!important;box-shadow:0 3px 0 #2f7d73!important}
+  .small{font-size:14px;color:var(--muted);margin-top:8px}
+  .tip{background:#E7F3F0;border-left:4px solid var(--mint);border-radius:8px;padding:10px 12px;margin-top:10px;font-size:14.5px}
+  .done{background:linear-gradient(150deg,#0E4D4A,#1c7a72);color:#fff;border-radius:16px;padding:24px 18px;margin-top:22px;text-align:center;border-top:6px solid var(--red)}
+  .done h2{margin:0 0 6px;color:#fff;font-size:21px}.done p{color:#CFE7E2;margin:6px 0;font-size:15px}
+  .foot{text-align:center;color:var(--muted);font-size:13px;margin-top:26px}
+  .os{display:none}.os.on{display:block}li.os.on{display:list-item}
+  @media (max-width:480px){.body{margin-left:0}.hero h1{font-size:26px}}
+</style>
+</head>
+<body>
+  <div class="hero">
+    <div class="kicker">Clinic Catalyst</div>
+    <h1>Install Your <span>Claude</span></h1>
+    <p>One command sets up Claude and every Clinic Catalyst skill on your computer. Copy, paste, and let it run.</p>
+  </div>
+  <div class="wrap">
+    <div class="tabs">
+      <button class="tab on" data-os="mac" onclick="pick('mac')">I'm on a Mac</button>
+      <button class="tab" data-os="win" onclick="pick('win')">I'm on Windows</button>
+    </div>
+
+    <div class="note"><b>Before you start</b>
+      <ul>
+        <li>Laptop <b>plugged in</b> and on good wifi. It takes about <b>25 to 45 minutes</b>.</li>
+        <li>A <b>paid Claude plan</b> (Pro or Max). Make sure you can log in at claude.ai.</li>
+        <li class="os mac on">Your <b>Mac login password</b> handy (the one you use to unlock your laptop).</li>
+      </ul>
+      <div style="margin-top:8px">The rhythm every time: hit <b>Copy</b>, click into the window, paste, press <b>Enter</b>. You never type the commands yourself.</div>
+    </div>
+
+    <!-- MAC -->
+    <div class="os mac on">
+      <div class="step">
+        <h2><span class="num">1</span> Open the Terminal</h2>
+        <div class="body">Hold <b>Command</b> and tap <b>Spacebar</b>. Type <b>Terminal</b>. Press <b>Enter</b>.<br>A plain window opens. That's where everything goes.</div>
+      </div>
+      <div class="step">
+        <h2><span class="num">2</span> Paste the install, press Enter</h2>
+        <div class="body">
+          <div class="cmd"><span class="t">curl -fsSL https://clinic-catalyst-au.github.io/cc-onboard/clinic-bootstrap.sh | bash</span></div>
+          <button class="copy" onclick="cp(this)">Copy the install command</button>
+          <div class="small">Paste with <b>Command + V</b>, then press <b>Enter</b>.</div>
+          <div class="tip"><b>Asked for a password?</b> Type your Mac login password and press Enter. Nothing shows while you type. That's normal.<br><b>Says "Press RETURN"?</b> Just press Enter.</div>
+        </div>
+      </div>
+      <div class="step">
+        <h2><span class="num">3</span> Let it run</h2>
+        <div class="body">Leave the window open and go make a cuppa. Lots of text scrolls past. That's it working.<br>
+          You're finished when it says <b>DONE - everything installed and verified</b>.
+          <div class="small">If it says <b>DONE WITH PROBLEMS</b>, take a screenshot of the window and send it to us.</div></div>
+      </div>
+      <div class="step">
+        <h2><span class="num">4</span> Close and reopen the Terminal</h2>
+        <div class="body">Press <b>Command + Q</b> to fully quit the Terminal, then open it again (step 1). This switches everything on.</div>
+      </div>
+      <div class="step">
+        <h2><span class="num">5</span> Start Claude in your Clinic folder</h2>
+        <div class="body">
+          <div class="cmd"><span class="t">cd ~/Clinic &amp;&amp; claude</span></div>
+          <button class="copy" onclick="cp(this)">Copy the start command</button>
+          <div class="small">Paste, press Enter. The first time, Claude asks you to sign in: choose your Claude account, a browser opens, click <b>Authorize</b>, then come back to the Terminal.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WINDOWS -->
+    <div class="os win">
+      <div class="step">
+        <h2><span class="num">1</span> Open PowerShell</h2>
+        <div class="body">Click <b>Start</b>, type <b>PowerShell</b>, and click <b>Windows PowerShell</b> to open it.<br>Open it the normal way. <b>Don't</b> choose "Run as administrator".</div>
+      </div>
+      <div class="step">
+        <h2><span class="num">2</span> Paste the install, press Enter</h2>
+        <div class="body">
+          <div class="cmd"><span class="t">irm https://clinic-catalyst-au.github.io/cc-onboard/clinic-bootstrap.ps1 | iex</span></div>
+          <button class="copy" onclick="cp(this)">Copy the install command</button>
+          <div class="small">Paste with <b>Ctrl + V</b> (or right-click), then press <b>Enter</b>.</div>
+          <div class="tip"><b>Windows asks "Do you want to allow this app to make changes?"</b> Click <b>Yes</b>. It may ask a few times.</div>
+        </div>
+      </div>
+      <div class="step">
+        <h2><span class="num">3</span> Let it run</h2>
+        <div class="body">Leave the window open and go make a cuppa. Lots of text scrolls past. That's it working.<br>
+          You're finished when the list at the end shows <b>ok</b> next to each item.
+          <div class="small">If you see <b>MISSING</b>, take a screenshot of the window and send it to us.</div></div>
+      </div>
+      <div class="step">
+        <h2><span class="num">4</span> Close and reopen PowerShell</h2>
+        <div class="body">Close the PowerShell window completely, then open it again (step 1). This switches everything on.</div>
+      </div>
+      <div class="step">
+        <h2><span class="num">5</span> Start Claude in your Clinic folder</h2>
+        <div class="body">
+          <div class="cmd"><span class="t">cd ~\Clinic; claude</span></div>
+          <button class="copy" onclick="cp(this)">Copy the start command</button>
+          <div class="small">Paste, press Enter. The first time, Claude asks you to sign in: choose your Claude account, a browser opens, click <b>Authorize</b>, then come back to PowerShell.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTH -->
+    <div class="step">
+      <h2><span class="num">6</span> Teach Claude your clinic</h2>
+      <div class="body">Inside Claude, type this and press Enter. It asks you questions about your clinic, your clients and how you talk.
+        <div class="cmd"><span class="t">/cc-resonance</span></div>
+        <button class="copy" onclick="cp(this)">Copy</button>
+      </div>
+    </div>
+    <div class="step">
+      <h2><span class="num">7</span> Set up your brand</h2>
+      <div class="body">When that's finished, run this one. It captures your colours, fonts and look so everything Claude makes looks like you.
+        <div class="cmd"><span class="t">/cc-brand-guide</span></div>
+        <button class="copy" onclick="cp(this)">Copy</button>
+      </div>
+    </div>
+
+    <div class="done">
+      <h2>You're in &#127881;</h2>
+      <p>Claude now knows your clinic and has every Clinic Catalyst skill ready to go.</p>
+      <p>Next time, just open the Terminal (or PowerShell) and run the step 5 command.</p>
+    </div>
+
+    <div class="foot">Clinic Catalyst &middot; stuck on a step? Screenshot it and text Kelly.</div>
+  </div>
+<script>
+function pick(os){
+  document.querySelectorAll('.os').forEach(function(e){e.classList.toggle('on',e.classList.contains(os))});
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.toggle('on',t.dataset.os===os)});
+}
+if(/Win/i.test(navigator.platform||navigator.userAgent)) pick('win');
+function cp(btn){
+  var t=btn.parentElement.querySelector('.t');var text=t?t.innerText:'';
+  var ok=function(){var old=btn.textContent;btn.textContent='Copied - now paste it in';btn.classList.add('copied');
+    setTimeout(function(){btn.textContent=old;btn.classList.remove('copied');},2200);};
+  if(navigator.clipboard){navigator.clipboard.writeText(text).then(ok,function(){fallback(text);ok();});}else{fallback(text);ok();}
+}
+function fallback(text){var a=document.createElement('textarea');a.value=text;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(e){}a.remove();}
+</script>
+</body>
+</html>
