@@ -70,23 +70,134 @@
     </div>
 
     <div class="fast">
-      <h2>Shortcut: one line does steps 1 to 8 (except the optional ImageMagick)</h2>
-      <p>Click <b>Start</b>, type <b>PowerShell</b>, open <b>Windows PowerShell</b> the normal way (not "Run as administrator") and paste this. It installs everything below and checks it at the end. If every line shows <b>ok</b>, jump to step 9. If anything says <b>MISSING</b>, do just that piece below.</p>
+      <h2>Shortcut: one line does steps 1 to 7</h2>
+      <p>Click <b>Start</b>, type <b>PowerShell</b>, open <b>Windows PowerShell</b> the normal way (not "Run as administrator") and paste this. It installs everything below and checks it at the end. If every line shows <b>ok</b>, jump to step 8. If anything says <b>MISSING</b>, do just that piece below.</p>
       <div class="cmd"><span class="lbl">Run</span><span class="t">irm https://clinic-catalyst-au.github.io/cc-onboard/clinic-codex-bootstrap.ps1 | iex</span><button class="copy" onclick="cp(this)">Copy</button></div>
     </div>
 
     <div class="note" style="text-align:center"><b>Got an error?</b> <a href="fix-codex.html" style="color:#B82E2E;font-weight:800">Open the Fix It page</a></div>
     <div class="sect">Piece by piece</div>
-    <div class="note" style="background:#E7F3F0;border-color:var(--mint)">After each install, <b>close PowerShell and open a new one</b> before the Check line, so Windows sees the new program. If Windows asks "Do you want to allow this app to make changes?", click <b>Yes</b>.</div>
-<div class="step"><h2><span class="num">1</span> Git for Windows</h2><div class="what">Lets Codex keep versions of your files.</div><div class="body"><div class="cmd"><span class="lbl">Run</span><span class="t">winget install --id Git.Git -e --source winget</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="cmd check"><span class="lbl">Check</span><span class="t">git --version</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="small">"winget is not recognised"? Open the Microsoft Store, search <b>App Installer</b>, update it, then reopen PowerShell.</div></div></div>
-<div class="step"><h2><span class="num">2</span> Node</h2><div class="what">Codex runs on it, and so does the video engine.</div><div class="body"><div class="cmd"><span class="lbl">Run</span><span class="t">winget install --id OpenJS.NodeJS.LTS -e</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="cmd check"><span class="lbl">Check</span><span class="t">node -v</span><button class="copy" onclick="cp(this)">Copy</button></div></div></div>
-<div class="step"><h2><span class="num">3</span> Codex</h2><div class="what">The main app. Puts Codex on your computer.</div><div class="body"><div class="cmd"><span class="lbl">Run</span><span class="t">&amp; "C:\Program Files\nodejs\npm.cmd" install -g @openai/codex</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="cmd check"><span class="lbl">Check</span><span class="t">codex.cmd --version</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="small">Always type <b>codex.cmd</b> (not just codex) in PowerShell. Windows blocks the short version by default.<br>"codex.cmd is not recognised"? Run this, close and reopen PowerShell, check again:</div><div class="cmd fix"><span class="lbl">Fix</span><span class="t">[Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path","User") + ";$env:APPDATA\npm", "User")</span><button class="copy" onclick="cp(this)">Copy</button></div></div></div>
-<div class="step"><h2><span class="num">4</span> Python</h2><div class="what">Runs the covers, captions and website-scanning tools.</div><div class="body"><div class="cmd"><span class="lbl">Run</span><span class="t">winget install --id Python.Python.3.12 -e</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="cmd check"><span class="lbl">Check</span><span class="t">python --version</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="small">Typing python opens the Microsoft Store? Go to Settings &gt; Apps &gt; Advanced app settings &gt; App execution aliases, turn OFF both "python" and "python3", then reopen PowerShell.</div></div></div>
-<div class="step"><h2><span class="num">5</span> FFmpeg</h2><div class="what">Cuts, joins and converts video and audio.</div><div class="body"><div class="cmd"><span class="lbl">Run</span><span class="t">winget install --id Gyan.FFmpeg -e</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="cmd check"><span class="lbl">Check</span><span class="t">ffmpeg -version</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="small">Still "not recognised" after reopening? Run the shortcut line at the top. It puts FFmpeg somewhere Windows can always find it.</div></div></div>
-<div class="step"><h2><span class="num">6</span> ImageMagick (optional)</h2><div class="what">Makes and resizes images and covers.</div><div class="body"><div class="cmd"><span class="lbl">Run</span><span class="t">winget install --id ImageMagick.ImageMagick -e</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="cmd check"><span class="lbl">Check</span><span class="t">magick -version</span><button class="copy" onclick="cp(this)">Copy</button></div></div></div>
-<div class="step"><h2><span class="num">7</span> Python helpers + Whisper</h2><div class="what">Image making, web requests, and free captions on your computer.</div><div class="body"><div class="cmd"><span class="lbl">Run</span><span class="t">python -m pip install --user Pillow requests playwright faster-whisper</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="cmd check"><span class="lbl">Check</span><span class="t">python -c "import PIL, requests, faster_whisper; print('all good')"</span><button class="copy" onclick="cp(this)">Copy</button></div></div></div>
-<div class="step"><h2><span class="num">8</span> The Clinic Catalyst system</h2><div class="what">Every Clinic Catalyst skill where Codex finds them, your Clinic workspace with its Business Brain folder and rules file, and the video engine. This comes through the shortcut line. It skips the tools you already installed above, refreshes the skills, and leaves your own clinic files alone.</div><div class="body"><div class="cmd"><span class="lbl">Run</span><span class="t">irm https://clinic-catalyst-au.github.io/cc-onboard/clinic-codex-bootstrap.ps1 | iex</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="cmd check"><span class="lbl">Check</span><span class="t">ls ~\.agents\skills; ls ~\Clinic</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="small">You should see a list of cc- skill names, and your Clinic folders with an AGENTS.md file.</div></div></div>
-<div class="step"><h2><span class="num">9</span> Start Codex in your Clinic folder</h2><div class="body">Close PowerShell and open a fresh one. Then:<div class="cmd"><span class="lbl">Start</span><span class="t">cd ~\Clinic; codex.cmd</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="small">The first time, choose <b>Sign in with ChatGPT</b>. A browser opens, log in with your ChatGPT account, then come back to PowerShell. If Codex asks whether to trust this folder, or to set up its safe workspace on Windows, say yes and follow its steps.</div></div></div>
+    <div class="note" style="background:#E7F3F0;border-color:var(--mint)">Paste each <b>Run</b> block, wait until the cursor comes back, then paste its <b>Check</b>. Only move on when Check looks right. Blocks with several lines: paste the whole block at once. You do <b>not</b> need to close PowerShell between steps. If a command "is not recognised", paste this refresh line and try again:<div class="cmd fix"><span class="lbl">Refresh</span><span class="t">$env:Path = [Environment]::ExpandEnvironmentVariables(([Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;Machine&#x27;) + &#x27;;&#x27; + [Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;User&#x27;)))</span><button class="copy" onclick="cp(this)">Copy</button></div></div>
+<div class="step"><h2><span class="num">1</span> Git</h2><div class="what">Install the tool Codex uses to manage project changes.</div><div class="body"><div class="cmd"><span class="lbl">Run</span><span class="t">winget.exe install --id Git.Git --exact --source winget --scope user --accept-package-agreements --accept-source-agreements
+$env:Path = [Environment]::ExpandEnvironmentVariables(([Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;Machine&#x27;) + &#x27;;&#x27; + [Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;User&#x27;)))</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="cmd check"><span class="lbl">Check</span><span class="t">git.exe --version</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="small"><b>Good looks like:</b> A version beginning with git version appears.</div><div class="small">Use this if winget.exe is not recognized; if Git alone is not recognized after installation, paste the refresh command and repeat Check.</div><div class="cmd fix"><span class="lbl">Fix</span><span class="t">Start-Process &#x27;ms-windows-store://pdp/?ProductId=9NBLGGH4NNS1&#x27;
+Write-Host &#x27;Install or update App Installer in Microsoft Store, then return here and repeat Run and Check.&#x27;</span><button class="copy" onclick="cp(this)">Copy</button></div></div></div>
+<div class="step"><h2><span class="num">2</span> Node</h2><div class="what">Install Node and its package installer so this same PowerShell window can install Codex.</div><div class="body"><div class="cmd"><span class="lbl">Run</span><span class="t">winget.exe install --id OpenJS.NodeJS.LTS --exact --source winget --accept-package-agreements --accept-source-agreements
+$env:Path = [Environment]::ExpandEnvironmentVariables(([Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;Machine&#x27;) + &#x27;;&#x27; + [Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;User&#x27;)))</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="cmd check"><span class="lbl">Check</span><span class="t">&amp; &#x27;C:\Program Files\nodejs\node.exe&#x27; --version
+&amp; &#x27;C:\Program Files\nodejs\npm.cmd&#x27; --version
+npm.cmd --version</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="small"><b>Good looks like:</b> Three version numbers appear, with the first beginning with v.</div><div class="small">Use this if npm.cmd is still not recognized after Run; no window reopening is needed.</div><div class="cmd fix"><span class="lbl">Fix</span><span class="t">&amp; {
+  if (-not (Test-Path -LiteralPath &#x27;C:\Program Files\nodejs\npm.cmd&#x27;)) {
+    throw &#x27;Node did not install at the required location. Repeat Run and finish the installer, including any Windows approval prompt.&#x27;
+  }
+  $nodeDir = &#x27;C:\Program Files\nodejs&#x27;
+  $userPath = [Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;User&#x27;)
+  if (($userPath -split &#x27;;&#x27;) -notcontains $nodeDir) {
+    [Environment]::SetEnvironmentVariable(&#x27;Path&#x27;, ($nodeDir + &#x27;;&#x27; + $userPath), &#x27;User&#x27;)
+  }
+  $env:Path = [Environment]::ExpandEnvironmentVariables(([Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;Machine&#x27;) + &#x27;;&#x27; + [Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;User&#x27;)))
+  npm.cmd --version
+}</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="tip">If Windows asks <b>"Do you want to allow this app to make changes?"</b> or for an administrator password, say Yes / enter it. Node needs that one approval.</div></div></div>
+<div class="step"><h2><span class="num">3</span> Codex</h2><div class="what">Install Codex in your Windows account and make its command available.</div><div class="body"><div class="cmd"><span class="lbl">Run</span><span class="t">&amp; {
+  $npmDir = Join-Path $env:APPDATA &#x27;npm&#x27;
+  &amp; &#x27;C:\Program Files\nodejs\npm.cmd&#x27; install --global --prefix &quot;$npmDir&quot; --include=optional &#x27;@openai/codex&#x27;
+  if ($LASTEXITCODE -ne 0) { throw &#x27;Codex installation failed. Read the npm error above before continuing.&#x27; }
+  $userPath = [Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;User&#x27;)
+  if (($userPath -split &#x27;;&#x27;) -notcontains $npmDir) {
+    [Environment]::SetEnvironmentVariable(&#x27;Path&#x27;, ($npmDir + &#x27;;&#x27; + $userPath), &#x27;User&#x27;)
+  }
+  $env:Path = [Environment]::ExpandEnvironmentVariables(([Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;Machine&#x27;) + &#x27;;&#x27; + [Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;User&#x27;)))
+}</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="cmd check"><span class="lbl">Check</span><span class="t">codex.cmd --version</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="small"><b>Good looks like:</b> A codex-cli version appears.</div><div class="small">Use this if codex.cmd is not recognized; if the full path is also missing, repeat Run and check for an npm installation error.</div><div class="cmd fix"><span class="lbl">Fix</span><span class="t">$env:Path = [Environment]::ExpandEnvironmentVariables(([Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;Machine&#x27;) + &#x27;;&#x27; + [Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;User&#x27;)))
+&amp; &quot;$env:APPDATA\npm\codex.cmd&quot; --version</span><button class="copy" onclick="cp(this)">Copy</button></div></div></div>
+<div class="step"><h2><span class="num">4</span> Python</h2><div class="what">Install Python so your clinic tools can work with pictures, websites and recordings.</div><div class="body"><div class="cmd"><span class="lbl">Run</span><span class="t">winget.exe install --id Python.Python.3.12 --exact --source winget --scope user --architecture x64 --custom &#x27;InstallLauncherAllUsers=0&#x27; --accept-package-agreements --accept-source-agreements
+$env:Path = [Environment]::ExpandEnvironmentVariables(([Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;Machine&#x27;) + &#x27;;&#x27; + [Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;User&#x27;)))</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="cmd check"><span class="lbl">Check</span><span class="t">&amp; &quot;$env:LOCALAPPDATA\Programs\Python\Python312\python.exe&quot; --version
+&amp; &quot;$env:LOCALAPPDATA\Programs\Python\Python312\python.exe&quot; -m pip --version</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="small"><b>Good looks like:</b> Python 3.12.x appears, followed by a pip version associated with Python 3.12.</div><div class="small">Use this if typing python opens Microsoft Store or reports that Python was not found; the full-path commands in Check and step 6 bypass those aliases.</div><div class="cmd fix"><span class="lbl">Fix</span><span class="t">&amp; {
+  $pythonDir = Join-Path $env:LOCALAPPDATA &#x27;Programs\Python\Python312&#x27;
+  if (-not (Test-Path -LiteralPath (Join-Path $pythonDir &#x27;python.exe&#x27;))) {
+    throw &#x27;Python is missing from its expected location. Repeat Run and finish the installation.&#x27;
+  }
+  $userPath = [Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;User&#x27;)
+  foreach ($entry in @($pythonDir, (Join-Path $pythonDir &#x27;Scripts&#x27;))) {
+    if (($userPath -split &#x27;;&#x27;) -notcontains $entry) { $userPath = $entry + &#x27;;&#x27; + $userPath }
+  }
+  [Environment]::SetEnvironmentVariable(&#x27;Path&#x27;, $userPath, &#x27;User&#x27;)
+  $env:Path = [Environment]::ExpandEnvironmentVariables(([Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;Machine&#x27;) + &#x27;;&#x27; + [Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;User&#x27;)))
+  Start-Process &#x27;ms-settings:appsfeatures-appexecutionalias&#x27;
+  Write-Host &#x27;In App execution aliases, turn OFF the App Installer entries for python.exe and python3.exe. If this page does not open, search Start for Manage app execution aliases.&#x27;
+  &amp; (Join-Path $pythonDir &#x27;python.exe&#x27;) --version
+}</span><button class="copy" onclick="cp(this)">Copy</button></div></div></div>
+<div class="step"><h2><span class="num">5</span> FFmpeg</h2><div class="what">Install the tool that processes video and audio files.</div><div class="body"><div class="cmd"><span class="lbl">Run</span><span class="t">winget.exe install --id Gyan.FFmpeg --exact --source winget --scope user --accept-package-agreements --accept-source-agreements
+$env:Path = [Environment]::ExpandEnvironmentVariables(([Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;Machine&#x27;) + &#x27;;&#x27; + [Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;User&#x27;)))</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="cmd check"><span class="lbl">Check</span><span class="t">ffmpeg.exe -version
+ffprobe.exe -version</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="small"><b>Good looks like:</b> Both commands show version information.</div><div class="small">Use this standalone download fallback if winget fails or FFmpeg is still not recognized after refreshing PATH.</div><div class="cmd fix"><span class="lbl">Fix</span><span class="t">&amp; {
+  $ErrorActionPreference = &#x27;Stop&#x27;
+  [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
+  $workDir = Join-Path $env:TEMP (&#x27;cc-ffmpeg-&#x27; + [guid]::NewGuid().ToString(&#x27;N&#x27;))
+  $binDir = Join-Path $env:LOCALAPPDATA &#x27;Programs\FFmpeg\bin&#x27;
+  New-Item -ItemType Directory -Path $workDir -Force | Out-Null
+  New-Item -ItemType Directory -Path $binDir -Force | Out-Null
+  $zipPath = Join-Path $workDir &#x27;ffmpeg.zip&#x27;
+  Invoke-WebRequest -UseBasicParsing -Uri &#x27;https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip&#x27; -OutFile $zipPath
+  Expand-Archive -LiteralPath $zipPath -DestinationPath (Join-Path $workDir &#x27;extracted&#x27;) -Force
+  foreach ($name in @(&#x27;ffmpeg.exe&#x27;, &#x27;ffprobe.exe&#x27;)) {
+    $file = Get-ChildItem -LiteralPath (Join-Path $workDir &#x27;extracted&#x27;) -Recurse -File -Filter $name | Select-Object -First 1
+    if ($null -eq $file) { throw &quot;The download did not contain $name.&quot; }
+    Copy-Item -LiteralPath $file.FullName -Destination (Join-Path $binDir $name) -Force
+  }
+  $userPath = [Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;User&#x27;)
+  if (($userPath -split &#x27;;&#x27;) -notcontains $binDir) {
+    [Environment]::SetEnvironmentVariable(&#x27;Path&#x27;, ($binDir + &#x27;;&#x27; + $userPath), &#x27;User&#x27;)
+  }
+  $env:Path = [Environment]::ExpandEnvironmentVariables(([Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;Machine&#x27;) + &#x27;;&#x27; + [Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;User&#x27;)))
+  &amp; (Join-Path $binDir &#x27;ffmpeg.exe&#x27;) -version
+  &amp; (Join-Path $binDir &#x27;ffprobe.exe&#x27;) -version
+}</span><button class="copy" onclick="cp(this)">Copy</button></div></div></div>
+<div class="step"><h2><span class="num">6</span> Python helpers</h2><div class="what">Install the picture, website and transcription helpers plus a browser for website tasks.</div><div class="body"><div class="cmd"><span class="lbl">Run</span><span class="t">&amp; {
+  $pythonExe = Join-Path $env:LOCALAPPDATA &#x27;Programs\Python\Python312\python.exe&#x27;
+  &amp; $pythonExe -m pip install --user --upgrade pip
+  if ($LASTEXITCODE -ne 0) { throw &#x27;Updating pip failed. Try Fix before continuing.&#x27; }
+  &amp; $pythonExe -m pip install --user Pillow requests playwright faster-whisper
+  if ($LASTEXITCODE -ne 0) { throw &#x27;Installing the Python helpers failed. Read the error above.&#x27; }
+  &amp; $pythonExe -m playwright install chromium
+  if ($LASTEXITCODE -ne 0) { throw &#x27;The browser download failed. Repeat Run when the internet connection is working.&#x27; }
+}</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="cmd check"><span class="lbl">Check</span><span class="t">&amp; &quot;$env:LOCALAPPDATA\Programs\Python\Python312\python.exe&quot; -c &quot;import PIL, requests, playwright, faster_whisper; from playwright.sync_api import sync_playwright; p = sync_playwright().start(); b = p.chromium.launch(); b.close(); p.stop(); print(&#x27;All four helpers and Chromium are ready&#x27;)&quot;</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="small"><b>Good looks like:</b> All four helpers and Chromium are ready appears without a traceback.</div><div class="small">Use this for No module named pip or an outdated pip; for interrupted downloads, repeat Run.</div><div class="cmd fix"><span class="lbl">Fix</span><span class="t">&amp; {
+  $pythonExe = Join-Path $env:LOCALAPPDATA &#x27;Programs\Python\Python312\python.exe&#x27;
+  &amp; $pythonExe -m ensurepip --upgrade --user
+  if ($LASTEXITCODE -ne 0) { throw &#x27;Repairing pip failed. Read the error above.&#x27; }
+  &amp; $pythonExe -m pip install --user --upgrade pip setuptools wheel
+  if ($LASTEXITCODE -ne 0) { throw &#x27;Updating the Python installers failed. Read the error above.&#x27; }
+  Write-Host &#x27;Now repeat this step Run and Check.&#x27;
+}</span><button class="copy" onclick="cp(this)">Copy</button></div></div></div>
+<div class="step"><h2><span class="num">7</span> The Clinic Catalyst skills + your Clinic folder</h2><div class="what">Download your clinic skills and create your clinic workspace while preserving any existing AGENTS.md.</div><div class="body"><div class="cmd"><span class="lbl">Run</span><span class="t">&amp; {
+  $ErrorActionPreference = &#x27;Stop&#x27;
+  [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
+  $workDir = Join-Path $env:TEMP (&#x27;cc-clinic-pack-&#x27; + [guid]::NewGuid().ToString(&#x27;N&#x27;))
+  New-Item -ItemType Directory -Path $workDir -Force | Out-Null
+  $zipPath = Join-Path $workDir &#x27;cc-clinic-pack.zip&#x27;
+  $extractDir = Join-Path $workDir &#x27;extracted&#x27;
+  Invoke-WebRequest -UseBasicParsing -Uri &#x27;https://clinic-catalyst-au.github.io/cc-onboard/cc-clinic-pack.zip&#x27; -OutFile $zipPath
+  Expand-Archive -LiteralPath $zipPath -DestinationPath $extractDir -Force
+  $packDir = Join-Path $extractDir &#x27;cc-clinic-pack&#x27;
+  $sourceSkills = Join-Path $packDir &#x27;skills&#x27;
+  $template = Join-Path $packDir &#x27;templates\clinic-CLAUDE.md&#x27;
+  if (-not (Test-Path -LiteralPath $sourceSkills -PathType Container)) { throw &#x27;The ZIP is missing cc-clinic-pack\skills.&#x27; }
+  if (-not (Test-Path -LiteralPath $template -PathType Leaf)) { throw &#x27;The ZIP is missing templates\clinic-CLAUDE.md.&#x27; }
+  $skillsDir = Join-Path $HOME &#x27;.agents\skills&#x27;
+  New-Item -ItemType Directory -Path $skillsDir -Force | Out-Null
+  Copy-Item -Path (Join-Path $sourceSkills &#x27;*&#x27;) -Destination $skillsDir -Recurse -Force
+  $clinicDir = Join-Path $HOME &#x27;Clinic&#x27;
+  foreach ($folder in @(&#x27;Business-Brain\brand-assets&#x27;, &#x27;Content&#x27;, &#x27;Emails&#x27;, &#x27;Ads&#x27;)) {
+    New-Item -ItemType Directory -Path (Join-Path $clinicDir $folder) -Force | Out-Null
+  }
+  $agentsFile = Join-Path $clinicDir &#x27;AGENTS.md&#x27;
+  if (-not (Test-Path -LiteralPath $agentsFile)) {
+    Copy-Item -LiteralPath $template -Destination $agentsFile
+  }
+  Write-Host &#x27;Clinic Catalyst skills and clinic folders are installed.&#x27;
+}</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="cmd check"><span class="lbl">Check</span><span class="t">$skillsDir = Join-Path $HOME &#x27;.agents\skills&#x27;
+$skillCount = @(Get-ChildItem -LiteralPath $skillsDir -Directory -Filter &#x27;cc-*&#x27; -ErrorAction SilentlyContinue | Where-Object { Test-Path -LiteralPath (Join-Path $_.FullName &#x27;SKILL.md&#x27;) -PathType Leaf }).Count
+Write-Output (&#x27;cc- skills: &#x27; + $skillCount)
+Write-Output (&#x27;AGENTS.md exists: &#x27; + (Test-Path -LiteralPath (Join-Path $HOME &#x27;Clinic\AGENTS.md&#x27;) -PathType Leaf))</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="small"><b>Good looks like:</b> cc- skills shows a number greater than zero and AGENTS.md exists shows True.</div></div></div>
+<div class="step"><h2><span class="num">8</span> Start Codex and sign in</h2><div class="what">Open Codex in your clinic folder and choose Sign in with ChatGPT using your Plus account.</div><div class="body"><div class="cmd"><span class="lbl">Run</span><span class="t">Set-Location -Path ~\Clinic -ErrorAction Stop
+codex.cmd</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="cmd check"><span class="lbl">Check</span><span class="t">Get-Location
+codex.cmd login status</span><button class="copy" onclick="cp(this)">Copy</button></div><div class="small"><b>Good looks like:</b> After signing in, enter /quit inside Codex to return to PowerShell, then run Check; the folder ends in \Clinic and login status reports ChatGPT authentication. Run step 8 again to resume working.</div><div class="small">Use this from PowerShell if normal browser sign-in fails; open the displayed address, enter the displayed code, complete sign-in with your Plus account, then repeat Run.</div><div class="cmd fix"><span class="lbl">Fix</span><span class="t">codex.cmd login --device-auth</span><button class="copy" onclick="cp(this)">Copy</button></div></div></div>
 
     <div class="sect">Inside Codex</div>
     <div class="tip" style="margin:6px 0 4px">In Codex you just ask in plain words. Mention the skill by name and it does the rest.</div>
