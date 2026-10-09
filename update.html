@@ -71,6 +71,19 @@
       <p>Your Claude now has the latest Clinic Catalyst skills. Nothing of yours was changed - just the toolkit.</p>
     </div>
 
+    <div class="step" style="border:2px solid #E84040">
+      <h2><span class="num" style="background:#E84040">C</span> Using Codex (ChatGPT) instead of Claude?</h2>
+      <div class="body">
+        <b>Windows</b> - paste into PowerShell:
+        <div class="cmd"><span class="t">irm https://clinic-catalyst-au.github.io/cc-onboard/clinic-codex-update.ps1 | iex</span></div>
+        <button class="copy" onclick="cp(this)">Copy the Windows Codex update</button>
+        <div style="margin-top:14px"><b>Mac</b> - paste into Terminal:</div>
+        <div class="cmd"><span class="t">curl -fsSL https://clinic-catalyst-au.github.io/cc-onboard/clinic-codex-update.sh | bash</span></div>
+        <button class="copy" onclick="cp(this)">Copy the Mac Codex update</button>
+        <div class="small">When it says <b>DONE</b>, close Codex and start it again (Windows: <b>cd ~\Clinic; codex.cmd</b>). Your Business Brain and your work are never touched.</div>
+      </div>
+    </div>
+
     <div class="win">On a Windows PC instead? Use this in PowerShell:<br><code>irm https://clinic-catalyst-au.github.io/cc-onboard/clinic-update.ps1 | iex</code></div>
     <div class="foot">Clinic Catalyst &middot; stuck on a step? Screenshot it and text Kelly.</div>
   </div>
