@@ -56,9 +56,12 @@ if (-not (Get-Command ffmpeg -ErrorAction SilentlyContinue)) {
 #    is on the USER PATH so typing 'codex' works in every new window.
 Say "[2/4] Codex"
 Refresh-Path
-if (Get-Command npm.cmd -ErrorAction SilentlyContinue) {
-  # npm.cmd / codex.cmd, not npm / codex: Windows blocks the .ps1 shims under the default execution policy
-  npm.cmd install -g @openai/codex *> $null
+$npmCmd = (Get-Command npm.cmd -ErrorAction SilentlyContinue).Source
+if (-not $npmCmd -and (Test-Path "$env:ProgramFiles\nodejs\npm.cmd")) { $npmCmd = "$env:ProgramFiles\nodejs\npm.cmd"; $env:Path = "$env:Path;$env:ProgramFiles\nodejs" }
+if ($npmCmd) {
+  # npm.cmd / codex.cmd, not npm / codex: Windows blocks the .ps1 shims under the default execution policy.
+  # Full path fallback: a fresh Node install is often not on PATH in the window that installed it.
+  & $npmCmd install -g @openai/codex *> $null
   $npmBin = Join-Path $env:APPDATA 'npm'
   $up = [Environment]::GetEnvironmentVariable('Path', 'User')
   if ($up -notlike "*$npmBin*") {
