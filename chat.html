@@ -47,7 +47,8 @@
   <div class="hint">Cmd+Enter sends &middot; refreshes every few seconds</div>
 </div>
 <script>
-const URL_ = "https://jiquevvzrdavgqonvvug.supabase.co/rest/v1/cc_install_chat";
+const RPC = "https://jiquevvzrdavgqonvvug.supabase.co/rest/v1/rpc/";
+const CODE = (new URLSearchParams(location.search).get("room") || "").trim();   // room code from Kelly (Oct 2026 lockdown)
 const KEY = "sb_publishable_siNrWACQh9utYNJ_g6Mt3Q_vWuxhkaJ";
 const H = {"apikey": KEY, "Authorization": "Bearer " + KEY, "Content-Type": "application/json"};
 let who = localStorage.getItem("cc-chat-who") || "Alicia";
@@ -82,8 +83,8 @@ function render(rows){
 
 async function poll(){
   try {
-    const r = await fetch(URL_ + "?select=*&id=gt." + lastId + "&order=id.asc", {headers: H});
-    if (r.ok) render(await r.json());
+    const r = await fetch(RPC + "chat_read", {method: "POST", headers: H, body: JSON.stringify({p_code: CODE})});
+    if (r.ok) render((await r.json()).filter(x => x.id > lastId).sort((a, b) => a.id - b.id));
   } catch(e){}
 }
 
@@ -93,7 +94,8 @@ async function send(){
   if (!text) return;
   document.getElementById("send").disabled = true;
   try {
-    await fetch(URL_, {method: "POST", headers: H, body: JSON.stringify({sender: who, message: text})});
+    const ok = await (await fetch(RPC + "chat_post", {method: "POST", headers: H, body: JSON.stringify({p_code: CODE, p_sender: who, p_message: text})})).json();
+    if (ok !== true) { document.querySelector(".hint") && (document.querySelector(".hint").textContent = "This chat link is missing its room code or has expired - ask Kelly for the link for today."); return; }
     box.value = "";
     await poll();
   } finally { document.getElementById("send").disabled = false; }

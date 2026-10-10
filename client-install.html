@@ -70,7 +70,9 @@
 
 <script>
 const P = new URLSearchParams(location.search);
+const CODE   = (P.get("k") || "").trim();             // private room code from Kelly (Oct 2026 lockdown)
 const CLIENT = (P.get("c") || "client").trim();
+const esc = (v) => String(v).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
 const NAME   = P.get("name") || "";
 const SNAP   = P.get("s") || "";
 const AS     = (P.get("as") || "").trim();          // operator mode: post as this name (e.g. Kelly)
@@ -83,19 +85,19 @@ if (OPERATOR) {
   document.querySelector(".divider").textContent =
     "Operator console - " + (NAME || CLIENT) + " - posting as " + AS;
   document.getElementById("heroTitle").innerHTML =
-    (NAME || CLIENT) + " - Operator<span>type here; every message gets a Copy button on their side</span>";
+    esc(NAME || CLIENT) + " - Operator<span>type here; every message gets a Copy button on their side</span>";
   document.getElementById("box").placeholder =
     "Type the exact block for " + (NAME || CLIENT) + " to copy-paste...";
 } else if (NAME) {
   document.getElementById("heroTitle").innerHTML =
-    "Kelly HELP!<span>" + NAME + " - install your nurture system below, then use the chat if anything gets stuck</span>";
+    "Kelly HELP!<span>" + esc(NAME) + " - install your nurture system below, then use the chat if anything gets stuck</span>";
 }
 
 const snapBtn = document.getElementById("snapBtn");
 if (SNAP) { snapBtn.href = SNAP; }
 else { snapBtn.textContent = "Install link coming from Kelly"; snapBtn.style.pointerEvents = "none"; snapBtn.style.opacity = ".6"; }
 
-const URL_ = "https://jiquevvzrdavgqonvvug.supabase.co/rest/v1/cc_client_helpline";
+const RPC = "https://jiquevvzrdavgqonvvug.supabase.co/rest/v1/rpc/";
 const KEY = "sb_publishable_siNrWACQh9utYNJ_g6Mt3Q_vWuxhkaJ";
 const H = {"apikey": KEY, "Authorization": "Bearer " + KEY, "Content-Type": "application/json"};
 // Telegram ping to Kelly when a CLIENT (not the operator) sends a message.
@@ -142,7 +144,7 @@ function render(rows){
 
 async function poll(){
   try {
-    const r = await fetch(URL_ + "?client=eq." + encodeURIComponent(CLIENT) + "&select=*&order=id.desc&limit=100", {headers: H});
+    const r = await fetch(RPC + "chat_read", {method: "POST", headers: H, body: JSON.stringify({p_code: CODE})});
     if (r.ok) render(await r.json());
   } catch(e){}
 }
@@ -153,7 +155,8 @@ async function send(){
   if (!text) return;
   document.getElementById("send").disabled = true;
   try {
-    await fetch(URL_, {method: "POST", headers: H, body: JSON.stringify({client: CLIENT, sender: SENDER, message: text})});
+    const ok = await (await fetch(RPC + "chat_post", {method: "POST", headers: H, body: JSON.stringify({p_code: CODE, p_sender: SENDER, p_message: text})})).json();
+    if (ok !== true) { document.querySelector(".hint").textContent = "This chat link has expired or is incomplete - please ask Kelly for your current link."; return; }
     if (!OPERATOR) pingKelly(text);   // client messaged -> ping Kelly's Telegram; her own replies never ping
     box.value = "";
     await poll();

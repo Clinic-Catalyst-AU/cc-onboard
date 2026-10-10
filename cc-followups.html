@@ -75,10 +75,70 @@ input:checked + span{text-decoration:line-through;color:#9aa5a2}
 <div class="note">Done tonight: the Telegram helpline bridge (promised in his session) is LIVE - all clinic messages ping Kelly.</div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script>
 const T_URL = "https://jiquevvzrdavgqonvvug.supabase.co/rest/v1/cc_task_ticks";
 const KEY = "sb_publishable_siNrWACQh9utYNJ_g6Mt3Q_vWuxhkaJ";
 const H = {"apikey": KEY, "Authorization": "Bearer " + KEY, "Content-Type": "application/json"};
+
+/* Staff sign-in gate (Oct 2026 security lockdown).
+   Paste inside the page's main <script>, after SUPABASE_URL / the publishable key and the HEADERS object.
+   Needs the supabase-js v2 UMD script tag (cdn.jsdelivr.net/npm/@supabase/supabase-js@2) before the main script.
+   Usage: replace the page's start call, e.g. init();  ->  staffGate('mentorship', init);
+   Access is decided by the database (staff_access table + RLS), not by this code. */
+const sbAuth = supabase.createClient((typeof SUPABASE_URL !== 'undefined' ? SUPABASE_URL : 'https://jiquevvzrdavgqonvvug.supabase.co'), 'sb_publishable_siNrWACQh9utYNJ_g6Mt3Q_vWuxhkaJ');
+let staffStarted = false;
+
+function setAuthToken(session) {
+  if (typeof HEADERS !== 'undefined') HEADERS['Authorization'] = 'Bearer ' + session.access_token;
+  if (typeof H !== 'undefined' && H && typeof H === 'object') H['Authorization'] = 'Bearer ' + session.access_token;
+  window.STAFF_TOKEN = session.access_token;
+}
+
+function staffGate(tool, start) {
+  const gate = document.createElement('div');
+  gate.id = 'staffGate';
+  gate.style.cssText = 'position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;background:#F7F4EF;font-family:Karla,system-ui,sans-serif;padding:16px';
+  gate.innerHTML = `<form id="staffGateForm" style="background:#fff;border:1px solid #E6DFD3;border-radius:14px;padding:32px;width:100%;max-width:360px;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.06)">
+    <div style="font-size:1.1rem;font-weight:700;color:#3A3337;margin-bottom:6px">Sign in</div>
+    <div style="font-size:.8rem;color:#7A6E72;margin-bottom:18px">Staff access only</div>
+    <input id="sgEmail" type="email" placeholder="Email" autocomplete="username" required style="width:100%;box-sizing:border-box;padding:11px 12px;margin-bottom:10px;border:1px solid #E6DFD3;border-radius:8px;font:inherit">
+    <input id="sgPass" type="password" placeholder="Password" autocomplete="current-password" required style="width:100%;box-sizing:border-box;padding:11px 12px;margin-bottom:12px;border:1px solid #E6DFD3;border-radius:8px;font:inherit">
+    <button id="sgBtn" type="submit" style="width:100%;padding:11px;border:0;border-radius:8px;background:#3A3337;color:#fff;font:inherit;font-weight:700;cursor:pointer">Sign in</button>
+    <div id="sgErr" style="color:#B23A3A;font-size:.78rem;margin-top:10px;min-height:1em"></div>
+  </form>`;
+  document.body.appendChild(gate);
+  const err = (m) => { document.getElementById('sgErr').textContent = m; };
+
+  async function unlock(session) {
+    setAuthToken(session);
+    const { data: role } = await sbAuth.rpc('staff_role', { p_tool: tool });
+    if (!role) { await sbAuth.auth.signOut(); err('This account does not have access'); return; }
+    window.STAFF_ROLE = role;
+    gate.remove();
+    if (!staffStarted) { staffStarted = true; start(); }
+  }
+
+  document.getElementById('staffGateForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('sgBtn');
+    btn.disabled = true; btn.textContent = 'Signing in...'; err('');
+    const { error } = await sbAuth.auth.signInWithPassword({
+      email: document.getElementById('sgEmail').value.trim().toLowerCase(),
+      password: document.getElementById('sgPass').value
+    });
+    btn.disabled = false; btn.textContent = 'Sign in';
+    if (error) err('Email or password not recognised');
+  });
+
+  sbAuth.auth.onAuthStateChange((event, session) => {
+    if (session) setAuthToken(session);
+    if (session && !staffStarted) unlock(session);
+  });
+}
+
+async function staffSignOut() { await sbAuth.auth.signOut(); location.reload(); }
+
 const boxes = document.querySelectorAll('input[type=checkbox]');
 
 function prog(){
@@ -103,7 +163,6 @@ boxes.forEach(b => b.addEventListener('change', async () => {
   }catch(e){}
 }));
 
-loadTicks();
-setInterval(loadTicks, 15000);
+staffGate('cc', () => { loadTicks(); setInterval(loadTicks, 15000); });
 </script>
 </div></body></html>
